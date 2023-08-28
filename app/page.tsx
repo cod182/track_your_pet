@@ -1,7 +1,9 @@
+import { PageFeaturedImage } from '@/components/index';
+
 const page = () => {
   return (
     <>
-      <h1>Hello</h1>
+      <PageFeaturedImage />
     </>
   );
 };
