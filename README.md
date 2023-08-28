@@ -1,34 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Track Your Pet
 
-## Getting Started
+## Project
 
-First, run the development server:
+Track Your Pet, a free servuce that let you know when someone has found your pet, all you need is a QR code on their collar! Once someone scans the QR code, you will be alerted that you pet has been scanned. The person who scanned the QR code will be asked to share their location so you know when you pet is!
+In invaluable way to find you pet when it's lost, or just know where it is when on an adventure.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Showcase
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A deployed link to the site can be found [here]()
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Preivew]()
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# UX
 
-## Learn More
+## User Story
 
-To learn more about Next.js, take a look at the following resources:
+USER STORY
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Strategy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### User Needs
 
-## Deploy on Vercel
+-
+-
+-
+-
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Business Vision
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-
+-
+
+## Scope
+
+-
+-
+-
+
+## Structure
+
+-
+
+## Features
+
+### Existing Features
+
+-
+-
+-
+
+## Technologies Used
+
+-
+-
+-
+
+## Deployment
+
+-
+-
+-
+
+### Credits
+
+-
+-
+-
