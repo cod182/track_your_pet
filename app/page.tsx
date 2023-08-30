@@ -9,6 +9,7 @@ const page = () => {
         image={featuredImage}
         buttonText={'Get Started'}
         buttonLink={'#'}
+        overlayText="Know where your pet goes"
       />
     </>
   );
