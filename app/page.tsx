@@ -2,6 +2,7 @@ import { PageFeaturedImage, InfoPane } from '@/components/index';
 
 import featuredImage from '../public/assets/images/featured-image.webp';
 
+
 const page = () => {
   return (
     <>
