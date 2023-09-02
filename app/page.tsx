@@ -3,6 +3,7 @@ import {
   InfoPane,
   TitleComp,
   InfoSquare,
+  About,
 } from '@/components/index';
 
 import featuredImage from '../public/assets/images/featured-image.webp';

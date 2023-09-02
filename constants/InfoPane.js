@@ -74,7 +74,7 @@ export const howItWorks = [
 
   },
   {
-    id: 0,
+    id: 1,
     icons: [
       {
         id: 0,
@@ -93,7 +93,7 @@ export const howItWorks = [
 
   },
   {
-    id: 0,
+    id: 2,
     icons: [
       {
         id: 0,
