@@ -1,7 +1,11 @@
-import { PageFeaturedImage, InfoPane } from '@/components/index';
+import {
+  PageFeaturedImage,
+  InfoPane,
+  TitleComp,
+  InfoSquare,
+} from '@/components/index';
 
 import featuredImage from '../public/assets/images/featured-image.webp';
-
 
 const page = () => {
   return (
@@ -15,6 +19,7 @@ const page = () => {
         />
       </div>
       <InfoPane />
+      <About />
     </>
   );
 };

@@ -3,3 +3,4 @@ export { default as Nav } from './Nav/Nav';
 export { default as MobileNav } from './MobileNav/MobileNav';
 export { default as InfoPane } from './InfoPane/InfoPane';
 export { default as InfoSquare } from './InfoSquare/InfoSquare';
+export { default as TitleComp } from './TitleComp/TitleComp';
