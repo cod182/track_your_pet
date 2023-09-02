@@ -1,10 +1,4 @@
-import {
-  PageFeaturedImage,
-  InfoPane,
-  TitleComp,
-  InfoSquare,
-  About,
-} from '@/components/index';
+import { PageFeaturedImage, InfoPane, About } from '@/components/index';
 
 import featuredImage from '../public/assets/images/featured-image.webp';
 
@@ -19,8 +13,8 @@ const page = () => {
           overlayText="Know where your pet goes"
         />
       </div>
-      <InfoPane />
       <About />
+      <InfoPane />
     </>
   );
 };

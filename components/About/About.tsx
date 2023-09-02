@@ -1,15 +1,13 @@
-'use client';
 import React from 'react';
 import { about } from '../../constants/aboutInfo';
 
-
-
 const About = () => {
-  console.log(about.paragraphs);
   return (
-    <div className="w-full h-fit px-5 mx-10">
+    <div className="w-full h-fit p-5 mb-4 mt-2 sm:mt-0 rounded-b-xl bg-gradient-to-tr from-cyan-200 to-blue-300">
       {about.paragraphs.map((paragraph) => (
-        <p key={paragraph.id}>{paragraph.paragraph}</p>
+        <p className="text-[2vmin] my-4" key={paragraph.id}>
+          {paragraph.paragraph}
+        </p>
       ))}
     </div>
   );
