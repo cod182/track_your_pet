@@ -1,4 +1,4 @@
-import { PageFeaturedImage, InfoPane, About } from '@/components/index';
+import { PageFeaturedImage, InfoPane, About, Footer } from '@/components/index';
 
 import featuredImage from '../public/assets/images/featured-image.webp';
 
@@ -15,6 +15,7 @@ const page = () => {
       </div>
       <About />
       <InfoPane />
+      <Footer />
     </>
   );
 };
