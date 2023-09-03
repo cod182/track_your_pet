@@ -10,7 +10,7 @@ export const about =
   },
   {
     id: 2,
-    paragraph: 'This could prevent part of your family being lost forever of ending up in the local pound!'
+    paragraph: 'This could prevent part of your family being lost forever or ending up in the local pound!'
   }]
 }
 

@@ -31,6 +31,16 @@ const Nav = () => {
               <li className="mx-2">
                 <Link
                   className="drop-shadow-xl transition-all ease-in-out duration-300 hover:drop-shadow-2xl hover:text-secondary"
+                  href="/register"
+                >
+                  Sign Up
+                </Link>
+              </li>
+              <li className="text-secondary select-none">|</li>
+
+              <li className="mx-2">
+                <Link
+                  className="drop-shadow-xl transition-all ease-in-out duration-300 hover:drop-shadow-2xl hover:text-secondary"
                   href="/"
                 >
                   Sign In
