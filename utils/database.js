@@ -10,7 +10,7 @@ export const connectToDb = async () => {
   }
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: 'portfolio-database', useNewURLParser: true, useUnifiedTopology: true
+      dbName: 'trackyourpet', useNewURLParser: true, useUnifiedTopology: true
     })
     isConnected = true
     console.log('MongoDb Now Connected')
