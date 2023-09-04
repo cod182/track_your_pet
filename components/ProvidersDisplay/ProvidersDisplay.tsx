@@ -2,6 +2,8 @@
 import { signIn, useSession, getProviders } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
+import { BsGoogle } from 'react-icons/bs';
+
 const ProvidersDisplay = () => {
   const [providers, setProviders] = useState<any>();
 
@@ -28,9 +30,10 @@ const ProvidersDisplay = () => {
               onClick={() => {
                 signIn(provider.id);
               }}
-              className="w-full sm:w-[300px] h-fit px-4 py-2 bg-orange-400 hover:bg-orange-300 rounded"
+              className="w-full sm:w-[300px] h-fit flex flex-row justify-center items-center px-4 py-2 bg-white hover:bg-gray-300 rounded border-[1px] border-gray-500 transition-all ease-in duration-300"
             >
-              Sign in
+              <BsGoogle />
+              <span className="ml-2">Google</span>
             </button>
           ))}
       </div>

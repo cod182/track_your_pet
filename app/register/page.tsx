@@ -13,7 +13,7 @@ const page = () => {
       />
       <RegistrationForm />
       <TitleComp
-        title="Or sign in with a provider below"
+        title="Or register using a provider below"
         size="calc(18px + 1.5vmin)"
         color="#21a7df"
         position="center"

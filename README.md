@@ -64,5 +64,7 @@ USER STORY
 ### Credits
 
 - Google Fonts - Roboto
--
--
+- react-icons
+- mongoose
+- MongoDB
+- Next Auth
