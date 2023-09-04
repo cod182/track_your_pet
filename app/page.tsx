@@ -9,7 +9,7 @@ const page = () => {
         <PageFeaturedImage
           image={featuredImage}
           buttonText={'Get Started'}
-          buttonLink={'#'}
+          buttonLink={'/login'}
           overlayText="Know where your pet goes"
         />
       </div>
