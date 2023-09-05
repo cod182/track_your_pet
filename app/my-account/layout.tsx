@@ -4,7 +4,7 @@ const layout = ({ children }: any) => {
   return (
     <>
       <AuthCheck notAuthRedirectUrl="/login" notAuthRedirect>
-        <div className="w-screen px-4">
+        <div className="w-full px-4">
           {/* User Welcome Bar */}
           <UserWelcomeArea />
           {/* Menu Bar */}
