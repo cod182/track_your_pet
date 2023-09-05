@@ -1,4 +1,4 @@
-import { PetSquare } from '@/components';
+import { AddPetButton, PetSquare } from '@/components';
 
 const page = () => {
   return (
@@ -11,6 +11,7 @@ const page = () => {
           petId="123"
           lastScan="22/03/23 at 22:42"
         />
+        <AddPetButton />
       </div>
     </div>
   );

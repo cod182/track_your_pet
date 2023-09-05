@@ -27,15 +27,15 @@ const PetSquare = ({ petName, petImage, lastScan, petId }: PetSquareProps) => {
           />
         </div>
         <div className="w-[60%] p-2 text-end ">
-          <p className="w-full text-xl font-semibold overflow-x-scroll max-h-[150px]">
+          <p className="w-full text-md xs:text-lg sm:text-xl font-semibold overflow-x-scroll max-h-[150px]">
             {petName}
           </p>
         </div>
       </div>
       {/* Middle Area */}
-      <div className="w-full mt-4 text-start font-normal">
+      <div className="w-full mt-4 text-start font-normal text-sm xxs:text-md xs:text-lg sm:text-xl">
         <span>Last Scan:&nbsp;</span>
-        <span>{lastScan}</span>
+        <p className="inline">{lastScan}</p>
       </div>
     </Link>
   );
