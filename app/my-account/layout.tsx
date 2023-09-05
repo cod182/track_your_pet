@@ -8,12 +8,11 @@ const layout = ({ children }: any) => {
           {/* User Welcome Bar */}
           <UserWelcomeArea />
           {/* Menu Bar */}
-          <div className="w-full h-fit bg-gray-100 rounded px-4 py-2 shadow-md">
+          <div className="w-full h-fit bg-gray-100 rounded px-4 py-2 shadow-md mb-2">
             <UserNav />
           </div>
-          {/* Pets / Quick Add */}
+          {children}
         </div>
-        <div>{children}</div>
       </AuthCheck>
     </>
   );

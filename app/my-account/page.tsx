@@ -1,7 +1,6 @@
-
 const page = () => {
   console.log();
-  return <div>HOME</div>;
+  return <div className="w-full"></div>;
 };
 
 export default page;
