@@ -35,12 +35,16 @@ const DigitalDateTimeDisplay = () => {
   const [date, setDate] = useState<string>();
 
   return (
-    <div className=" border-2 border-black bg-gray-200 rounded-xl p-2 mb-2 w-full max-w-[214px] shadow-sm min-w-[148px]">
-      <div className="bg-black py-2 px-4 rounded-xl w-full h-full flex flex-row sm:flex-col justify-center items-center">
-        <p className="text-white text-lg">{date}</p>
+    <div className=" border-2 border-black bg-gray-200 rounded-xl p-2 mb-2 mx-auto w-full max-w-[214px] shadow-sm min-w-[148px] transition-all ease-in duration-400 overflow-hidden">
+      <div className="bg-black py-2 px-4 rounded-xl w-full h-full flex flex-row sm:flex-col justify-center items-center transition-all ease-in duration-400 overflow-hidden">
+        <p className="text-transparent bg-clip-text bg-gradient-to-bl from-primary to-cyan-400 text-lg font-semibold">
+          {date}
+        </p>
         <span className="inline sm:hidden text-white">&nbsp;</span>
 
-        <p className="text-white text-lg">{time}</p>
+        <p className="text-transparent bg-clip-text bg-gradient-to-bl from-primary to-cyan-400 text-lg font-semibold">
+          {time}
+        </p>
       </div>
     </div>
   );

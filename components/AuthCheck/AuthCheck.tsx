@@ -43,7 +43,7 @@ const AuthCheck = ({
       if (authRedirect) {
         redirect(`${authRedirectUrl}`);
       }
-      return <div>{children}</div>;
+      return <>{children}</>;
     }
 
     default:
