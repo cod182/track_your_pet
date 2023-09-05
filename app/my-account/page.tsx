@@ -1,70 +1,69 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import { AuthCheck, TitleComp } from '@/components';
-import { useEffect, useState } from 'react';
-import { setInterval } from 'timers';
+import { AuthCheck, TitleComp, DigitalDateTimeDisplay } from '@/components';
+import Link from 'next/link';
 
 const page = () => {
-  useEffect(() => {
-    const getDateTime = (request: string) => {
-      let currentdate = new Date();
-      let date = currentdate.toLocaleDateString('en-gb');
-
-      let hours = currentdate.getHours();
-      let minutes =
-        currentdate.getMinutes() <= 9
-          ? '0' + currentdate.getMinutes()
-          : currentdate.getMinutes();
-
-      if (request === 'date') {
-        return date.toString();
-      } else if (request === 'time') {
-        return hours.toString() + ':' + minutes.toString();
-      }
-    };
-
-    setInterval(() => {
-      let time = getDateTime('time');
-      let date = getDateTime('date');
-      setTime(time);
-      setDate(date);
-    }, 1000);
-  }, []);
-
-  const [time, setTime] = useState('');
-  const [date, setDate] = useState('');
-
   const session = useSession();
+
   console.log();
   return (
     <AuthCheck notAuthRedirectUrl="/login" notAuthRedirect>
-      <div className="flex flex-col sm:flex-row justify-between flex-wrap px-4">
-        <div className="flex flex-row w-full sm:w-[80%]">
-          <TitleComp
-            position="start"
-            title={`Welcome ${session.data?.user?.name}!`}
-            color="#38a4d1"
-            size="calc(20px + 2.5vmin)"
-          />
-        </div>
-        <div className="w-full sm:w-[20%] flex flex-row sm:flex-col">
-          <div className="mr-4 sm:mr-0">
+      <div className="w-screen px-4">
+        <div className="flex flex-col sm:flex-row justify-between flex-wrap px-4">
+          <div className="flex flex-row w-full sm:w-[80%]">
             <TitleComp
               position="start"
-              title={date}
+              title={`Welcome ${session.data?.user?.name}!`}
               color="#38a4d1"
-              size="calc(12px + 1vmin)"
+              size="calc(20px + 2.5vmin)"
             />
           </div>
-          <div className="mr-4 sm:mr-0">
-            <TitleComp
-              position="start"
-              title={time}
-              color="#38a4d1"
-              size="calc(12px + 1vmin)"
-            />
+          <div className="w-full sm:w-[20%]">
+            <DigitalDateTimeDisplay />
           </div>
         </div>
+        {/* Menu Bar */}
+        <div className="w-full h-fit bg-gray-100 rounded px-4 py-2 shadow-md">
+          <ul className="flex flex-row flex-wrap justify-center items-center h-fit">
+            <li className="mx-2 text-secondary">|</li>
+
+            <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+              <Link href="/">
+                <span className="font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg">
+                  Home
+                </span>
+              </Link>
+            </li>
+            <li className="mx-2 text-secondary">|</li>
+
+            <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+              <Link href="/">
+                <span className="font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg">
+                  Pets
+                </span>
+              </Link>
+            </li>
+            <li className="mx-2 text-secondary">|</li>
+            <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+              <Link href="/">
+                <span className="font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg">
+                  Info
+                </span>
+              </Link>
+            </li>
+            <li className="mx-2 text-secondary">|</li>
+            <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+              <Link href="/">
+                <span className="font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg">
+                  Settings
+                </span>
+              </Link>
+            </li>
+            <li className="mx-2 text-secondary">|</li>
+          </ul>
+        </div>
+        {/* Pets / Quick Add */}
       </div>
     </AuthCheck>
   );
