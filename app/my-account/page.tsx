@@ -1,21 +1,41 @@
+'use client';
 import { AddPetButton, PetSquare } from '@/components';
 
-import { pets } from '../../constants/test';
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 const page = () => {
+  const { data: session } = useSession();
+  const userId = (session?.user as { id: string })?.id;
+
+  const [userPets, setUserPets] = useState([]);
+
+  const fetchUsersPets = async () => {
+    const response = await fetch(`/api/pets/${userId}`);
+
+    const data = await response.json();
+
+    setUserPets(data);
+  };
+
+  useEffect(() => {
+    fetchUsersPets();
+  }, []);
+
   return (
     <div className="w-full h-full">
       <div className="grid justify-center items-center grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
         {/* PetSquare */}
-        {pets.map(({ petName, scanHistory, petImage, id }: any) => {
-          void console.log(scanHistory.slice(-1)[0].dateTime);
+        {userPets.map(({ petName, scanHistory, petImage, _id }: any) => {
           return (
-            <PetSquare
-              petName={petName.text}
-              petImage={petImage.image}
-              petId={id}
-              lastScan={scanHistory.slice(-1)[0].dateTime}
-            />
+            <div key={_id}>
+              <PetSquare
+                petName={petName.text}
+                petImage={petImage.image}
+                petId={_id}
+                lastScan={scanHistory.slice(-1)[0].dateTime}
+              />
+            </div>
           );
         })}
         <AddPetButton />

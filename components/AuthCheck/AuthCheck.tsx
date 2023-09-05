@@ -21,7 +21,6 @@ const AuthCheck = ({
   children,
 }: AuthCheckProps) => {
   const { status } = useSession();
-  console.log(status);
 
   switch (status) {
     case 'unauthenticated': {
