@@ -14,3 +14,4 @@ export { default as AuthCheck } from './AuthCheck/AuthCheck';
 export { default as DigitalDateTimeDisplay } from './DigitalDateTimeDisplay/DigitalDateTimeDisplay';
 export { default as UserNav } from './UserNav/UserNav';
 export { default as UserWelcomeArea } from './UserWelcomeArea/UserWelcomeArea';
+export { default as PetSquare } from './PetSquare/PetSquare';
