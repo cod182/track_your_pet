@@ -4,7 +4,7 @@ import React from 'react';
 const AddPetButton = () => {
   return (
     <Link
-      href="/my-account/pets/new"
+      href="/my-account/pets/add-pet"
       className="group aspect-square rounded-lg border-2 border-gray-200 shadow-md mx-auto max-w-[250px] w-full relative flex flex-col justify-evenly items-center p-2 bg-gradient-to-br from-primary to-cyan-400 transition-all ease-in-out duration-400  hover:scale-110	 hover:z-[99] hover:border-2 hover:border-white"
     >
       {/* Top Area */}

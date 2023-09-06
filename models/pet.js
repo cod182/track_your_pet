@@ -5,6 +5,10 @@ const PetSchema = new Schema({
     type: String,
     required: [true, 'OwnerID is required!'],
   },
+  ownerName: {
+    type: String,
+    required: [true, "owner's name is required!"],
+  },
   petImage: {
     image: {
       type: String,
@@ -83,10 +87,6 @@ const PetSchema = new Schema({
     }
   },
   scanHistory: {
-    id: {
-      type: String,
-      required: [true, 'id required!'],
-    },
     dateTime: {
       type: String,
       required: [true, 'Date / Time?'],
