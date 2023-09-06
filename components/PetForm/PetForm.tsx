@@ -312,7 +312,7 @@ const PetForm = ({
         <button
           type="submit"
           disabled={submitting}
-          className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+          className="px-5 py-1.5 text-sm bg-primary rounded-xl text-white"
         >
           {submitting ? `${formType}ing your pet...` : `${formType} your pet`}
         </button>

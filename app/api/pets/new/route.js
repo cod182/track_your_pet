@@ -1,12 +1,12 @@
 import Pet from '../../../../models/pet'
-import { connectToDb } from "../../../../database";
+import { connectToDb } from "../../../../utils/database";
 
 export const POST = async (request) => {
-  const { ownerId, ownerName, petImage, petName, dob, bred, color, homeAddress, what3words, message, scanHistory } = await request.json();
+  const { ownerId, ownerName, petImage, petName, dob, breed, color, homeAddress, what3words, message, scanHistory } = await request.json();
 
   try {
     await connectToDb();
-    const newPet = new Pet({ ownerId, ownerName, petImage, petName, dob, bred, color, homeAddress, what3words, message, scanHistory });
+    const newPet = new Pet({ ownerId: ownerId, ownerName: ownerName, petImage: petImage, petName: petName, dob: dob, breed: breed, color: color, homeAddress: homeAddress, what3words: what3words, message: message, scanHistory: scanHistory });
 
     await newPet.save();
     return new Response(JSON.stringify(newPet), { status: 201 })

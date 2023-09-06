@@ -86,14 +86,13 @@ const PetSchema = new Schema({
       required: [true, 'Is the message public?'],
     }
   },
-  scanHistory: {
+  scanHistory: [{
     dateTime: {
       type: String,
       required: [true, 'Date / Time?'],
     },
     coordinates: {
       type: String,
-      required: [true, 'Coordinates required'],
     },
     message: {
       type: String,
@@ -101,7 +100,7 @@ const PetSchema = new Schema({
     scannerName: {
       type: String,
     }
-  },
+  }],
 
 });
 
