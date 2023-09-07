@@ -61,7 +61,6 @@ const PetSchema = new Schema({
   homeAddress: {
     text: {
       type: String,
-      required: [true, 'Pet home address is required!'],
     },
     public: {
       type: String,

@@ -47,11 +47,19 @@ export interface petProps {
   ownerName: string;
   petImage: petImage;
   petName: petOption;
-  dob: petBirthday;
+  dob?: petBirthday;
   breed: petOption;
   color: petOption;
   homeAddress?: petOption;
   what3words?: petOption;
   message?: petMessage;
   scanHistory?: petScanHistory[];
+}
+export interface petFormQuestionProps {
+  required?: boolean;
+  placeholder: string;
+  objectName: string; // e.g petName or petImage
+  objectKeyOne: string; // E.G text or message
+  infoMessage?: string; //Message displayed under
+  infoLink?: string; // Link displayed under
 }

@@ -38,6 +38,60 @@ const PetForm = ({
         onSubmit={handleSubmit}
       >
         {/* Pet Image */}
+        <div className="flex flex-col sm:flex-row justify-start items-center w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <p>Pet Type:</p>
+
+          <div className="max-w-[100px] xxs:max-w-[200px]">
+            <div className="flex flex-col xxs:flex-row justify-evenly items-center">
+              <label className="mx-2">
+                <input
+                  required
+                  type="radio"
+                  name="selected-image"
+                  value="/assets/dog.png"
+                  className="peer hidden"
+                  onChange={(e) =>
+                    setPet({
+                      ...pet,
+                      petImage: {
+                        image: e.target.value,
+                        public: pet?.petImage?.public || false,
+                      },
+                    })
+                  }
+                />
+                <img
+                  src="/assets/dog.png"
+                  alt="Image 2"
+                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-sm transition-all duration-400 ease-in "
+                />
+              </label>
+              <label className="mx-2">
+                <input
+                  required
+                  type="radio"
+                  name="selected-image"
+                  value="/assets/cat.png"
+                  className="peer hidden"
+                  onChange={(e) =>
+                    setPet({
+                      ...pet,
+                      petImage: {
+                        image: e.target.value,
+                        public: pet?.petImage?.public || true,
+                      },
+                    })
+                  }
+                />
+                <img
+                  src="/assets/dog.png"
+                  alt="Image 2"
+                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-sm transition-all duration-400 ease-in "
+                />
+              </label>
+            </div>
+          </div>
+        </div>
 
         {/* Pet Name */}
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
@@ -122,11 +176,11 @@ const PetForm = ({
           </div>
         </div>
 
-        {/* Pet Bred */}
+        {/* Pet Breed */}
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
-            {' '}
             <input
+              required
               type="text"
               name="breed.text"
               id="breed.text"
@@ -167,8 +221,8 @@ const PetForm = ({
         {/* Pet Colour */}
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
-            {' '}
             <input
+              required
               type="text"
               name="color.text"
               id="color.text"
