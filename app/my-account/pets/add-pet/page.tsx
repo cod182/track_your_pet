@@ -11,7 +11,7 @@ const page = () => {
 
   const userId = (session?.user as { id: string })?.id;
   const userName = (session?.user as { name: string })?.name;
-
+  let currentDate = new Date();
   const [pet, setPet] = useState<petProps>({
     ownerId: userId,
     ownerName: userName,
@@ -25,10 +25,10 @@ const page = () => {
     message: { message: '', public: false },
     scanHistory: [
       {
-        dateTime: 'today',
+        dateTime: currentDate.toString(),
         coordinates: '',
-        message: '',
-        scannerName: '',
+        message: 'Pet added to system',
+        scannerName: 'Pet Creator',
       },
     ],
   });

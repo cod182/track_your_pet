@@ -50,8 +50,8 @@ export interface petProps {
   dob: petBirthday;
   breed: petOption;
   color: petOption;
-  homeAddress: petOption;
-  what3words: petOption;
-  message: petMessage;
+  homeAddress?: petOption;
+  what3words?: petOption;
+  message?: petMessage;
   scanHistory?: petScanHistory[];
 }
