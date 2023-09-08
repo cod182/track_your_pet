@@ -53,6 +53,7 @@ export interface petProps {
   homeAddress?: petOption;
   what3words?: petOption;
   message?: petMessage;
+  petType: string;
   scanHistory?: petScanHistory[];
 }
 export interface petFormQuestionProps {

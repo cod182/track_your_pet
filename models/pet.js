@@ -85,6 +85,10 @@ const PetSchema = new Schema({
       required: [true, 'Is the message public?'],
     }
   },
+  petType: {
+    type: String,
+    required: [true, 'Type of per required']
+  },
   scanHistory: [{
     dateTime: {
       type: String,

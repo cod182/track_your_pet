@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 import { TitleComp } from '@/components';
-import Image from 'next/image';
 
 import FadeIn from 'react-fade-in';
+import PetFormImageSelect from '../PetFormImageSelect/PetFormImageSelect';
+
+import { petImageOptions } from '../../constants/petImageOptions';
 
 declare interface PetFormProps {
   formType: 'Add' | 'Update';
@@ -44,73 +46,12 @@ const PetForm = ({
         className="w-full flex flex-col justify-center items-center"
         onSubmit={handleSubmit}
       >
-        {/* Pet Image */}
-        <div className="flex flex-col sm:flex-row justify-start items-center w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
-          <p>Pet Type:</p>
-
-          <div className="max-w-[100px] xxs:max-w-[200px]">
-            <div className="flex flex-col xxs:flex-row justify-evenly items-center">
-              <label className="m-2 relative">
-                <input
-                  required
-                  type="radio"
-                  name="selected-image"
-                  value="/assets/images/dog.webp"
-                  className="peer absolute images top-10 left-10"
-                  onChange={(e) => {
-                    setPet({
-                      ...pet,
-                      petImage: {
-                        image: e.target.value,
-                        public: pet?.petImage?.public || false,
-                      },
-                    });
-                  }}
-                />
-
-                <Image
-                  src="/assets/images/dog.webp"
-                  alt="Dog"
-                  width={100}
-                  height={100}
-                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
-                />
-                <div className="bg-gray-100/50 absolute overflow-hidden h-[0px] peer-hover:h-full top-[0px] w-full transition-all duration-400 ease-in font-bold  flex flex-col justify-center items-center">
-                  <p className="text-lg">Dog</p>
-                </div>
-              </label>
-              <label className="m-2 relative">
-                <input
-                  required
-                  type="radio"
-                  name="selected-image"
-                  value="/assets/images/cat.webp"
-                  className="peer absolute images top-10 left-10"
-                  onChange={(e) => {
-                    setPet({
-                      ...pet,
-                      petImage: {
-                        image: e.target.value,
-                        public: pet?.petImage?.public || true,
-                      },
-                    });
-                  }}
-                />
-
-                <Image
-                  src="/assets/images/cat.webp"
-                  alt="cat"
-                  width={100}
-                  height={100}
-                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
-                />
-                <div className="bg-gray-100/50 absolute overflow-hidden h-[0px] peer-hover:h-full top-[0px] w-full transition-all duration-400 ease-in font-bold  flex flex-col justify-center items-center">
-                  <p className="text-lg">Cat</p>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
+        {/* Pet Image / Type */}
+        <PetFormImageSelect
+          pet={pet}
+          setPet={setPet}
+          imageOptions={petImageOptions}
+        />
 
         {/* Pet Name */}
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">

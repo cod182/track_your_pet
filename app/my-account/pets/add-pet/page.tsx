@@ -2,7 +2,7 @@
 import { PetForm } from '@/components';
 import { petProps } from '@/types';
 import { useSession } from 'next-auth/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const page = () => {
@@ -23,10 +23,11 @@ const page = () => {
     homeAddress: { text: '', public: false },
     what3words: { text: '', public: false },
     message: { message: '', public: false },
+    petType: '',
     scanHistory: [
       {
         dateTime: currentDate.toString(),
-        coordinates: '',
+        coordinates: '0.00,0.00',
         message: 'Pet added to system',
         scannerName: 'Pet Creator',
       },
@@ -54,6 +55,7 @@ const page = () => {
           homeAddress: pet?.homeAddress,
           what3words: pet?.what3words,
           message: pet?.message,
+          petType: pet.petType,
           scanHistory: pet?.scanHistory,
         }),
       });
