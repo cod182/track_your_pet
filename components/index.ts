@@ -18,3 +18,4 @@ export { default as PetSquare } from './PetSquare/PetSquare';
 export { default as AddPetButton } from './AddPetButton/AddPetButton';
 export { default as PetForm } from './PetForm/PetForm';
 export { default as PetFormInput } from './PetFormInput/PetFormInput';
+export { default as PetProfile } from './PetProfile/PetProfile';

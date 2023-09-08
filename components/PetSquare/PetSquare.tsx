@@ -12,7 +12,7 @@ declare interface PetSquareProps {
 const PetSquare = ({ petName, petImage, lastScan, petId }: PetSquareProps) => {
   return (
     <Link
-      href={`/my-account/pets/${petId}`}
+      href={`/my-account/pets/pet?id=${petId}`}
       className="group aspect-square rounded-lg border-2 border-gray-200 shadow-md mx-auto max-w-[250px] w-full relative flex flex-col justify-evenly items-center p-2 bg-gradient-to-tl from-primary to-cyan-400 transition-all ease-in-out duration-400  hover:scale-110	 hover:z-[99] hover:border-2 hover:border-white"
     >
       {/* Top Area */}

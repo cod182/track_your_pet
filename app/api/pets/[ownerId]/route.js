@@ -2,7 +2,7 @@ import Pet from '../../../../models/pet'
 import { connectToDb } from "../../../../utils/database";
 
 export const GET = async (request, { params }) => {
-  console.log(params.ownerId)
+
   try {
     await connectToDb()
 
