@@ -3,6 +3,8 @@ import React from 'react';
 import { TitleComp } from '@/components';
 import Image from 'next/image';
 
+import FadeIn from 'react-fade-in';
+
 declare interface PetFormProps {
   formType: 'Add' | 'Update';
   pet: any;
@@ -19,7 +21,11 @@ const PetForm = ({
   handleSubmit,
 }: PetFormProps) => {
   return (
-    <div className="max-w-[800px] mx-auto w-full h-fit">
+    <FadeIn
+      delay={100}
+      transitionDuration={600}
+      className="max-w-[800px] mx-auto w-full h-fit"
+    >
       {/* Title */}
       <div className="flex flex-col justify-center items-center mt-4 mb-1">
         <TitleComp
@@ -50,16 +56,16 @@ const PetForm = ({
                   type="radio"
                   name="selected-image"
                   value="/assets/images/dog.webp"
-                  className="peer hidden"
-                  onChange={(e) =>
+                  className="peer absolute images top-10 left-10"
+                  onChange={(e) => {
                     setPet({
                       ...pet,
                       petImage: {
                         image: e.target.value,
                         public: pet?.petImage?.public || false,
                       },
-                    })
-                  }
+                    });
+                  }}
                 />
 
                 <Image
@@ -79,16 +85,16 @@ const PetForm = ({
                   type="radio"
                   name="selected-image"
                   value="/assets/images/cat.webp"
-                  className="peer hidden"
-                  onChange={(e) =>
+                  className="peer absolute images top-10 left-10"
+                  onChange={(e) => {
                     setPet({
                       ...pet,
                       petImage: {
                         image: e.target.value,
                         public: pet?.petImage?.public || true,
                       },
-                    })
-                  }
+                    });
+                  }}
                 />
 
                 <Image
@@ -436,12 +442,12 @@ const PetForm = ({
         <button
           type="submit"
           disabled={submitting}
-          className="px-5 py-1.5 text-sm bg-primary rounded-xl text-white"
+          className="px-5 py-2 bg-primary hover:bg-primaryLight focus:bg-blue-600 text-lg rounded-xl text-white w-full sm:w-fit my-4"
         >
           {submitting ? `${formType}ing your pet...` : `${formType} your pet`}
         </button>
       </form>
-    </div>
+    </FadeIn>
   );
 };
 

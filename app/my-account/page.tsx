@@ -1,8 +1,10 @@
 'use client';
-import { AddPetButton, PetSquare } from '@/components';
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import FadeIn from 'react-fade-in';
+
+import { AddPetButton, PetSquare } from '@/components';
 
 const page = () => {
   const { data: session } = useSession();
@@ -24,8 +26,12 @@ const page = () => {
 
   return (
     <div className="w-full h-full">
-      <div className="grid justify-center items-center grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-        {/* PetSquare */}
+      {/* PetSquare */}
+      <FadeIn
+        delay={100}
+        transitionDuration={600}
+        className="grid justify-center items-center grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
+      >
         {userPets.map(({ petName, scanHistory, petImage, _id }: any) => {
           return (
             <div key={_id}>
@@ -39,7 +45,7 @@ const page = () => {
           );
         })}
         <AddPetButton />
-      </div>
+      </FadeIn>
     </div>
   );
 };

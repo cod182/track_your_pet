@@ -28,12 +28,11 @@ const UserNav = () => {
         <Link href="/my-account/pets">
           <span
             className={`${
-              currenPage === '/my-account/pets'
+              currenPage === '/my-account/pets' || '/my-account/pets/add-pet'
                 ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400'
                 : ''
             } font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg`}
           >
-            {' '}
             Pets
           </span>
         </Link>
