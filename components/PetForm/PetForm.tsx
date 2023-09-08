@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { TitleComp } from '@/components';
+import Image from 'next/image';
 
 declare interface PetFormProps {
   formType: 'Add' | 'Update';
@@ -43,12 +44,12 @@ const PetForm = ({
 
           <div className="max-w-[100px] xxs:max-w-[200px]">
             <div className="flex flex-col xxs:flex-row justify-evenly items-center">
-              <label className="mx-2">
+              <label className="m-2">
                 <input
                   required
                   type="radio"
                   name="selected-image"
-                  value="/assets/dog.png"
+                  value="/assets/images/dog.webp"
                   className="peer hidden"
                   onChange={(e) =>
                     setPet({
@@ -60,18 +61,21 @@ const PetForm = ({
                     })
                   }
                 />
-                <img
-                  src="/assets/dog.png"
-                  alt="Image 2"
-                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-sm transition-all duration-400 ease-in "
+
+                <Image
+                  src="/assets/images/dog.webp"
+                  alt="Dog"
+                  width={100}
+                  height={100}
+                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
                 />
               </label>
-              <label className="mx-2">
+              <label className="m-2">
                 <input
                   required
                   type="radio"
                   name="selected-image"
-                  value="/assets/cat.png"
+                  value="/assets/images/cat.webp"
                   className="peer hidden"
                   onChange={(e) =>
                     setPet({
@@ -83,10 +87,13 @@ const PetForm = ({
                     })
                   }
                 />
-                <img
-                  src="/assets/dog.png"
-                  alt="Image 2"
-                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-sm transition-all duration-400 ease-in "
+
+                <Image
+                  src="/assets/images/cat.webp"
+                  alt="cat"
+                  width={100}
+                  height={100}
+                  className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
                 />
               </label>
             </div>
