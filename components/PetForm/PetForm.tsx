@@ -44,7 +44,7 @@ const PetForm = ({
 
           <div className="max-w-[100px] xxs:max-w-[200px]">
             <div className="flex flex-col xxs:flex-row justify-evenly items-center">
-              <label className="m-2">
+              <label className="m-2 relative">
                 <input
                   required
                   type="radio"
@@ -69,8 +69,11 @@ const PetForm = ({
                   height={100}
                   className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
                 />
+                <div className="bg-gray-100/50 absolute overflow-hidden h-[0px] peer-hover:h-full top-[0px] w-full transition-all duration-400 ease-in font-bold  flex flex-col justify-center items-center">
+                  <p className="text-lg">Dog</p>
+                </div>
               </label>
-              <label className="m-2">
+              <label className="m-2 relative">
                 <input
                   required
                   type="radio"
@@ -95,6 +98,9 @@ const PetForm = ({
                   height={100}
                   className="rounded-md peer-checked:drop-shadow-2xl peer-checked:blur-none blur-[1px] transition-all duration-400 ease-in "
                 />
+                <div className="bg-gray-100/50 absolute overflow-hidden h-[0px] peer-hover:h-full top-[0px] w-full transition-all duration-400 ease-in font-bold  flex flex-col justify-center items-center">
+                  <p className="text-lg">Cat</p>
+                </div>
               </label>
             </div>
           </div>

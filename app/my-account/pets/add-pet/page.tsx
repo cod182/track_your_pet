@@ -59,7 +59,7 @@ const page = () => {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.push('/my-account/pets');
       }
     } catch (error) {
       console.log(error);
