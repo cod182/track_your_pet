@@ -15,7 +15,7 @@ const PetSchema = new Schema({
       required: [true, 'Pet image is required!'],
 
     }, public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the image public?'],
     }
   },
@@ -25,7 +25,7 @@ const PetSchema = new Schema({
       required: [true, 'Pet name is required!'],
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the image public?'],
     }
   },
@@ -34,7 +34,7 @@ const PetSchema = new Schema({
       type: String,
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the birthday public?'],
     }
   },
@@ -44,7 +44,7 @@ const PetSchema = new Schema({
       required: [true, 'Pet breed is required!'],
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the breed public?'],
     }
   },
@@ -54,7 +54,7 @@ const PetSchema = new Schema({
       required: [true, 'Pet color is required!'],
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the color public?'],
     }
   },
@@ -63,7 +63,7 @@ const PetSchema = new Schema({
       type: String,
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the address public?'],
     }
   },
@@ -72,7 +72,7 @@ const PetSchema = new Schema({
       type: String,
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the w3w public?'],
     }
   },
@@ -81,7 +81,7 @@ const PetSchema = new Schema({
       type: String,
     },
     public: {
-      type: String,
+      type: Boolean,
       required: [true, 'Is the message public?'],
     }
   },

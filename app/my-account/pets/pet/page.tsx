@@ -26,6 +26,7 @@ const page = () => {
       fetchPet();
     }
   }, []);
+
   // Checks the petData is available, otherwise loading is displayed
   if (petData) {
     // Checks the current session userId matches the PetID, if not, redirected to home

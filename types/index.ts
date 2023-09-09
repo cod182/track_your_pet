@@ -30,6 +30,11 @@ export interface petOption {
   public: boolean;
 }
 
+export interface petW3w {
+  w3w: string;
+  public: boolean;
+}
+
 export interface petMessage {
   message: string;
   public: boolean;
@@ -51,7 +56,7 @@ export interface petProps {
   breed: petOption;
   color: petOption;
   homeAddress?: petOption;
-  what3words?: petOption;
+  what3words?: petW3w;
   message?: petMessage;
   petType: string;
   scanHistory?: petScanHistory[];
