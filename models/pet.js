@@ -77,7 +77,7 @@ const PetSchema = new Schema({
     }
   },
   message: {
-    text: {
+    message: {
       type: String,
     },
     public: {
@@ -90,7 +90,7 @@ const PetSchema = new Schema({
     required: [true, 'Type of per required']
   },
   contactNumber: {
-    number: {
+    phone: {
       type: String,
     },
     public: {

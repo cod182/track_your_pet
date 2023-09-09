@@ -318,15 +318,15 @@ const PetForm = ({
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
               type="text"
-              name="message.text"
-              id="message.text"
+              name="message.message"
+              id="message.message"
               placeholder="Message displayed to people who scan your pet (Optional)"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
                 setPet({
                   ...pet,
                   message: {
-                    text: e.target.value,
+                    message: e.target.value,
                     public: pet?.message?.public || false,
                   },
                 })
@@ -341,7 +341,7 @@ const PetForm = ({
                   setPet({
                     ...pet,
                     message: {
-                      text: pet?.message?.text || '',
+                      message: pet?.message?.message || '',
                       public: e.target.checked,
                     },
                   });
@@ -381,8 +381,8 @@ const PetForm = ({
                 onChange={(e) => {
                   setPet({
                     ...pet,
-                    contactPhone: {
-                      text: pet?.contactNumber?.phone || '',
+                    contactNumber: {
+                      phone: pet?.contactNumber?.phone || '',
                       public: e.target.checked,
                     },
                   });
@@ -408,7 +408,7 @@ const PetForm = ({
                 setPet({
                   ...pet,
                   contactEmail: {
-                    phone: e.target.value,
+                    email: e.target.value,
                     public: pet?.contactEmail?.public || false,
                   },
                 })
@@ -423,7 +423,7 @@ const PetForm = ({
                   setPet({
                     ...pet,
                     contactEmail: {
-                      text: pet?.contactEmail?.phone || '',
+                      email: pet?.contactEmail?.email || '',
                       public: e.target.checked,
                     },
                   });

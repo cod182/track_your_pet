@@ -19,6 +19,8 @@ const PetProfile = (petData: petProfileProps) => {
     what3words,
     message,
     petType,
+    contactEmail,
+    contactNumber,
     scanHistory,
   }: petProps = pet;
 
@@ -87,71 +89,73 @@ const PetProfile = (petData: petProfileProps) => {
       <section className="w-full h-fit flex flex-col justify-start items-center py-6 px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">Pet Info</h2>
         <table className="border-[1px] border-gray-400 w-full">
-          {/* Date of Birth */}
-          <tr className="border-[1px] border-gray-400">
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              Date of Birth
-            </td>
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              {dob?.birthday ? dob?.birthday : 'N/A'}
-            </td>
-            <td
-              className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                dob?.public ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {dob?.public ? 'Visible' : 'Not Visible'}
-            </td>
-          </tr>
+          <tbody>
+            {/* Date of Birth */}
+            <tr className="border-[1px] border-gray-400">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                Date of Birth
+              </td>
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                {dob?.birthday ? dob?.birthday : 'N/A'}
+              </td>
+              <td
+                className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                  dob?.public ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {dob?.public ? 'Visible' : 'Not Visible'}
+              </td>
+            </tr>
 
-          {/* Pet Type */}
-          <tr className="border-[1px] border-gray-400">
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              petType
-            </td>
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              {petType ? petType : 'N/A'}
-            </td>
-            <td
-              className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 text-green-500`}
-            >
-              Visible
-            </td>
-          </tr>
+            {/* Pet Type */}
+            <tr className="border-[1px] border-gray-400">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                petType
+              </td>
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 capitalize">
+                {petType ? petType : 'N/A'}
+              </td>
+              <td
+                className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 text-green-500`}
+              >
+                Visible
+              </td>
+            </tr>
 
-          {/* Breed */}
-          <tr className="border-[1px] border-gray-400">
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              Breed
-            </td>
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              {breed?.text ? breed?.text : 'N/A'}
-            </td>
-            <td
-              className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                breed?.public ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {breed?.public ? 'Visible' : 'Not Visible'}
-            </td>
-          </tr>
+            {/* Breed */}
+            <tr className="border-[1px] border-gray-400">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                Breed
+              </td>
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                {breed?.text ? breed?.text : 'N/A'}
+              </td>
+              <td
+                className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                  breed?.public ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {breed?.public ? 'Visible' : 'Not Visible'}
+              </td>
+            </tr>
 
-          {/* Color */}
-          <tr className="border-[1px] border-gray-400">
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              Colour
-            </td>
-            <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-              {color?.text ? color?.text : 'N/A'}
-            </td>
-            <td
-              className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                color?.public ? 'text-green-500' : 'text-red-500'
-              }`}
-            >
-              {color?.public ? 'Visible' : 'Not Visible'}
-            </td>
-          </tr>
+            {/* Color */}
+            <tr className="border-[1px] border-gray-400">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                Colour
+              </td>
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                {color?.text ? color?.text : 'N/A'}
+              </td>
+              <td
+                className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                  color?.public ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {color?.public ? 'Visible' : 'Not Visible'}
+              </td>
+            </tr>
+          </tbody>
         </table>
       </section>
 
@@ -192,6 +196,50 @@ const PetProfile = (petData: petProfileProps) => {
               }`}
             >
               {what3words!.public
+                ? 'Visible when scanned'
+                : 'Not visible when scanned'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+        <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+          Contact Info
+        </h2>
+        {/* Phone */}
+        <div className="w-full relative mb-2">
+          <a href={`tel:+${contactNumber}`} className="w-full">
+            Contact Number:&nbsp;
+            {contactNumber!.phone ? contactNumber!.phone : 'Not Provided'}
+          </a>
+          <div className="">
+            <p
+              className={`text-xs w-fit text-start ${
+                contactNumber!.public ? 'text-green-500' : 'text-red-500'
+              }`}
+            >
+              {contactNumber!.public
+                ? 'Visible when scanned'
+                : 'Not visible when scanned'}
+            </p>
+          </div>
+        </div>
+        <hr className="w-full h-[2px] my-4" />
+        {/* Email */}
+        <div className="w-full relative mt-2">
+          <a href={`mailto:${contactEmail}`} className="w-full">
+            Contact Email:&nbsp;
+            {contactEmail!.email ? contactEmail!.email : 'Not Provided'}
+          </a>
+          <div className="">
+            <p
+              className={`text-xs w-fit text-start ${
+                contactEmail!.public ? 'text-green-500' : 'text-red-500'
+              }`}
+            >
+              {contactEmail!.public
                 ? 'Visible when scanned'
                 : 'Not visible when scanned'}
             </p>
