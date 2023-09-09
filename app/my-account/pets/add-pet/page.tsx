@@ -21,9 +21,11 @@ const page = () => {
     breed: { text: '', public: false },
     color: { text: '', public: false },
     homeAddress: { text: '', public: false },
-    what3words: { text: '', public: false },
+    what3words: { w3w: '', public: false },
     message: { message: '', public: false },
     petType: '',
+    contactNumber: { phone: '', public: false },
+    contactEmail: { email: '', public: false },
     scanHistory: [
       {
         dateTime: currentDate.toString(),
@@ -57,6 +59,8 @@ const page = () => {
           message: pet?.message,
           petType: pet.petType,
           scanHistory: pet?.scanHistory,
+          contactNumber: pet?.contactNumber,
+          contactEmail: pet?.contactEmail,
         }),
       });
 

@@ -354,6 +354,88 @@ const PetForm = ({
           </div>
         </div>
 
+        {/* Contact Phone */}
+        <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
+            <input
+              type="phone"
+              name="contactNumber.text"
+              id="contactNumber.text"
+              placeholder="Your contact number (Optional)"
+              className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
+              onChange={(e) =>
+                setPet({
+                  ...pet,
+                  contactNumber: {
+                    phone: e.target.value,
+                    public: pet?.contactNumber?.public || false,
+                  },
+                })
+              }
+            />
+            <div className="flex flex-row justify-start w-full sm:w-fit">
+              <input
+                type="checkbox"
+                name="contactNumber.public"
+                id="contactNumber.public"
+                onChange={(e) => {
+                  setPet({
+                    ...pet,
+                    contactPhone: {
+                      text: pet?.contactNumber?.phone || '',
+                      public: e.target.checked,
+                    },
+                  });
+                }}
+              />
+              <label htmlFor="contactNumber.public" className="ml-2">
+                Public?
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Email */}
+        <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
+            <input
+              type="email"
+              name="contactEmail.text"
+              id="contactEmail.text"
+              placeholder="Your contact number (Optional)"
+              className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
+              onChange={(e) =>
+                setPet({
+                  ...pet,
+                  contactEmail: {
+                    phone: e.target.value,
+                    public: pet?.contactEmail?.public || false,
+                  },
+                })
+              }
+            />
+            <div className="flex flex-row justify-start w-full sm:w-fit">
+              <input
+                type="checkbox"
+                name="contactEmail.public"
+                id="contactEmail.public"
+                onChange={(e) => {
+                  setPet({
+                    ...pet,
+                    contactEmail: {
+                      text: pet?.contactEmail?.phone || '',
+                      public: e.target.checked,
+                    },
+                  });
+                }}
+              />
+              <label htmlFor="contactEmail.public" className="ml-2">
+                Public?
+              </label>
+            </div>
+          </div>
+        </div>
+
         {/* Scan History */}
         <input
           type="hidden"

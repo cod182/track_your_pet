@@ -40,6 +40,16 @@ export interface petMessage {
   public: boolean;
 }
 
+export interface petPhoneOption {
+  phone: string;
+  public: boolean;
+}
+
+export interface petEmailOption {
+  email: string;
+  public: boolean;
+}
+
 export interface petScanHistory {
   dateTime: string;
   coordinates?: string;
@@ -59,6 +69,9 @@ export interface petProps {
   what3words?: petW3w;
   message?: petMessage;
   petType: string;
+  contactNumber: petPhoneOption;
+  contactEmail: petEmailOption;
+
   scanHistory?: petScanHistory[];
 }
 export interface petFormQuestionProps {

@@ -89,6 +89,24 @@ const PetSchema = new Schema({
     type: String,
     required: [true, 'Type of per required']
   },
+  contactNumber: {
+    number: {
+      type: String,
+    },
+    public: {
+      type: Boolean,
+      required: [true, 'Is the number public?'],
+    }
+  },
+  contactEmail: {
+    email: {
+      type: String,
+    },
+    public: {
+      type: Boolean,
+      required: [true, 'Is the email public?'],
+    }
+  },
   scanHistory: [{
     dateTime: {
       type: String,
