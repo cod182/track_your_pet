@@ -1,4 +1,4 @@
-import { petProps } from '@/types';
+import { petProps, petScanHistory } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 
@@ -203,6 +203,8 @@ const PetProfile = (petData: petProfileProps) => {
         </div>
       </section>
 
+      <hr className="w-full h-[2px] my-4" />
+
       {/* Contact Section */}
       <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">
@@ -245,6 +247,65 @@ const PetProfile = (petData: petProfileProps) => {
             </p>
           </div>
         </div>
+      </section>
+
+      <hr className="w-full h-[2px] my-4" />
+
+      {/* Scan History */}
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+        <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+          Contact Info
+        </h2>
+        <table className="border-[1px] border-gray-400 w-full">
+          <thead>
+            <tr>
+              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
+                Date / Time
+              </td>
+              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
+                Coordinates
+              </td>
+              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
+                Finder
+              </td>
+              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
+                Message
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {scanHistory!.map(
+              ({
+                dateTime,
+                coordinates,
+                message,
+                scannerName,
+              }: petScanHistory) => (
+                <tr
+                  className="border-[1px] border-gray-400"
+                  key={dateTime.replace(' ', '')}
+                >
+                  {/* Date / Time */}
+                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                    {dateTime}
+                  </td>
+                  {/* Coords */}
+                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                    {coordinates ? coordinates : 'N/A'}
+                  </td>
+                  {/* Scanner Name */}
+                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                    {scannerName ? scannerName : 'N/A'}
+                  </td>
+                  {/* Message */}
+                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                    {message ? message : 'N/A'}
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
       </section>
     </div>
   );
