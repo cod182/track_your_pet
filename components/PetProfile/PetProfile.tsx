@@ -25,9 +25,9 @@ const PetProfile = (petData: petProfileProps) => {
   } = pet;
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center my-8 relative">
-      {/* Top Section */}
-      <div className="w-full h-fit flex flex-col xs:flex-row justify-between items-center px-5">
+    <div className="w-full h-full flex flex-col justify-center items-center my-8">
+      {/* Image / Name section */}
+      <section className="w-full h-fit flex flex-col xs:flex-row justify-between items-center px-5">
         {/* Image Container */}
         <div className="w-[150px] xs:w-[200px] sm:w-[300px] h-auto relative aspect-square border-2 border-black rounded-full overflow-hidden ">
           <Image
@@ -38,15 +38,36 @@ const PetProfile = (petData: petProfileProps) => {
             className="contain"
           />
         </div>
-        <div>
+        <div className="relative">
           <h2
-            className="font-bold text-center xs:text-end"
-            style={{ fontSize: 'calc(20px + 6wmin)' }}
+            className="font-bold text-center xs:text-end w-fit"
+            style={{ fontSize: 'calc(20px + 6vmin)' }}
           >
             {petName.text}
           </h2>
+          <p className="absolute w-fit h-fit text-red-500 top-0 right-0 text-xs">
+            {petName.public
+              ? 'Visible when scanned'
+              : 'Not visible when scanned'}
+          </p>
         </div>
-      </div>
+      </section>
+
+      {/* Address Section */}
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+        {homeAddress!.public ? (
+          <p className="w-full">My Home address is: {homeAddress!.text}</p>
+        ) : null}
+        {homeAddress?.text !== '' && homeAddress!.public ? (
+          <p className="absolute text-red-500 text-xs left-5 top-1 w-fit text-center">
+            Visible when scanned
+          </p>
+        ) : (
+          <p className="absolute text-red-500 text-xs left-5 top-1 w-fit text-start">
+            Not visible when scanned
+          </p>
+        )}
+      </section>
     </div>
   );
 };
