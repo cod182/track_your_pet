@@ -23,7 +23,11 @@ const page = () => {
   if (petData) {
     return <PetProfile petData={petData} />;
   } else {
-    return <p>Loading...</p>;
+    return (
+      <p className="mx-auto w-full text-xl text-primary text-center">
+        Loading...
+      </p>
+    );
   }
 };
 
