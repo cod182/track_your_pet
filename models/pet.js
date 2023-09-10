@@ -120,6 +120,9 @@ const PetSchema = new Schema({
     },
     scannerName: {
       type: String,
+    },
+    contactDetail: {
+      type: String,
     }
   }],
 

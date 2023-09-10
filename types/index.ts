@@ -55,6 +55,7 @@ export interface petScanHistory {
   coordinates?: string;
   message?: string;
   scannerName?: string;
+  contactDetail?: string;
 }
 
 export interface petProps {
@@ -71,7 +72,6 @@ export interface petProps {
   petType: string;
   contactNumber: petPhoneOption;
   contactEmail: petEmailOption;
-
   scanHistory?: petScanHistory[];
 }
 export interface petFormQuestionProps {

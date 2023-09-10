@@ -1,6 +1,8 @@
 import { petProps, petScanHistory } from '@/types';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import { ScanHistoryItem } from '..';
 
 declare interface petProfileProps {
   petData: petProps;
@@ -168,7 +170,17 @@ const PetProfile = (petData: petProfileProps) => {
         <div className="w-full relative mb-2">
           <p className="w-full">
             My Home address is:&nbsp;
-            {homeAddress!.text ? homeAddress!.text : 'Not Provided'}
+            {homeAddress!.text ? (
+              <Link
+                className="hover:underline hover:text-primary"
+                href={`https://www.google.com/maps/place/${homeAddress!.text}`}
+                target="_blank"
+              >
+                {homeAddress!.text}
+              </Link>
+            ) : (
+              'Not Provided'
+            )}
           </p>
           <div className="">
             <p
@@ -186,8 +198,18 @@ const PetProfile = (petData: petProfileProps) => {
         {/* What 3 Words Address Section */}
         <div className="w-full relative mt-2">
           <p className="w-full">
-            My What3Words Address is:&nbsp;
-            {what3words!.w3w ? what3words!.w3w : 'Not Provided'}
+            My What3Words location is:&nbsp;
+            {what3words!.w3w ? (
+              <Link
+                className="hover:underline hover:text-primary"
+                href={`https://www.what3words.com/${what3words!.w3w}`}
+                target="_blank"
+              >
+                {what3words!.w3w}
+              </Link>
+            ) : (
+              'Not Provided'
+            )}
           </p>
           <div className="">
             <p
@@ -213,8 +235,10 @@ const PetProfile = (petData: petProfileProps) => {
         {/* Phone */}
         <div className="w-full relative mb-2">
           <a href={`tel:+${contactNumber}`} className="w-full">
-            Contact Number:&nbsp;
-            {contactNumber!.phone ? contactNumber!.phone : 'Not Provided'}
+            <span>Contact Number:&nbsp;</span>
+            <span className="">
+              {contactNumber!.phone ? contactNumber!.phone : 'Not Provided'}
+            </span>
           </a>
           <div className="">
             <p
@@ -254,58 +278,26 @@ const PetProfile = (petData: petProfileProps) => {
       {/* Scan History */}
       <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">
-          Contact Info
+          Scan History
         </h2>
-        <table className="border-[1px] border-gray-400 w-full">
-          <thead>
-            <tr>
-              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
-                Date / Time
-              </td>
-              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
-                Coordinates
-              </td>
-              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
-                Finder
-              </td>
-              <td className="border-[1px] border-gray-400 text-center bg-primary text-white">
-                Message
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {scanHistory!.map(
-              ({
-                dateTime,
-                coordinates,
-                message,
-                scannerName,
-              }: petScanHistory) => (
-                <tr
-                  className="border-[1px] border-gray-400"
-                  key={dateTime.replace(' ', '')}
-                >
-                  {/* Date / Time */}
-                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                    {dateTime}
-                  </td>
-                  {/* Coords */}
-                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                    {coordinates ? coordinates : 'N/A'}
-                  </td>
-                  {/* Scanner Name */}
-                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                    {scannerName ? scannerName : 'N/A'}
-                  </td>
-                  {/* Message */}
-                  <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                    {message ? message : 'N/A'}
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
+        {scanHistory!.map(
+          ({
+            dateTime,
+            coordinates,
+            message,
+            scannerName,
+            contactDetail,
+          }: petScanHistory) => (
+            <ScanHistoryItem
+              key={dateTime.replace(' ', '')}
+              dateTime={dateTime}
+              coordinates={coordinates}
+              message={message}
+              scannerName={scannerName}
+              contactDetail={contactDetail}
+            />
+          )
+        )}
       </section>
     </div>
   );

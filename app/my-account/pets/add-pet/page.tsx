@@ -32,6 +32,7 @@ const page = () => {
         coordinates: '0.00,0.00',
         message: 'Pet added to system',
         scannerName: 'Pet Creator',
+        contactDetail: 'N/A',
       },
     ],
   });

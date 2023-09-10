@@ -265,10 +265,11 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              pattern="[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+"
               type="text"
               name="what3words.w3w"
               id="what3words.w3w"
-              placeholder="What3Words location (Optional)"
+              placeholder="What3Words location (Optional) E.G apple.grape.pear"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
                 setPet({
@@ -435,32 +436,6 @@ const PetForm = ({
             </div>
           </div>
         </div>
-
-        {/* Scan History */}
-        <input
-          type="hidden"
-          name="scanHistory.dateTime"
-          id="scanHistory.dateTime"
-          value=""
-        />
-        <input
-          type="hidden"
-          name="scanHistory.coordinates"
-          id="scanHistory.coordinates"
-          value="0.00, 0.00"
-        />
-        <input
-          type="hidden"
-          name="scanHistory.message"
-          id="scanHistory.message"
-          value="Initial scan, pet created"
-        />
-        <input
-          type="hidden"
-          name="scanHistory.scannerName"
-          id="scanHistory.scannerName"
-          value="Pet created"
-        />
 
         <button
           type="submit"

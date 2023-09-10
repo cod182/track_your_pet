@@ -1,4 +1,5 @@
 import DigitalDateTimeDisplay from './DigitalDateTimeDisplay/DigitalDateTimeDisplay';
+import ScanHistoryItem from './ScanHistoryItem/ScanHistoryItem';
 export { default as PageFeaturedImage } from './PageFeaturedImage/PageFeaturedImage';
 export { default as Nav } from './Nav/Nav';
 export { default as MobileNav } from './MobileNav/MobileNav';
@@ -19,3 +20,4 @@ export { default as AddPetButton } from './AddPetButton/AddPetButton';
 export { default as PetForm } from './PetForm/PetForm';
 export { default as PetFormInput } from './PetFormInput/PetFormInput';
 export { default as PetProfile } from './PetProfile/PetProfile';
+export { default as ScanHistoryItem } from './ScanHistoryItem/ScanHistoryItem';
