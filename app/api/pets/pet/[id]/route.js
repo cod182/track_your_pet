@@ -7,6 +7,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectToDb();
     const pet = await Pet.findById(params.id);
+    console.log('db', pet)
     if (!pet) {
       return new Response('Pet not found', { status: 404 })
     }

@@ -20,12 +20,17 @@ const page = () => {
     const fetchPet = async () => {
       const res = await fetch(`/api/pets/pet/${petId}`);
       const data = await res.json();
+      console.log(data);
       setPetData(data);
     };
     if (petId) {
       fetchPet();
     }
   }, []);
+
+  if (!petId) {
+    return redirect('/');
+  }
 
   // Checks the petData is available, otherwise loading is displayed
   if (petData) {

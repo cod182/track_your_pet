@@ -31,6 +31,7 @@ const PetProfile = (petData: petProfileProps) => {
   }: petProps = pet;
 
   const deleteClick = async (clickType: string) => {
+    // Get the containers and buttons
     const deleteBtn: any = document.getElementById('delete-button');
     const deleteBtnText: any = document.getElementById('delete-button-text');
     const selectionContainer: any = document.getElementById(
@@ -39,7 +40,9 @@ const PetProfile = (petData: petProfileProps) => {
     const yesBtn: any = document.getElementById('yes-button');
     const noBtn: any = document.getElementById('no-button');
 
+    //Check type
     if (clickType === 'cancel') {
+      // reverting back to the standard delete button
       deleteBtnText.innerText = 'Delete';
       yesBtn.classList.add('hidden');
       noBtn.classList.add('hidden');
@@ -48,6 +51,7 @@ const PetProfile = (petData: petProfileProps) => {
       selectionContainer?.classList.remove('max-h-[100px]');
       selectionContainer?.classList.add('max-h-[0px]');
     } else if (clickType === 'deleteCheck') {
+      // add classed to reveal the confirmation buttons and change button text
       deleteBtnText.innerText = 'Are You Sure?';
       yesBtn.classList.remove('hidden');
       noBtn.classList.remove('hidden');
@@ -56,6 +60,7 @@ const PetProfile = (petData: petProfileProps) => {
       selectionContainer?.classList.add('max-h-[100px]');
       selectionContainer?.classList.remove('max-h-[0px]');
     } else if (clickType === 'deletePet') {
+      // Deleting pet from db
       try {
         let deleteRes = await fetch(`/api/pets/pet/${_id}`, {
           method: 'DELETE',
@@ -72,9 +77,12 @@ const PetProfile = (petData: petProfileProps) => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center my-8">
       <section className="w-full h-fit flex flex-col sm:flex-row justify-evenly items-center">
-        <button className="my-2 w-fit min-w-[100px] h-fit py-2 px-4 bg-gradient-to-tr to-primary from-cyan-400 hover:to-cyan-600 rounded-lg shadow-xl font-semibold text-white hover:text-black hover:shadow-inner transition-all ease-in duration-400">
+        <a
+          href={`/my-account/pets/edit-pet?id=${pet._id}`}
+          className="text-center my-2 w-fit min-w-[100px] h-fit py-2 px-4 bg-gradient-to-tr to-primary from-cyan-400 hover:to-cyan-600 rounded-lg shadow-xl font-semibold text-white hover:text-black hover:shadow-inner transition-all ease-in duration-400"
+        >
           Edit
-        </button>
+        </a>
         <div className="my-2 h-fit w-fit flex flex-col justify-center items-center">
           <button
             id="delete-button"
