@@ -1,7 +1,7 @@
 import Pet from '../../../../../models/pet'
 import { connectToDb } from "../../../../../utils/database";
 
-// GET for reading 1 prompt by it's ID
+// GET for reading 1 prpetompt by it's ID
 
 export const GET = async (request, { params }) => {
   try {
@@ -18,7 +18,20 @@ export const GET = async (request, { params }) => {
   }
 }
 
-// PATCH (Updating a prompt)
+// DELETE a pet
+export const DELETE = async (request, { params }) => {
+  console.log('deleting')
+  try {
+    await connectToDb();
+    await Pet.findByIdAndRemove(params.id);
+    return new Response('Pet deleted', { status: 200 });
+  } catch (error) {
+    console.log(error)
+    return new Response("Failed to delete pet", { status: 500 });
+  }
+}
+
+// PATCH (Updating a pet)
 
 // export const PATCH = async (request, { params }) => {
 //   const { name, confidence } = await request.json();
@@ -38,15 +51,3 @@ export const GET = async (request, { params }) => {
 //     return new Response("Failed to update skill", { status: 500 });
 //   }
 // }
-
-// DELETE
-export const DELETE = async (request, { params }) => {
-  try {
-    await connectToDb();
-    await Pet.findByIdAndRemove(params.id);
-    return new Response('PrPetompt deleted', { status: 200 });
-  } catch (error) {
-    console.log(error)
-    return new Response("Failed to delete pet", { status: 500 });
-  }
-}

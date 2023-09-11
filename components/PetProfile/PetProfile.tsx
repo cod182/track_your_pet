@@ -3,15 +3,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { ScanHistoryItem } from '..';
+import { useRouter } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
 declare interface petProfileProps {
   petData: petProps;
 }
 
 const PetProfile = (petData: petProfileProps) => {
-  const pet = petData.petData;
+  const router = useRouter();
 
+  const pet = petData.petData;
   const {
+    _id,
     petName,
     petImage,
     dob,
@@ -26,8 +30,82 @@ const PetProfile = (petData: petProfileProps) => {
     scanHistory,
   }: petProps = pet;
 
+  const deleteClick = async (clickType: string) => {
+    const deleteBtn: any = document.getElementById('delete-button');
+    const deleteBtnText: any = document.getElementById('delete-button-text');
+    const selectionContainer: any = document.getElementById(
+      'selection-container'
+    );
+    const yesBtn: any = document.getElementById('yes-button');
+    const noBtn: any = document.getElementById('no-button');
+
+    if (clickType === 'cancel') {
+      deleteBtnText.innerText = 'Delete';
+      yesBtn.classList.add('hidden');
+      noBtn.classList.add('hidden');
+      deleteBtn.classList.remove('min-w-[200px]');
+      deleteBtn?.removeAttribute('disabled', false);
+      selectionContainer?.classList.remove('max-h-[100px]');
+      selectionContainer?.classList.add('max-h-[0px]');
+    } else if (clickType === 'deleteCheck') {
+      deleteBtnText.innerText = 'Are You Sure?';
+      yesBtn.classList.remove('hidden');
+      noBtn.classList.remove('hidden');
+      deleteBtn.classList.add('min-w-[200px]');
+      deleteBtn?.setAttribute('disabled', true);
+      selectionContainer?.classList.add('max-h-[100px]');
+      selectionContainer?.classList.remove('max-h-[0px]');
+    } else if (clickType === 'deletePet') {
+      try {
+        let deleteRes = await fetch(`/api/pets/pet/${_id}`, {
+          method: 'DELETE',
+        });
+        if (deleteRes.status === 200) {
+          router.push('/my-account/pets');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="w-full h-full flex flex-col justify-center items-center my-8">
+      <section className="w-full h-fit flex flex-col sm:flex-row justify-evenly items-center">
+        <button className="my-2 w-fit min-w-[100px] h-fit py-2 px-4 bg-gradient-to-tr to-primary from-cyan-400 hover:to-cyan-600 rounded-lg shadow-xl font-semibold text-white hover:text-black hover:shadow-inner transition-all ease-in duration-400">
+          Edit
+        </button>
+        <div className="my-2 h-fit w-fit flex flex-col justify-center items-center">
+          <button
+            id="delete-button"
+            onClick={() => deleteClick('deleteCheck')}
+            className="w-fit min-w-[100px] h-fit py-2 px-4 bg-gradient-to-tr to-red-200 from-red-400 hover:to-red-600 rounded-lg shadow-xl font-semibold text-white hover:text-black hover:shadow-inner transition-all ease-in duration-300"
+          >
+            <span id="delete-button-text">Delete</span>
+          </button>
+          {/* Selection button container Delete / Cancel */}
+          <div
+            id="selection-container"
+            className="bg-gray-300 w-fit h-fit overflow-hidden flex flex-row justify-between items-center transition-all duration-1000 ease-in rounded-b-md
+          "
+          >
+            <button
+              id="yes-button"
+              className="hidden w-fit h-fit font-semibold text-md text-white hover:text-black p-2 m-2 rounded-md bg-red-600 hover:bg-red-400  hover:border-green-300"
+              onClick={() => deleteClick('deletePet')}
+            >
+              Delete Pet
+            </button>
+            <button
+              id="no-button"
+              className="hidden w-fit h-fit font-semibold text-md text-white hover:text-black p-2 m-2 rounded-md bg-cyan-600 hover:bg-cyan-400 hover:border-green-300"
+              onClick={() => deleteClick('cancel')}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </section>
       {/* Image / Name section */}
       <section className="w-full h-fit flex flex-col xs:flex-row justify-between items-center px-5">
         {/* Image Container */}
@@ -42,7 +120,7 @@ const PetProfile = (petData: petProfileProps) => {
         </div>
         <div className="relative w-fit">
           <h2
-            className="font-bold text-center xs:text-end w-fit"
+            className="font-bold text-center xs:text-end w-fit mx:auto sm:mx-0"
             style={{ fontSize: 'calc(20px + 6vmin)' }}
           >
             {petName.text}

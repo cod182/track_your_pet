@@ -59,6 +59,7 @@ export interface petScanHistory {
 }
 
 export interface petProps {
+  _id?: string;
   ownerId: string;
   ownerName: string;
   petImage: petImage;
