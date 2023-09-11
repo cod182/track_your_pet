@@ -1,16 +1,20 @@
-import { petProps, petScanHistory } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { ScanHistoryItem } from '..';
 import { useRouter } from 'next/navigation';
-import { NextResponse } from 'next/server';
+
+import { petProps, petScanHistory } from '@/types';
+
+import { ScanHistoryItem } from '..';
+
+import { QrCode } from '@/components';
 
 declare interface petProfileProps {
   petData: petProps;
 }
 
 const PetProfile = (petData: petProfileProps) => {
+  const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
+  console.log(websiteUrl);
   const router = useRouter();
 
   const pet = petData.petData;
@@ -114,8 +118,9 @@ const PetProfile = (petData: petProfileProps) => {
           </div>
         </div>
       </section>
+
       {/* Image / Name section */}
-      <section className="w-full h-fit flex flex-col xs:flex-row justify-between items-center px-5">
+      <section className="w-full h-fit flex flex-col xs:flex-row justify-between items-center px-0 xxs:px-1 xs:px-2 sm:px-5">
         {/* Image Container */}
         <div className="w-[150px] xs:w-[200px] sm:w-[300px] h-auto relative aspect-square border-2 border-black rounded-full overflow-hidden shadow-xl">
           <Image
@@ -148,7 +153,7 @@ const PetProfile = (petData: petProfileProps) => {
       <hr className="w-full h-[2px] my-4" />
 
       {/* Message Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         {/* Home Address Section */}
         <div className="w-full relative mb-2">
           <h2 className="w-full h-fit py-2 font-semibold text-2xl">
@@ -174,7 +179,7 @@ const PetProfile = (petData: petProfileProps) => {
       <hr className="w-full h-[2px] my-4" />
 
       {/* Info Table Section */}
-      <section className="w-full h-fit flex flex-col justify-start items-center py-6 px-5 relative">
+      <section className="w-full h-fit flex flex-col justify-start items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">Pet Info</h2>
         <table className="border-[1px] border-gray-400 w-full">
           <tbody>
@@ -250,7 +255,7 @@ const PetProfile = (petData: petProfileProps) => {
       <hr className="w-full h-[2px] my-4" />
 
       {/* Address Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">Address</h2>
         {/* Home Address Section */}
         <div className="w-full relative mb-2">
@@ -314,7 +319,7 @@ const PetProfile = (petData: petProfileProps) => {
       <hr className="w-full h-[2px] my-4" />
 
       {/* Contact Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">
           Contact Info
         </h2>
@@ -362,7 +367,7 @@ const PetProfile = (petData: petProfileProps) => {
       <hr className="w-full h-[2px] my-4" />
 
       {/* Scan History */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-5 relative">
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">
           Scan History
         </h2>
@@ -384,6 +389,15 @@ const PetProfile = (petData: petProfileProps) => {
             />
           )
         )}
+      </section>
+      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+        <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+          Personal QR code.
+        </h2>
+        <QrCode
+          urlToLinkTo={`${websiteUrl}/pet-found/${_id}`}
+          qrCodeWidth="300"
+        />
       </section>
     </div>
   );
