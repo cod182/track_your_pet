@@ -38,7 +38,6 @@ const page = () => {
   });
 
   const [submitting, setSubmitting] = useState(false);
-  console.log(pet);
 
   const addNewPet = async (e: any) => {
     e.preventDefault();

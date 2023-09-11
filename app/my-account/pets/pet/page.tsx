@@ -20,7 +20,6 @@ const page = () => {
     const fetchPet = async () => {
       const res = await fetch(`/api/pets/pet/${petId}`);
       const data = await res.json();
-      console.log(data);
       setPetData(data);
     };
     if (petId) {
