@@ -1,5 +1,5 @@
 'use client';
-import { PetForm } from '@/components';
+import { LoadingElement, PetForm } from '@/components';
 import { petProps } from '@/types';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
@@ -14,15 +14,18 @@ const page = () => {
   const petId = params.get('id');
 
   const userId = (session?.user as { id: string })?.id;
-  const userName = (session?.user as { name: string })?.name;
 
   useEffect(() => {
     const fetchPet = async () => {
       const res = await fetch(`/api/pets/pet/${petId}`);
-      const data = await res.json();
-      console.log(data);
-      setPet(data);
+      if (res.status === 200) {
+        const data = await res.json();
+        setPet(data);
+      } else {
+        router.push('/');
+      }
     };
+    // If petId is present the fetchPet func is called
     if (petId) {
       fetchPet();
     }
@@ -35,7 +38,6 @@ const page = () => {
   const [pet, setPet] = useState<petProps>();
 
   const [submitting, setSubmitting] = useState(false);
-  console.log(pet);
 
   const updatePet = async (e: any) => {
     e.preventDefault();
@@ -46,8 +48,6 @@ const page = () => {
       const response = await fetch(`/api/pets/pet/${petId}`, {
         method: 'PATCH',
         body: JSON.stringify({
-          ownerId: pet!.ownerId,
-          ownerName: pet!.ownerName,
           petImage: pet!.petImage,
           petName: pet!.petName,
           dob: pet?.dob,
@@ -72,17 +72,22 @@ const page = () => {
     }
   };
   if (pet) {
-    return (
-      <PetForm
-        formType="Update"
-        handleSubmit={updatePet}
-        submitting={submitting}
-        pet={pet}
-        setPet={setPet}
-      />
-    );
+    if (userId === pet.ownerId) {
+      return (
+        <PetForm
+          formType="Update"
+          handleSubmit={updatePet}
+          submitting={submitting}
+          pet={pet}
+          setPet={setPet}
+        />
+      );
+    } else {
+      console.log('Not authorised to access this pet');
+      redirect('/');
+    }
   } else {
-    <div>Loading...</div>;
+    <LoadingElement />;
   }
 };
 

@@ -14,7 +14,6 @@ declare interface petProfileProps {
 
 const PetProfile = (petData: petProfileProps) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
-  console.log(websiteUrl);
   const router = useRouter();
 
   const pet = petData.petData;
@@ -133,7 +132,7 @@ const PetProfile = (petData: petProfileProps) => {
         </div>
         <div className="relative w-fit">
           <h2
-            className="font-bold text-center xs:text-end w-fit mx:auto sm:mx-0"
+            className="font-bold text-center xs:text-end w-full sm:w-fit mx:auto sm:mx-0"
             style={{ fontSize: 'calc(20px + 6vmin)' }}
           >
             {petName.text}
@@ -390,13 +389,36 @@ const PetProfile = (petData: petProfileProps) => {
           )
         )}
       </section>
+
+      <hr className="w-full h-[2px] my-4" />
+
+      {/* QR Code */}
       <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">
           Personal QR code.
         </h2>
+        <p className="w-full h-fit font-normal text-md">
+          Download you QR code and have it engraved anywhere you want!{' '}
+          <span className="text-gray-500">e.g collar, harness, lead etc.</span>
+        </p>
+        <p className="w-full h-fit font-normal text-md">
+          This QR Code will lead to:&nbsp;
+          <a
+            href={`${websiteUrl}/per-found/${_id}`}
+            aria-label="personal pet qr code link"
+            target="_blank"
+            rel="noopener"
+            className="hover:text-primary underline text-sm"
+          >
+            {websiteUrl}/pet-found/{_id}
+          </a>
+        </p>
+        <p className="w-full h-fit text-sm text-gray-400 mb-2">
+          *The QR Code may change, but previous ones will still work.
+        </p>
         <QrCode
           urlToLinkTo={`${websiteUrl}/pet-found/${_id}`}
-          qrCodeWidth="300"
+          qrCodeWidth="100%"
         />
       </section>
     </div>

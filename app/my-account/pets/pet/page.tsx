@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { redirect, useSearchParams } from 'next/navigation';
-import { PetProfile } from '@/components';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { LoadingElement, PetProfile } from '@/components';
 import { petProps } from '@/types';
 import { useSession } from 'next-auth/react';
 
@@ -12,6 +12,8 @@ const page = () => {
   const { data } = useSession();
   // Gets the petId from the params
   const petId = params.get('id');
+  // Using the next router
+  const router = useRouter();
 
   // Storing the pet data
   const [petData, setPetData] = useState<petProps>();
@@ -19,8 +21,13 @@ const page = () => {
   useEffect(() => {
     const fetchPet = async () => {
       const res = await fetch(`/api/pets/pet/${petId}`);
-      const data = await res.json();
-      setPetData(data);
+
+      if (res.status === 200) {
+        const data = await res.json();
+        setPetData(data);
+      } else {
+        router.push('/');
+      }
     };
     if (petId) {
       fetchPet();
@@ -41,11 +48,7 @@ const page = () => {
       redirect('/');
     }
   } else {
-    return (
-      <p className="mx-auto w-full text-xl text-primary text-center">
-        Loading...
-      </p>
-    );
+    return <LoadingElement />;
   }
 };
 

@@ -22,3 +22,4 @@ export { default as PetFormInput } from './PetFormInput/PetFormInput';
 export { default as PetProfile } from './PetProfile/PetProfile';
 export { default as ScanHistoryItem } from './ScanHistoryItem/ScanHistoryItem';
 export { default as QrCode } from './QrCode/QrCode';
+export { default as LoadingElement } from './LoadingElement/LoadingElement';
