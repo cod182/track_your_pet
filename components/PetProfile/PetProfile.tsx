@@ -140,7 +140,9 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             className="font-bold text-center xs:text-end w-full sm:w-fit mx:auto sm:mx-0"
             style={{ fontSize: 'calc(20px + 6vmin)' }}
           >
-            {petName.public ? petName.text : `You've found someone's pet!`}
+            {petName.public || owner
+              ? petName.text
+              : `You've found someone's pet!`}
           </h2>
           {owner && (
             // Pet Name Public?
@@ -157,33 +159,36 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
         </div>
       </section>
 
-      <hr className="w-full h-[2px] my-4" />
-
-      {/* Message Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-        {/* Home Address Section */}
-        <div className="w-full relative mb-2">
-          <h2 className="w-full h-fit py-2 font-semibold text-2xl">
-            Message from owner
-          </h2>
-          <p className="w-full text-lg">
-            {message!.message ? message!.message : 'Not Provided'}
-          </p>
-          {owner && (
-            <div className="">
-              <p
-                className={`text-xs w-fit text-start ${
-                  message!.public ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {message!.public
-                  ? 'Visible when scanned'
-                  : 'Not visible when scanned'}
+      {message!.public || owner ? (
+        <>
+          <hr className="w-full h-[2px] my-4" />
+          {/* Message Section */}
+          <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+            {/* Home Address Section */}
+            <div className="w-full relative mb-2">
+              <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+                Message from owner
+              </h2>
+              <p className="w-full text-lg">
+                {message!.message ? message!.message : 'Not Provided'}
               </p>
+              {owner && (
+                <div className="">
+                  <p
+                    className={`text-xs w-fit text-start ${
+                      message!.public ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {message!.public
+                      ? 'Visible when scanned'
+                      : 'Not visible when scanned'}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </section>
+          </section>
+        </>
+      ) : null}
 
       <hr className="w-full h-[2px] my-4" />
 
@@ -192,25 +197,26 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
         <h2 className="w-full h-fit py-2 font-semibold text-2xl">Pet Info</h2>
         <table className="border-[1px] border-gray-400 w-full">
           <tbody>
-            {/* Date of Birth */}
-            <tr className="border-[1px] border-gray-400">
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                Date of Birth
-              </td>
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                {dob?.birthday ? dob?.birthday : 'N/A'}
-              </td>
-              {owner && (
-                <td
-                  className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                    dob?.public ? 'text-green-500' : 'text-red-500'
-                  }`}
-                >
-                  {dob?.public ? 'Visible' : 'Not Visible'}
+            {dob!.public || owner ? (
+              //Date of Birth
+              <tr className="border-[1px] border-gray-400">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  Date of Birth
                 </td>
-              )}
-            </tr>
-
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  {dob?.birthday ? dob?.birthday : 'N/A'}
+                </td>
+                {owner && (
+                  <td
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                      dob?.public ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {dob?.public ? 'Visible' : 'Not Visible'}
+                  </td>
+                )}
+              </tr>
+            ) : null}
             {/* Pet Type */}
             <tr className="border-[1px] border-gray-400">
               <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
@@ -227,172 +233,205 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
               )}
             </tr>
-
-            {/* Breed */}
-            <tr className="border-[1px] border-gray-400">
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                Breed
-              </td>
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                {breed?.text ? breed?.text : 'N/A'}
-              </td>
-              {owner && (
-                <td
-                  className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                    breed?.public ? 'text-green-500' : 'text-red-500'
-                  }`}
-                >
-                  {breed?.public ? 'Visible' : 'Not Visible'}
+            {breed.public || owner ? (
+              //Breed
+              <tr className="border-[1px] border-gray-400">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  Breed
                 </td>
-              )}
-            </tr>
-
-            {/* Color */}
-            <tr className="border-[1px] border-gray-400">
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                Colour
-              </td>
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
-                {color?.text ? color?.text : 'N/A'}
-              </td>
-              {owner && (
-                <td
-                  className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
-                    color?.public ? 'text-green-500' : 'text-red-500'
-                  }`}
-                >
-                  {color?.public ? 'Visible' : 'Not Visible'}
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  {breed?.text ? breed?.text : 'N/A'}
                 </td>
-              )}
-            </tr>
+                {owner && (
+                  <td
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                      breed?.public ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {breed?.public ? 'Visible' : 'Not Visible'}
+                  </td>
+                )}
+              </tr>
+            ) : null}
+            {color.public || owner ? (
+              // Color
+              <tr className="border-[1px] border-gray-400">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  Colour
+                </td>
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                  {color?.text ? color?.text : 'N/A'}
+                </td>
+                {owner && (
+                  <td
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                      color?.public ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {color?.public ? 'Visible' : 'Not Visible'}
+                  </td>
+                )}
+              </tr>
+            ) : null}
           </tbody>
         </table>
       </section>
 
-      <hr className="w-full h-[2px] my-4" />
+      {homeAddress!.public || what3words!.public || owner ? (
+        <>
+          <hr className="w-full h-[2px] my-4" />
+          {/* Address Section */}
+          <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+            <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+              Address
+            </h2>
+            {/* Home Address */}
+            {homeAddress!.public || owner ? (
+              <div className="w-full relative mb-2">
+                <p className="w-full">
+                  My Home address is:&nbsp;
+                  {homeAddress!.text ? (
+                    <Link
+                      className="hover:underline hover:text-primary"
+                      href={`https://www.google.com/maps/place/${
+                        homeAddress!.text
+                      }`}
+                      target="_blank"
+                    >
+                      {homeAddress!.text}
+                    </Link>
+                  ) : (
+                    'Not Provided'
+                  )}
+                </p>
+                {owner && (
+                  <div className="">
+                    <p
+                      className={`text-xs w-fit text-start ${
+                        homeAddress!.public ? 'text-green-500' : 'text-red-500'
+                      }`}
+                    >
+                      {homeAddress!.public
+                        ? 'Visible when scanned'
+                        : 'Not visible when scanned'}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : null}
 
-      {/* Address Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-        <h2 className="w-full h-fit py-2 font-semibold text-2xl">Address</h2>
-        {/* Home Address Section */}
-        <div className="w-full relative mb-2">
-          <p className="w-full">
-            My Home address is:&nbsp;
-            {homeAddress!.text ? (
-              <Link
-                className="hover:underline hover:text-primary"
-                href={`https://www.google.com/maps/place/${homeAddress!.text}`}
-                target="_blank"
-              >
-                {homeAddress!.text}
-              </Link>
-            ) : (
-              'Not Provided'
-            )}
-          </p>
-          {owner && (
-            <div className="">
-              <p
-                className={`text-xs w-fit text-start ${
-                  homeAddress!.public ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {homeAddress!.public
-                  ? 'Visible when scanned'
-                  : 'Not visible when scanned'}
-              </p>
-            </div>
-          )}
-        </div>
-        <hr className="w-full h-[2px] my-4" />
-        {/* What 3 Words Address Section */}
-        <div className="w-full relative mt-2">
-          <p className="w-full">
-            My What3Words location is:&nbsp;
-            {what3words!.w3w ? (
-              <Link
-                className="hover:underline hover:text-primary"
-                href={`https://www.what3words.com/${what3words!.w3w}`}
-                target="_blank"
-              >
-                {what3words!.w3w}
-              </Link>
-            ) : (
-              'Not Provided'
-            )}
-          </p>
-          {owner && (
-            <div className="">
-              <p
-                className={`text-xs w-fit text-start ${
-                  what3words!.public ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {what3words!.public
-                  ? 'Visible when scanned'
-                  : 'Not visible when scanned'}
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
+            {what3words!.public || owner ? (
+              <>
+                <hr className="w-full h-[2px] my-4" />
+                {/* What 3 Words Address Section */}
+                <div className="w-full relative mt-2">
+                  <p className="w-full">
+                    My What3Words location is:&nbsp;
+                    {what3words!.w3w ? (
+                      <Link
+                        className="hover:underline hover:text-primary"
+                        href={`https://www.what3words.com/${what3words!.w3w}`}
+                        target="_blank"
+                      >
+                        {what3words!.w3w}
+                      </Link>
+                    ) : (
+                      'Not Provided'
+                    )}
+                  </p>
+                  {owner && (
+                    <div className="">
+                      <p
+                        className={`text-xs w-fit text-start ${
+                          what3words!.public ? 'text-green-500' : 'text-red-500'
+                        }`}
+                      >
+                        {what3words!.public
+                          ? 'Visible when scanned'
+                          : 'Not visible when scanned'}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : null}
+          </section>
+        </>
+      ) : null}
 
-      <hr className="w-full h-[2px] my-4" />
+      {contactNumber!.public || contactEmail!.public || owner ? (
+        <>
+          <hr className="w-full h-[2px] my-4" />
 
-      {/* Contact Section */}
-      <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-        <h2 className="w-full h-fit py-2 font-semibold text-2xl">
-          Contact Info
-        </h2>
-        {/* Phone */}
-        <div className="w-full relative mb-2">
-          <a href={`tel:+${contactNumber}`} className="w-full">
-            <span>Contact Number:&nbsp;</span>
-            <span className="">
-              {contactNumber!.phone ? contactNumber!.phone : 'Not Provided'}
-            </span>
-          </a>
-          {owner && (
-            <div className="">
-              <p
-                className={`text-xs w-fit text-start ${
-                  contactNumber!.public ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {contactNumber!.public
-                  ? 'Visible when scanned'
-                  : 'Not visible when scanned'}
-              </p>
-            </div>
-          )}
-        </div>
-        <hr className="w-full h-[2px] my-4" />
-        {/* Email */}
-        <div className="w-full relative mt-2">
-          <a href={`mailto:${contactEmail}`} className="w-full">
-            Contact Email:&nbsp;
-            {contactEmail!.email ? contactEmail!.email : 'Not Provided'}
-          </a>
-          {owner && (
-            <div className="">
-              <p
-                className={`text-xs w-fit text-start ${
-                  contactEmail!.public ? 'text-green-500' : 'text-red-500'
-                }`}
-              >
-                {contactEmail!.public
-                  ? 'Visible when scanned'
-                  : 'Not visible when scanned'}
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
+          {/* Contact Section */}
+          <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+            <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+              Contact Info
+            </h2>
+            {/* Phone */}
+            {contactNumber!.public || owner ? (
+              <div className="w-full relative mb-2">
+                <a href={`tel:+${contactNumber}`} className="w-full">
+                  <span>Contact Number:&nbsp;</span>
+                  <span className="">
+                    {contactNumber!.phone
+                      ? contactNumber!.phone
+                      : 'Not Provided'}
+                  </span>
+                </a>
+                {owner && (
+                  <div className="">
+                    <p
+                      className={`text-xs w-fit text-start ${
+                        contactNumber!.public
+                          ? 'text-green-500'
+                          : 'text-red-500'
+                      }`}
+                    >
+                      {contactNumber!.public
+                        ? 'Visible when scanned'
+                        : 'Not visible when scanned'}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+            {contactEmail!.public || owner ? (
+              <>
+                <hr className="w-full h-[2px] my-4" />
+                {/* Email */}
+                <div className="w-full relative mt-2">
+                  <a href={`mailto:${contactEmail}`} className="w-full">
+                    Contact Email:&nbsp;
+                    {contactEmail!.email ? contactEmail!.email : 'Not Provided'}
+                  </a>
+                  {owner && (
+                    <div className="">
+                      <p
+                        className={`text-xs w-fit text-start ${
+                          contactEmail!.public
+                            ? 'text-green-500'
+                            : 'text-red-500'
+                        }`}
+                      >
+                        {contactEmail!.public
+                          ? 'Visible when scanned'
+                          : 'Not visible when scanned'}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : null}
+          </section>
+        </>
+      ) : null}
 
       <hr className="w-full h-[2px] my-4" />
       {owner && (
         <>
-          // Scan History
+          {/* Scan History */}
           <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
               Scan History
@@ -417,7 +456,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             )}
           </section>
           <hr className="w-full h-[2px] my-4" />
-          // QR Code
+          {/* QR Code */}
           <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
               Personal QR code.
@@ -449,6 +488,12 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             />
           </section>
         </>
+      )}
+      {!owner && (
+        // Message Section
+        <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+          Message To Owner
+        </section>
       )}
     </div>
   );

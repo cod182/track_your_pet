@@ -1,10 +1,13 @@
 'use client';
 import { LoadingElement, PetProfile } from '@/components';
 import { petProps } from '@/types';
+import { useSession } from 'next-auth/react';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const page = () => {
+  // Get current session
+  const { data } = useSession();
   // navigation router
   const router = useRouter();
   // get params
@@ -37,7 +40,11 @@ const page = () => {
   }, []);
 
   if (petData) {
-    return <PetProfile petData={petData} owner={false} />;
+    if (data?.user?.id === petData.ownerId) {
+      router.push(`my-account/pets/pet?id=${petData._id}`);
+    } else {
+      return <PetProfile petData={petData} owner={false} />;
+    }
   } else {
     return <LoadingElement />;
   }
