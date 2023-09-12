@@ -42,7 +42,7 @@ const page = () => {
   if (petData) {
     // Checks the current session userId matches the PetID, if not, redirected to home
     if (data?.user?.id === petData.ownerId) {
-      return <PetProfile petData={petData} />;
+      return <PetProfile petData={petData} owner={true} />;
     } else {
       console.log('Not authorised to access this pet');
       redirect('/');

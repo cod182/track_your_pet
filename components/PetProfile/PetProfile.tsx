@@ -10,6 +10,7 @@ import { QrCode } from '@/components';
 
 declare interface petProfileProps {
   petData: petProps;
+  owner: Boolean;
 }
 
 const PetProfile = (petData: petProfileProps) => {
@@ -404,20 +405,20 @@ const PetProfile = (petData: petProfileProps) => {
         <p className="w-full h-fit font-normal text-md">
           This QR Code will lead to:&nbsp;
           <a
-            href={`${websiteUrl}/per-found/${_id}`}
+            href={`${websiteUrl}/pet-found?id=${_id}`}
             aria-label="personal pet qr code link"
             target="_blank"
             rel="noopener"
             className="hover:text-primary underline text-sm"
           >
-            {websiteUrl}/pet-found/{_id}
+            {websiteUrl}/pet-found?id={_id}
           </a>
         </p>
         <p className="w-full h-fit text-sm text-gray-400 mb-2">
           *The QR Code may change, but previous ones will still work.
         </p>
         <QrCode
-          urlToLinkTo={`${websiteUrl}/pet-found/${_id}`}
+          urlToLinkTo={`${websiteUrl}/pet-found?id=${_id}`}
           qrCodeWidth="100%"
         />
       </section>

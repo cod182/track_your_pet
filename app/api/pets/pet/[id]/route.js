@@ -1,13 +1,12 @@
 import Pet from '../../../../../models/pet'
 import { connectToDb } from "../../../../../utils/database";
 
-// GET for reading 1 prpetompt by it's ID
+// GET for reading 1 pet by it's ID
 
 export const GET = async (request, { params }) => {
   try {
     await connectToDb();
     const pet = await Pet.findById(params.id);
-    console.log('db', pet)
     if (!pet) {
       return new Response('Pet not found', { status: 404 })
     }
