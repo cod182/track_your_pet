@@ -24,4 +24,4 @@ export { default as ScanHistoryItem } from './ScanHistoryItem/ScanHistoryItem';
 export { default as QrCode } from './QrCode/QrCode';
 export { default as LoadingElement } from './LoadingElement/LoadingElement';
 export { default as MessagingBox } from './MessagingBox/MessagingBox';
-export { default as SelectSlider } from './SelectSlider/SelectSlider';
+export { default as GeoLocationSelector } from './GeoLocationSelector/GeoLocationSelector';

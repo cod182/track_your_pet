@@ -50,9 +50,14 @@ export interface petEmailOption {
   public: boolean;
 }
 
+export interface coordsProps {
+  lat: string;
+  lng: string;
+}
+
 export interface petScanHistory {
   dateTime: string;
-  coordinates?: string;
+  coordinates?: coordsProps;
   message?: string;
   scannerName?: string;
   contactDetail?: string;

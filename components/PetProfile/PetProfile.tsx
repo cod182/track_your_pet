@@ -498,7 +498,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
               Send a message to the owner
             </h2>
-            <MessagingBox />
+            <MessagingBox petId={pet._id} />
           </section>
         </>
       )}
