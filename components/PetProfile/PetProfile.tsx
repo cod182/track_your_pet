@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import { petProps, petScanHistory } from '@/types';
 
-import { ScanHistoryItem } from '..';
+import { MessagingBox, ScanHistoryItem } from '..';
 
 import { QrCode } from '@/components';
 
@@ -428,9 +428,9 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
         </>
       ) : null}
 
-      <hr className="w-full h-[2px] my-4" />
       {owner && (
         <>
+          <hr className="w-full h-[2px] my-4" />
           {/* Scan History */}
           <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
@@ -491,9 +491,16 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
       )}
       {!owner && (
         // Message Section
-        <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-          Message To Owner
-        </section>
+        <>
+          <hr className="w-full h-[2px] my-4" />
+
+          <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
+            <h2 className="w-full h-fit py-2 font-semibold text-2xl">
+              Send a message to the owner
+            </h2>
+            <MessagingBox />
+          </section>
+        </>
       )}
     </div>
   );

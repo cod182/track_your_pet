@@ -41,7 +41,7 @@ const page = () => {
 
   if (petData) {
     if (data?.user?.id === petData.ownerId) {
-      router.push(`my-account/pets/pet?id=${petData._id}`);
+      redirect(`my-account/pets/pet?id=${petData._id}`);
     } else {
       return <PetProfile petData={petData} owner={false} />;
     }
