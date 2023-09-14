@@ -40,7 +40,6 @@ const page = () => {
                 petName={petName.text}
                 petImage={petImage.image}
                 petId={_id}
-                lastScan={'null'}
               />
             </div>
           );

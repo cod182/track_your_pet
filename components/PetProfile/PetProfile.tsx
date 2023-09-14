@@ -18,8 +18,11 @@ declare interface petProfileProps {
 const PetProfile = ({ petData, owner }: petProfileProps) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const router = useRouter();
+  // History filled by the fetchScan History func.
   const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
+  // assign the pet Data to pet
   const pet = petData;
+  // Spread the pet
   const {
     _id,
     petName,
@@ -35,18 +38,21 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     contactNumber,
   }: petProps = pet;
 
+  // fetches the current pet's historic tag scans
   const fetchPetScans = async (_id: any) => {
     const response = await fetch(`/api/petscans/${_id}`);
 
     const scanData = await response.json();
 
-    setScanHistory(scanData);
+    setScanHistory(scanData.reverse());
   };
 
+  // Calling the function on load only
   useEffect(() => {
     fetchPetScans(_id);
   }, []);
 
+  // Function to delete pet with confirmation
   const deleteClick = async (clickType: string) => {
     // Get the containers and buttons
     const deleteBtn: any = document.getElementById('delete-button');
