@@ -44,18 +44,18 @@ const ScanHistoryItem = ({
 
         <div className="w-full h-fit flex flex-row flex-wrap justify-start items-center my-2">
           <p className="font-semibold">Location:&nbsp;</p>
-          <Link
-            href={`https://www.google.com/maps/place/${coordinates!.lat},${
-              coordinates!.lng
-            }`}
-            target="_blank"
-            rel="noopener"
-            className="hover:text-primary hover:underline underline"
-          >
-            {coordinates!.lat != ''
-              ? `${coordinates!.lat}, ${coordinates!.lat}`
-              : 'N/A'}
-          </Link>
+          {coordinates?.lat != '' ? (
+            <Link
+              href={`https://www.google.com/maps/place/${coordinates?.lat},${coordinates?.lng}`}
+              target="_blank"
+              rel="noopener"
+              className="hover:text-primary hover:underline underline"
+            >
+              {coordinates?.lat}, {coordinates?.lat}`
+            </Link>
+          ) : (
+            <p>Not Submitted</p>
+          )}
         </div>
         <hr className="w-full" />
       </div>

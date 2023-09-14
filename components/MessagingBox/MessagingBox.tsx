@@ -1,9 +1,20 @@
-import { GeoLocationSelector, ScanHistoryItem } from '@/components';
+'use client';
+import { GeoLocationSelector } from '@/components';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const MessagingBox = ({ petId }: any) => {
+  const router = useRouter();
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [sentMessage, setSentMessage] = useState(false);
+
   const submitMessageHandler = async (e: any) => {
     e.preventDefault();
-    console.log(e.target);
+    setErrorMessage(false);
+    setSendingMessage(true);
+    setSentMessage(false);
+
     let currentDate = new Date();
     let coords = {
       lat: `${e.target[2].attributes[2].value}`,
@@ -23,11 +34,17 @@ const MessagingBox = ({ petId }: any) => {
       });
 
       if (response.ok) {
-        console.log('thanks');
+        setSentMessage(true);
+        setSendingMessage(false);
+        router.push('/');
       }
     } catch (error) {
       console.log(error);
+      setErrorMessage(true);
+      setSentMessage(false);
     } finally {
+      setSentMessage(false);
+      setSendingMessage(false);
       console.log('done');
     }
   };
@@ -60,9 +77,20 @@ const MessagingBox = ({ petId }: any) => {
       <button
         type="submit"
         className="w-fit h-fit mt-4 px-4 py-2 bg-primary hover:bg-primaryLight rounded-lg text-white hover:text-black shadow-xl hover:shadow-inner"
+        disabled={sendingMessage}
       >
-        Send Message
+        {sentMessage
+          ? 'Sent!'
+          : sendingMessage
+          ? 'Sending Message'
+          : 'Send Message'}
       </button>
+      {errorMessage && (
+        <p className="text-red-400 text-sm">Error Sending Message!</p>
+      )}
+      {sentMessage && (
+        <p className="text-gren-400 text-sm">Message Sent, Thank You!</p>
+      )}
     </form>
   );
 };
