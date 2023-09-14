@@ -11,7 +11,6 @@ const page = () => {
 
   const userId = (session?.user as { id: string })?.id;
   const userName = (session?.user as { name: string })?.name;
-  let currentDate = new Date();
   const [pet, setPet] = useState<petProps>({
     ownerId: userId,
     ownerName: userName,
@@ -26,15 +25,6 @@ const page = () => {
     petType: '',
     contactNumber: { phone: '', public: false },
     contactEmail: { email: '', public: false },
-    scanHistory: [
-      {
-        dateTime: currentDate.toString(),
-        coordinates: '0.00,0.00',
-        message: 'Pet added to system',
-        scannerName: 'Pet Creator',
-        contactDetail: 'N/A',
-      },
-    ],
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -59,7 +49,6 @@ const page = () => {
           what3words: pet?.what3words,
           message: pet?.message,
           petType: pet.petType,
-          scanHistory: pet?.scanHistory,
           contactNumber: pet?.contactNumber,
           contactEmail: pet?.contactEmail,
         }),

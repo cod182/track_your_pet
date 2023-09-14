@@ -8,7 +8,7 @@ const ScanHistoryItem = ({
   coordinates,
   message,
   scannerName,
-  contactDetail,
+  ip,
 }: petScanHistory) => {
   const [open, setOpen] = useState(false);
   return (
@@ -44,20 +44,24 @@ const ScanHistoryItem = ({
         <hr className="w-full" />
 
         <div className="w-full h-fit flex flex-row flex-wrap justify-start items-center my-2">
-          <p className="font-semibold">Contact Info:&nbsp;</p>
-          <p>{contactDetail ? contactDetail : 'N/A'}</p>
+          <p className="font-semibold">IP Address:&nbsp;</p>
+          <p>{ip ? ip : 'N/A'}</p>
         </div>
         <hr className="w-full" />
 
         <div className="w-full h-fit flex flex-row flex-wrap justify-start items-center my-2">
           <p className="font-semibold">Location:&nbsp;</p>
           <Link
-            href={`https://www.google.com/maps/place/${coordinates}`}
+            href={`https://www.google.com/maps/place/${coordinates!.lat},${
+              coordinates!.lng
+            }`}
             target="_blank"
             rel="noopener"
             className="hover:text-primary hover:underline underline"
           >
-            {coordinates ? coordinates : 'N/A'}
+            {coordinates!.lat != ''
+              ? `${coordinates!.lat}, ${coordinates!.lat}`
+              : 'N/A'}
           </Link>
         </div>
         <hr className="w-full" />

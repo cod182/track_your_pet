@@ -1,8 +1,12 @@
 import { Schema, model, models } from 'mongoose';
 
-const PetSchema = new Schema({
+const PetScansSchema = new Schema({
 
-  scanHistory: [{
+  scanHistory: {
+    petId: {
+      type: String,
+      required: [true, 'Pet ID Needed'],
+    },
     dateTime: {
       type: String,
       required: [true, 'Date / Time?'],
@@ -17,13 +21,13 @@ const PetSchema = new Schema({
     scannerName: {
       type: String,
     },
-    contactDetail: {
+    ip: {
       type: String,
     }
-  }],
+  },
 
 });
 
-const Scan = models.Scan || model("Pet", PetSchema);
+const PetScan = models.Scan || model("PetScan", PetScansSchema);
 
-export default Scan;
+export default PetScan;

@@ -60,7 +60,7 @@ export interface petScanHistory {
   coordinates?: coordsProps;
   message?: string;
   scannerName?: string;
-  contactDetail?: string;
+  ip?: string;
 }
 
 export interface petProps {

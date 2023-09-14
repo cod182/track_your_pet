@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -7,6 +8,7 @@ import { petProps, petScanHistory } from '@/types';
 import { MessagingBox, ScanHistoryItem } from '..';
 
 import { QrCode } from '@/components';
+import { useEffect, useState } from 'react';
 
 declare interface petProfileProps {
   petData: petProps;
@@ -16,7 +18,7 @@ declare interface petProfileProps {
 const PetProfile = ({ petData, owner }: petProfileProps) => {
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const router = useRouter();
-
+  const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
   const pet = petData;
   const {
     _id,
@@ -31,8 +33,19 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     petType,
     contactEmail,
     contactNumber,
-    scanHistory,
   }: petProps = pet;
+
+  const fetchPetScans = async (_id: any) => {
+    const response = await fetch(`/api/petscans/${_id}`);
+
+    const scanData = await response.json();
+
+    setScanHistory(scanData);
+  };
+
+  useEffect(() => {
+    fetchPetScans(_id);
+  }, []);
 
   const deleteClick = async (clickType: string) => {
     // Get the containers and buttons
@@ -442,7 +455,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 coordinates,
                 message,
                 scannerName,
-                contactDetail,
+                ip,
               }: petScanHistory) => (
                 <ScanHistoryItem
                   key={dateTime.replace(' ', '')}
@@ -450,7 +463,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   coordinates={coordinates}
                   message={message}
                   scannerName={scannerName}
-                  contactDetail={contactDetail}
+                  ip={ip}
                 />
               )
             )}
