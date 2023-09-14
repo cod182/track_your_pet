@@ -19,9 +19,6 @@ const PetScansSchema = new Schema({
   },
   scannerName: {
     type: String,
-  },
-  ip: {
-    type: String,
   }
 
 });

@@ -3,22 +3,22 @@ import { GeoLocationSelector, ScanHistoryItem } from '@/components';
 const MessagingBox = ({ petId }: any) => {
   const submitMessageHandler = async (e: any) => {
     e.preventDefault();
-
+    console.log(e.target);
     let currentDate = new Date();
     let coords = {
       lat: `${e.target[2].attributes[2].value}`,
       lng: `${e.target[2].attributes[3].value}`,
     };
-    console.log(coords);
 
     try {
-      const response = await fetch(`/api/pets/scanHistoryUpdate/${petId}`, {
-        method: 'PATCH',
+      const response = await fetch(`/api/petscans/new/${petId}`, {
+        method: 'POST',
         body: JSON.stringify({
+          petId: petId,
           dateTime: currentDate.toString(),
           coordinates: coords,
-          message: e.target[2].value,
-          scannerName: e.target[1].value,
+          message: e.target[1].value,
+          scannerName: e.target[0].value,
         }),
       });
 

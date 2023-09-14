@@ -20,7 +20,7 @@ const GeoLocationSelector = () => {
   const moveRight = () => {
     const onSelected: any = document.getElementById('on');
     const offSelected: any = document.getElementById('off');
-    console.log('moving right');
+
     onSelected!.checked = true;
     offSelected!.checked = false;
     offSelected.removeAttribute('defaultSelected');
@@ -29,10 +29,14 @@ const GeoLocationSelector = () => {
   const moveLeft = () => {
     const onSelected: any = document.getElementById('on');
     const offSelected: any = document.getElementById('off');
-    console.log('moving left');
+
     offSelected!.checked = true;
     onSelected!.checked = false;
     setLocationAccess(false);
+    setGeoLocation({
+      latitude: ``,
+      longitude: ``,
+    });
   };
 
   //Geolocation success function
@@ -41,10 +45,6 @@ const GeoLocationSelector = () => {
       latitude: `${position.coords.latitude}`,
       longitude: `${position.coords.longitude}`,
     });
-
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    console.log(position.coords.latitude);
     setGeoLoading(false);
     setLocationAccess(true);
     setGeoError(false);
@@ -55,6 +55,10 @@ const GeoLocationSelector = () => {
   const error = () => {
     setGeoLoading(false);
     moveLeft();
+    setGeoLocation({
+      latitude: ``,
+      longitude: ``,
+    });
     setGeoError(true);
     console.log('Unable to retrieve your location');
   };
@@ -76,7 +80,6 @@ const GeoLocationSelector = () => {
   const changeSlider = async () => {
     const offSelected: any = document.getElementById('off');
     if (offSelected!.checked) {
-      console.log('here');
       getLocation();
     } else {
       moveLeft();

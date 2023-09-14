@@ -20,6 +20,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
   const router = useRouter();
   // History filled by the fetchScan History func.
   const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
+
   // assign the pet Data to pet
   const pet = petData;
   // Spread the pet
@@ -457,19 +458,19 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             </h2>
             {scanHistory!.map(
               ({
+                petId,
                 dateTime,
                 coordinates,
                 message,
                 scannerName,
-                ip,
               }: petScanHistory) => (
                 <ScanHistoryItem
                   key={dateTime.replace(' ', '')}
+                  petId={petId}
                   dateTime={dateTime}
                   coordinates={coordinates}
                   message={message}
                   scannerName={scannerName}
-                  ip={ip}
                 />
               )
             )}

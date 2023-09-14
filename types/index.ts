@@ -56,11 +56,11 @@ export interface coordsProps {
 }
 
 export interface petScanHistory {
+  petId: string;
   dateTime: string;
   coordinates?: coordsProps;
   message?: string;
   scannerName?: string;
-  ip?: string;
 }
 
 export interface petProps {

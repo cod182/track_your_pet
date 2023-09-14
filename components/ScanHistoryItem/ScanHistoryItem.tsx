@@ -8,7 +8,6 @@ const ScanHistoryItem = ({
   coordinates,
   message,
   scannerName,
-  ip,
 }: petScanHistory) => {
   const [open, setOpen] = useState(false);
   return (
@@ -40,12 +39,6 @@ const ScanHistoryItem = ({
         <div className="w-full h-fit flex flex-row flex-wrap justify-start items-center my-2">
           <p className="font-semibold">Message:&nbsp;</p>
           <p>{message ? message : 'N/A'}</p>
-        </div>
-        <hr className="w-full" />
-
-        <div className="w-full h-fit flex flex-row flex-wrap justify-start items-center my-2">
-          <p className="font-semibold">IP Address:&nbsp;</p>
-          <p>{ip ? ip : 'N/A'}</p>
         </div>
         <hr className="w-full" />
 
