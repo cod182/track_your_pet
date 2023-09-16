@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { FaLocationArrow } from 'react-icons/fa';
 import { BsQrCode } from 'react-icons/bs';
 import { AiTwotoneMessage } from 'react-icons/ai';
+
 const ScanHistoryItem = ({
   _id,
   dateTime,
@@ -15,10 +16,29 @@ const ScanHistoryItem = ({
   typeOfScan,
 }: petScanHistory) => {
   const [open, setOpen] = useState(false);
+
+  const [deleteClicked, setDeleteClicked] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
+  const deleteScanItem = async () => {
+    try {
+      let deleteRes = await fetch(`/api/petscans/${_id}`, {
+        method: 'DELETE',
+      });
+      if (deleteRes.status === 200) {
+        console.log('Scan deleted');
+        setDeleted(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div
         className={`w-full min-h-[50px] overflow-hidden ${
+          deleted && 'hidden'
+        } ${
           typeOfScan === 'pet scan'
             ? 'bg-primary hover:bg-primaryLight'
             : 'bg-secondary hover:bg-green-500'
@@ -28,30 +48,45 @@ const ScanHistoryItem = ({
               ? 'cursor-pointer'
               : 'cursor-default'
             : 'cursor-pointer'
-        } rounded-md flex flex-row justify-start items-center px-2 mt-2 shadow-xl `}
-        onClick={() => {
-          setOpen(
-            open
-              ? false
-              : typeOfScan === 'pet scan'
-              ? coordinates
-                ? true
-                : false
-              : true
-          );
-        }}
+        } rounded-md flex flex-row justify-between items-center px-2 mt-2 shadow-xl `}
       >
-        <span className="mr-2">{coordinates && <FaLocationArrow />}</span>
+        <div
+          onClick={() => {
+            setOpen(
+              open
+                ? false
+                : typeOfScan === 'pet scan'
+                ? coordinates
+                  ? true
+                  : false
+                : true
+            );
+          }}
+          className="flex flex-row flex-wrap justify-start items-center w-full"
+        >
+          <span className="mr-2">{coordinates && <FaLocationArrow />}</span>
 
-        <p className="font-semibold">
-          Scanned:&nbsp;
-          <span className="font-normal">{dateTime}</span>
-          &nbsp;-&nbsp;
-          <span className="capitalize">{typeOfScan}</span>
-        </p>
-        <span className="ml-2">
-          {typeOfScan === 'pet scan' ? <BsQrCode /> : <AiTwotoneMessage />}
-        </span>
+          <p className="font-semibold">
+            Scanned:&nbsp;
+            <span className="font-normal">{dateTime}</span>
+            &nbsp;-&nbsp;
+            <span className="capitalize">{typeOfScan}</span>
+          </p>
+          <span className="ml-2">
+            {typeOfScan === 'pet scan' ? <BsQrCode /> : <AiTwotoneMessage />}
+          </span>
+        </div>
+        <button
+          aria-label='Delete a Scan button"'
+          className={`right-0 text-black bg-red-400/50 hover:bg-red-600 font-semibold ${
+            deleteClicked ? 'w-[150px]' : 'w-fit'
+          } py-2 px-4 rounded-xl text-sm transition-all ease-in duration-300`}
+          onClick={() => {
+            deleteClicked ? deleteScanItem() : setDeleteClicked(true);
+          }}
+        >
+          {deleteClicked ? 'Confirm' : 'X'}
+        </button>
       </div>
       <div
         className={`${

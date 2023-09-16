@@ -16,6 +16,7 @@ const page = () => {
   const petId = params.get('id');
 
   const [petData, setPetData] = useState<petProps>();
+  
 
   // If no Id has been supplied in params, redirect to home
   if (!petId) {

@@ -16,10 +16,14 @@ const MessagingBox = ({ petId }: any) => {
     setSentMessage(false);
 
     let currentDate = new Date();
-    let coords = {
-      lat: `${e.target[2].attributes[2].value}`,
-      lng: `${e.target[2].attributes[3].value}`,
-    };
+    let coords;
+
+    if (e.target[2].attributes[2].value) {
+      coords = {
+        lat: `${e.target[2].attributes[2].value}`,
+        lng: `${e.target[2].attributes[3].value}`,
+      };
+    }
 
     try {
       const response = await fetch(`/api/petscans/new/${petId}`, {
