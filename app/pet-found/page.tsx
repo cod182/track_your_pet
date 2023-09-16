@@ -16,7 +16,7 @@ const page = () => {
   const petId = params.get('id');
 
   const [petData, setPetData] = useState<petProps>();
-  
+  const [scanSubmitted, setScanSubmitted] = useState(false);
 
   // If no Id has been supplied in params, redirect to home
   if (!petId) {
@@ -46,7 +46,11 @@ const page = () => {
     } else {
       return (
         <>
-          <InstantLoggingModal petId={petId} />
+          <InstantLoggingModal
+            petId={petId}
+            setScanSubmitted={setScanSubmitted}
+            scanSubmitted={scanSubmitted}
+          />
           <PetProfile petData={petData} owner={false} />;
         </>
       );

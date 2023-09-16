@@ -1,6 +1,8 @@
-const InstantLoggingModal = ({ petId }: any) => {
-  let scanSubmitted = false;
-
+const InstantLoggingModal = ({
+  petId,
+  setScanSubmitted,
+  scanSubmitted,
+}: any) => {
   const closeModal = () => {
     const modal = document.getElementById('modal-container');
     modal?.classList.add('hidden');
@@ -47,7 +49,7 @@ const InstantLoggingModal = ({ petId }: any) => {
           coordinates: coords,
         }),
       });
-      scanSubmitted = true;
+      setScanSubmitted(true);
       if (response.ok) {
         console.log('Scan logged');
       }

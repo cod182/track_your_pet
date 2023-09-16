@@ -48,7 +48,7 @@ const ScanHistoryItem = ({
               ? 'cursor-pointer'
               : 'cursor-default'
             : 'cursor-pointer'
-        } rounded-md flex flex-row justify-between items-center px-2 mt-2 shadow-xl `}
+        } rounded-md flex flex-col xxs:flex-row justify-between items-center px-2 mt-2 shadow-xl `}
       >
         <div
           onClick={() => {
@@ -62,30 +62,26 @@ const ScanHistoryItem = ({
                 : true
             );
           }}
-          className="flex flex-row flex-wrap justify-start items-center w-full"
+          className="flex flex-row flex-wrap justify-start items-center w-full h-full px-2 py-2"
         >
           <span className="mr-2">{coordinates && <FaLocationArrow />}</span>
 
-          <p className="font-semibold">
-            Scanned:&nbsp;
-            <span className="font-normal">{dateTime}</span>
-            &nbsp;-&nbsp;
-            <span className="capitalize">{typeOfScan}</span>
-          </p>
+          <p className="font-semibold">Scanned:&nbsp;</p>
+          <span className="font-normal">{dateTime}</span>
+          <span>&nbsp;-&nbsp;</span>
+          <p className="capitalize font-semibold">{typeOfScan}</p>
           <span className="ml-2">
             {typeOfScan === 'pet scan' ? <BsQrCode /> : <AiTwotoneMessage />}
           </span>
         </div>
         <button
           aria-label='Delete a Scan button"'
-          className={`right-0 text-black bg-red-400/50 hover:bg-red-600 font-semibold ${
-            deleteClicked ? 'w-[150px]' : 'w-fit'
-          } py-2 px-4 rounded-xl text-sm transition-all ease-in duration-300`}
+          className={`right-0 text-black bg-red-400/50 hover:bg-red-600 font-semibold w-full xxs:w-fit  py-2 px-4 rounded-xl text-sm transition-all ease-in duration-300`}
           onClick={() => {
             deleteClicked ? deleteScanItem() : setDeleteClicked(true);
           }}
         >
-          {deleteClicked ? 'Confirm' : 'X'}
+          {deleteClicked ? 'Confirm' : 'Delete'}
         </button>
       </div>
       <div
