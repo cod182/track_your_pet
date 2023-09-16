@@ -2,11 +2,11 @@ import PetScan from '../../../../../models/petScan'
 import { connectToDb } from "../../../../../utils/database";
 
 export const POST = async (request) => {
-  const { petId: petId, scannerName, message, coordinates, dateTime, } = await request.json();
+  const { petId: petId, scannerName, message, coordinates, dateTime, typeOfScan } = await request.json();
 
   try {
     await connectToDb();
-    const newScan = new PetScan({ petId: petId, scannerName: scannerName, message: message, coordinates: coordinates, dateTime: dateTime });
+    const newScan = new PetScan({ petId: petId, scannerName: scannerName, message: message, coordinates: coordinates, dateTime: dateTime, typeOfScan: typeOfScan });
 
     await newScan.save();
     return new Response(JSON.stringify(newScan), { status: 201 })

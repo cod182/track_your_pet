@@ -25,3 +25,4 @@ export { default as QrCode } from './QrCode/QrCode';
 export { default as LoadingElement } from './LoadingElement/LoadingElement';
 export { default as MessagingBox } from './MessagingBox/MessagingBox';
 export { default as GeoLocationSelector } from './GeoLocationSelector/GeoLocationSelector';
+export { default as InstantLoggingModal } from './InstantLoggingModal/InstantLoggingModal';

@@ -30,6 +30,7 @@ const MessagingBox = ({ petId }: any) => {
           coordinates: coords,
           message: e.target[1].value,
           scannerName: e.target[0].value,
+          typeOfScan: 'Message',
         }),
       });
 

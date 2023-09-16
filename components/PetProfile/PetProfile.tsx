@@ -463,14 +463,18 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 coordinates,
                 message,
                 scannerName,
+                typeOfScan,
+                _id,
               }: petScanHistory) => (
                 <ScanHistoryItem
-                  key={dateTime.replace(' ', '')}
+                  key={dateTime.replace(' ', '') + _id}
                   petId={petId}
                   dateTime={dateTime}
                   coordinates={coordinates}
                   message={message}
                   scannerName={scannerName}
+                  typeOfScan={typeOfScan}
+                  _id={_id}
                 />
               )
             )}

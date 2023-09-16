@@ -6,6 +6,10 @@ const PetScansSchema = new Schema({
     type: String,
     required: [true, 'Pet ID Needed'],
   },
+  typeOfScan: {
+    type: String,
+    required: [true, 'Type of scan is needed']
+  },
   dateTime: {
     type: String,
     required: [true, 'Date / Time?'],

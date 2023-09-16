@@ -1,5 +1,5 @@
 'use client';
-import { LoadingElement, PetProfile } from '@/components';
+import { InstantLoggingModal, LoadingElement, PetProfile } from '@/components';
 import { petProps } from '@/types';
 import { useSession } from 'next-auth/react';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
@@ -43,7 +43,12 @@ const page = () => {
     if (data?.user?.id === petData.ownerId) {
       redirect(`my-account/pets/pet?id=${petData._id}`);
     } else {
-      return <PetProfile petData={petData} owner={false} />;
+      return (
+        <>
+          <InstantLoggingModal petId={petId} />
+          <PetProfile petData={petData} owner={false} />;
+        </>
+      );
     }
   } else {
     return <LoadingElement />;
