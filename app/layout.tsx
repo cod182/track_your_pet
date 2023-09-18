@@ -79,7 +79,7 @@ const RootLayout = ({ children }: { children: any }) => (
         content="https://codie.uk/assets/images/social-card.png"
       />
     </head>
-    <body>
+    <body className="max-w-[1280px] mx-auto">
       <Nav />
       <main>{children}</main>
     </body>

@@ -7,10 +7,15 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    theme: {
+      screens: {
+        xs: '540px', // min-width
+      },
+    },
     extend: {
       colors: {
-        primary: '#F5F8FF',
-        secondary: 'green',
+        primary: '#4589fb',
+        secondary: '#11b511',
       },
     },
   },
