@@ -9,20 +9,22 @@ export const metadata: Metadata = {
   title: 'TrackYourPet',
   description: 'Community driven pet tracking',
   generator: 'Next.js',
-  applicationName: 'Codie | Portfolio',
+  applicationName: 'TrackYourPet',
   referrer: 'origin-when-cross-origin',
   keywords: ['pet', 'dog', 'cat', 'tracking', 'tracker', 'safety'],
-  authors: [{ name: 'Codie Stephens-Evans', url: 'https://codie.uk' }],
+  authors: [
+    { name: 'Codie Stephens-Evans', url: 'https://track-your-pet.vercel.app/' },
+  ],
   creator: 'Codie Stephens-Evans',
   publisher: 'Codie Stephens-Evans',
   openGraph: {
     title: 'TrackYourPet',
     description: 'Community driven pet tracking',
-    url: 'https://codie.uk',
+    url: 'https://track-your-pet.vercel.app/',
     siteName: 'TrackYourPet',
     images: [
       {
-        url: 'https://codie.uk/assets/images/social-card.png',
+        url: 'https://track-your-pet.vercel.app//assets/images/social-card.png',
         width: 600,
         height: 800,
       },
@@ -59,24 +61,27 @@ const RootLayout = ({ children }: { children: any }) => (
       <meta name="theme-color" content="#000000" />
 
       {/* Facebook Meta Tags */}
-      <meta property="og:url" content="https://codie.uk" />
+      <meta property="og:url" content="https://track-your-pet.vercel.app" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Codie | Web Developer" />
       <meta property="og:description" content="React | Next | JS | TS" />
       <meta
         property="og:image"
-        content="https://codie.uk/assets/images/social-card.png"
+        content="https://track-your-pet.vercel.app/assets/images/social-card.png"
       />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:domain" content="codie.uk" />
-      <meta property="twitter:url" content="https://codie.uk" />
+      <meta
+        property="twitter:url"
+        content="https://track-your-pet.vercel.app"
+      />
       <meta name="twitter:title" content="Codie | Web Developer" />
       <meta name="twitter:description" content="React | Next | JS | TS" />
       <meta
         name="twitter:image"
-        content="https://codie.uk/assets/images/social-card.png"
+        content="https://track-your-pet.vercel.app/assets/images/social-card.png"
       />
     </head>
     <body className="max-w-[1280px] mx-auto h-auto bg-fixed">

@@ -23,6 +23,7 @@ const InfoSquare = ({ id, icons, text }: infoSquareProps) => {
                 blurDataURL={`data:${icon}`}
                 className="cover"
                 fill
+                sizes={`max-width:'60px`}
               />
             </div>
           );

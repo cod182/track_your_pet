@@ -16,7 +16,7 @@ const PageFeaturedImage = ({
 }: FeaturedProps) => {
   return (
     <>
-      <div className="w-full h-full bg-transparent relative">
+      <div className="w-full max-h-[100px] xs:max-h-[200px] bg-transparent relative">
         {buttonText && (
           <div className="absolute right-[20px] bottom-[20px] md:right-[40px] md:bottom-[40px]">
             <Link

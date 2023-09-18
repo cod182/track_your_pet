@@ -103,7 +103,7 @@ export const howItWorks = [
 
     ],
     text: [
-      { id: 0, line: 'When someone scans the QR code, you get and alert.' },
+      { id: 0, line: 'When someone scans the QR code, you get an alert.' },
 
 
     ],

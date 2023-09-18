@@ -7,7 +7,7 @@ import { Divide as Hamburger } from 'hamburger-react';
 
 import logo from '../../public/assets/logo.png';
 
-const MobileNav = () => {
+const MobileNav = ({ status, signOut }: any) => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const handleMobileMenu = () => {
@@ -15,7 +15,7 @@ const MobileNav = () => {
   };
 
   return (
-    <nav className="h-auto w-full flex justify-between p-5 sm:hidden">
+    <nav className="h-auto w-full flex justify-between items-center p-5 sm:hidden">
       <div className="w-[50vw] flex-start my-auto">
         <a href="/" className="w-fit h-fit overflow-hidden drop-shadow-2xl">
           <Image
@@ -40,7 +40,7 @@ const MobileNav = () => {
           mobileMenu ? 'h-screen' : 'h-0'
         }`}
       >
-        <div className="h-auto p-6 w-full flex justify-end items-center">
+        <div className="h-[120px] p-6 w-full flex flex-col justify-end items-end">
           <button
             className="text-[50px] hover:text-secondary transition-all ease-in-out duration-300"
             onClick={(e) => {
@@ -56,33 +56,54 @@ const MobileNav = () => {
           </button>
         </div>
         <div className="flex flex-col justify-between items-center px-5">
-          <button
-            className="text-[50px] hover:text-secondary transition-all ease-in-out duration-300 hover:shadow-2xl w-full text-center rounded-md"
-            onClick={() => {
-              handleMobileMenu();
-              document!
-                .getElementById('about')!
-                .scrollIntoView({ behavior: 'smooth' });
-            }}
+          <a
+            href="/"
+            className="text-[50px] hover:text-primary transition-all ease-in-out duration-300 w-full text-center rounded-md my-2"
           >
-            ABOUT
-          </button>
+            Home
+          </a>
         </div>
-
-        <div className="flex flex-col justify-between items-center px-5">
-          <button
-            className="text-[50px] hover:text-secondary transition-all ease-in-out duration-300 hover:shadow-2xl w-full text-center rounded-md"
-            onClick={() => {
-              handleMobileMenu();
-              document!
-                .getElementById('about')!
-                .scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            ABOUT
-          </button>
-        </div>
-
+        {status === 'authenticated' ? (
+          <div className="flex flex-col justify-between items-center px-5">
+            <Link
+              href="/my-account"
+              className="text-[50px] hover:text-primary transition-all ease-in-out duration-300 w-full text-center rounded-md my-2"
+              onClick={() => {
+                handleMobileMenu();
+              }}
+            >
+              My Account
+            </Link>
+            <Link
+              href="/my-account/pets"
+              className="text-[30px] text-gray-500 hover:text-primaryLight transition-all ease-in-out duration-300 w-full text-center rounded-md"
+              onClick={() => {
+                handleMobileMenu();
+              }}
+            >
+              - Pets
+            </Link>
+            <button
+              className="text-[50px] hover:text-primary transition-all ease-in-out duration-300 w-full text-center rounded-md my-2"
+              type="button"
+              onClick={() => void signOut()}
+            >
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-between items-center px-5">
+            <Link
+              className="text-[50px] hover:text-secondary transition-all ease-in-out duration-300 w-full text-center rounded-md my-2"
+              href="/login"
+              onClick={() => {
+                handleMobileMenu();
+              }}
+            >
+              Sign In / Sign Up
+            </Link>
+          </div>
+        )}
         <a
           href="/"
           className="transition-all ease-in-out duration-300 hover:bg-slate-600 w-full text-center rounded-full"

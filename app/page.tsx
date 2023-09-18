@@ -1,6 +1,6 @@
-import { PageFeaturedImage, InfoPane, About } from '@/components/index';
+import { PageFeaturedImage, InfoPane, About } from '@components/index';
 
-import featuredImage from '../public/assets/images/featured-image.webp';
+import featuredImage from '@public/assets/images/featured-image.webp';
 
 const page = () => {
   return (
