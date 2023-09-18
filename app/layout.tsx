@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import './styles/globals.css';
-import { Nav } from '@/components';
+import { Footer, Nav, Provider } from '@/components';
 
 export const dynamic = 'force-dynamic';
 
@@ -79,9 +79,12 @@ const RootLayout = ({ children }: { children: any }) => (
         content="https://codie.uk/assets/images/social-card.png"
       />
     </head>
-    <body className="max-w-[1280px] mx-auto">
-      <Nav />
-      <main>{children}</main>
+    <body className="max-w-[1280px] mx-auto h-auto bg-fixed">
+      <Provider>
+        <Nav />
+        <main style={{ minHeight: 'calc(100vh - 218px' }}>{children}</main>
+        <Footer />
+      </Provider>
     </body>
   </html>
 );

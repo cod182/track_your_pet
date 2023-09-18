@@ -12,7 +12,7 @@ const InfoPane = () => {
       </div>
       <TitleComp
         title="How does it work?"
-        size="80px"
+        size="max(6vmin, 20px)"
         color="rgb(50 147 235)"
         position="center"
       />

@@ -78,8 +78,8 @@ export const howItWorks = [
     icons: [
       {
         id: 0,
-        title: 'tag',
-        icon: '/assets/icons/tag.webp'
+        title: 'dog',
+        icon: '/assets/icons/dog2.webp'
       },
       {
         id: 1,

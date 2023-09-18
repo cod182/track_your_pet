@@ -6,3 +6,6 @@ export { default as InfoSquare } from './InfoSquare/InfoSquare';
 export { default as TitleComp } from './TitleComp/TitleComp';
 export { default as About } from './About/About';
 export { default as Footer } from './Footer/Footer';
+export { default as RegistrationForm } from './RegistrationForm/RegistrationForm';
+export { default as ProvidersDisplay } from './ProvidersDisplay/ProvidersDisplay';
+export { default as Provider } from './Provider/Provider';
