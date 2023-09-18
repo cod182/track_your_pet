@@ -20,7 +20,14 @@ const AuthCheck = ({
   authRedirectUrl,
   children,
 }: AuthCheckProps) => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+
+  console.log(status);
+  if (!session) {
+    {
+      children;
+    }
+  }
 
   switch (status) {
     case 'unauthenticated': {
