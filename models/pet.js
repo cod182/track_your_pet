@@ -106,26 +106,7 @@ const PetSchema = new Schema({
       type: Boolean,
       required: [true, 'Is the email public?'],
     }
-  },
-  scanHistory: [{
-    dateTime: {
-      type: String,
-      required: [true, 'Date / Time?'],
-    },
-    coordinates: {
-      type: String,
-    },
-    message: {
-      type: String,
-    },
-    scannerName: {
-      type: String,
-    },
-    contactDetail: {
-      type: String,
-    }
-  }],
-
+  }
 });
 
 const Pet = models.Pet || model("Pet", PetSchema);

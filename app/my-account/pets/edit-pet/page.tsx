@@ -41,7 +41,7 @@ const page = () => {
 
   const updatePet = async (e: any) => {
     e.preventDefault();
-    console.log(pet);
+
     setSubmitting(true);
 
     try {

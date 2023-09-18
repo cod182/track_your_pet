@@ -27,25 +27,7 @@ const page = () => {
   return (
     <div className="w-full h-full">
       {/* PetSquare */}
-      <FadeIn
-        delay={100}
-        transitionDuration={600}
-        className="grid justify-center items-center grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
-      >
-        {userPets.map(({ petName, scanHistory, petImage, _id }: any) => {
-          return (
-            <div key={_id}>
-              <PetSquare
-                petName={petName.text}
-                petImage={petImage.image}
-                petId={_id}
-                lastScan={scanHistory.slice(-1)[0].dateTime}
-              />
-            </div>
-          );
-        })}
-        <AddPetButton />
-      </FadeIn>
+      <p>Unsure of purpose at the moment</p>
     </div>
   );
 };

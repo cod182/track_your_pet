@@ -31,16 +31,15 @@ const page = () => {
       <FadeIn
         delay={100}
         transitionDuration={600}
-        className="grid justify-center items-center grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
+        className="grid justify-center items-center grid-cols-1 xxs:grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2"
       >
-        {userPets.map(({ petName, scanHistory, petImage, _id }: any) => {
+        {userPets.map(({ petName, petImage, _id }: any) => {
           return (
             <div key={_id}>
               <PetSquare
                 petName={petName.text}
                 petImage={petImage.image}
                 petId={_id}
-                lastScan={scanHistory.slice(-1)[0].dateTime}
               />
             </div>
           );
