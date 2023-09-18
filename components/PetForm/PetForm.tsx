@@ -265,10 +265,11 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              pattern="[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+"
               type="text"
               name="what3words.w3w"
               id="what3words.w3w"
-              placeholder="What3Words location (Optional)"
+              placeholder="What3Words location (Optional) E.G apple.grape.pear"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
                 setPet({
@@ -318,15 +319,15 @@ const PetForm = ({
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
               type="text"
-              name="message.text"
-              id="message.text"
+              name="message.message"
+              id="message.message"
               placeholder="Message displayed to people who scan your pet (Optional)"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
                 setPet({
                   ...pet,
                   message: {
-                    text: e.target.value,
+                    message: e.target.value,
                     public: pet?.message?.public || false,
                   },
                 })
@@ -341,7 +342,7 @@ const PetForm = ({
                   setPet({
                     ...pet,
                     message: {
-                      text: pet?.message?.text || '',
+                      message: pet?.message?.message || '',
                       public: e.target.checked,
                     },
                   });
@@ -354,31 +355,87 @@ const PetForm = ({
           </div>
         </div>
 
-        {/* Scan History */}
-        <input
-          type="hidden"
-          name="scanHistory.dateTime"
-          id="scanHistory.dateTime"
-          value=""
-        />
-        <input
-          type="hidden"
-          name="scanHistory.coordinates"
-          id="scanHistory.coordinates"
-          value="0.00, 0.00"
-        />
-        <input
-          type="hidden"
-          name="scanHistory.message"
-          id="scanHistory.message"
-          value="Initial scan, pet created"
-        />
-        <input
-          type="hidden"
-          name="scanHistory.scannerName"
-          id="scanHistory.scannerName"
-          value="Pet created"
-        />
+        {/* Contact Phone */}
+        <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
+            <input
+              type="phone"
+              name="contactNumber.text"
+              id="contactNumber.text"
+              placeholder="Your contact number (Optional)"
+              className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
+              onChange={(e) =>
+                setPet({
+                  ...pet,
+                  contactNumber: {
+                    phone: e.target.value,
+                    public: pet?.contactNumber?.public || false,
+                  },
+                })
+              }
+            />
+            <div className="flex flex-row justify-start w-full sm:w-fit">
+              <input
+                type="checkbox"
+                name="contactNumber.public"
+                id="contactNumber.public"
+                onChange={(e) => {
+                  setPet({
+                    ...pet,
+                    contactNumber: {
+                      phone: pet?.contactNumber?.phone || '',
+                      public: e.target.checked,
+                    },
+                  });
+                }}
+              />
+              <label htmlFor="contactNumber.public" className="ml-2">
+                Public?
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Email */}
+        <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
+            <input
+              type="email"
+              name="contactEmail.text"
+              id="contactEmail.text"
+              placeholder="Your contact number (Optional)"
+              className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
+              onChange={(e) =>
+                setPet({
+                  ...pet,
+                  contactEmail: {
+                    email: e.target.value,
+                    public: pet?.contactEmail?.public || false,
+                  },
+                })
+              }
+            />
+            <div className="flex flex-row justify-start w-full sm:w-fit">
+              <input
+                type="checkbox"
+                name="contactEmail.public"
+                id="contactEmail.public"
+                onChange={(e) => {
+                  setPet({
+                    ...pet,
+                    contactEmail: {
+                      email: pet?.contactEmail?.email || '',
+                      public: e.target.checked,
+                    },
+                  });
+                }}
+              />
+              <label htmlFor="contactEmail.public" className="ml-2">
+                Public?
+              </label>
+            </div>
+          </div>
+        </div>
 
         <button
           type="submit"

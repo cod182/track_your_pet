@@ -30,8 +30,23 @@ export interface petOption {
   public: boolean;
 }
 
+export interface petW3w {
+  w3w: string;
+  public: boolean;
+}
+
 export interface petMessage {
   message: string;
+  public: boolean;
+}
+
+export interface petPhoneOption {
+  phone: string;
+  public: boolean;
+}
+
+export interface petEmailOption {
+  email: string;
   public: boolean;
 }
 
@@ -40,9 +55,11 @@ export interface petScanHistory {
   coordinates?: string;
   message?: string;
   scannerName?: string;
+  contactDetail?: string;
 }
 
 export interface petProps {
+  _id?: string;
   ownerId: string;
   ownerName: string;
   petImage: petImage;
@@ -51,9 +68,11 @@ export interface petProps {
   breed: petOption;
   color: petOption;
   homeAddress?: petOption;
-  what3words?: petOption;
+  what3words?: petW3w;
   message?: petMessage;
   petType: string;
+  contactNumber: petPhoneOption;
+  contactEmail: petEmailOption;
   scanHistory?: petScanHistory[];
 }
 export interface petFormQuestionProps {
