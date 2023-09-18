@@ -20,8 +20,8 @@ const ProvidersDisplay = () => {
     setUpProviders();
   }, []);
 
-  const { status } = useSession();
-  if (status === 'unauthenticated') {
+  const { data: session } = useSession();
+  if (!session) {
     return (
       <div>
         <TitleComp
@@ -48,7 +48,7 @@ const ProvidersDisplay = () => {
         </div>
       </div>
     );
-  } else if (status === 'authenticated') {
+  } else if (session.user) {
     redirect('/my-account');
   } else {
     return <LoadingElement />;
