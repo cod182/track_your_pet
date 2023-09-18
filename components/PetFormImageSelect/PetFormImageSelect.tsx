@@ -26,6 +26,7 @@ const PetFormImageSelect = ({
           {imageOptions.map(({ imageLink, petType }: PetImageOptionProps) => (
             <label key={petType} className="m-2 relative w-[100px] h-[100px]">
               <input
+                checked={pet.petType === petType}
                 required
                 type="radio"
                 name="selected-image"

@@ -61,6 +61,7 @@ const PetForm = ({
               name="petName.text"
               id="petName.text"
               placeholder="Pet's Name"
+              value={pet?.petName.text}
               required
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded sm:mr-2 "
               onChange={(e) =>
@@ -77,6 +78,7 @@ const PetForm = ({
               <input
                 type="checkbox"
                 name="petName.public"
+                checked={pet?.petName.public}
                 id="petName.public"
                 onChange={(e) => {
                   setPet({
@@ -99,6 +101,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.dob.birthday}
               type="text"
               name="dob.birthday"
               id="dob.birthday"
@@ -108,7 +111,7 @@ const PetForm = ({
                 setPet({
                   ...pet,
                   dob: {
-                    text: e.target.value,
+                    birthday: e.target.value,
                     public: pet?.dob?.public || false,
                   },
                 })
@@ -119,11 +122,12 @@ const PetForm = ({
                 type="checkbox"
                 name="dob.public"
                 id="dob.public"
+                checked={pet?.dob.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
                     dob: {
-                      text: pet?.dob?.text || '',
+                      birthday: pet?.dob?.birthday || '',
                       public: e.target.checked,
                     },
                   });
@@ -140,6 +144,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.breed.text}
               required
               type="text"
               name="breed.text"
@@ -161,6 +166,7 @@ const PetForm = ({
                 type="checkbox"
                 name="breed.public"
                 id="breed.public"
+                checked={pet?.breed.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -182,6 +188,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.color.text}
               required
               type="text"
               name="color.text"
@@ -203,6 +210,7 @@ const PetForm = ({
                 type="checkbox"
                 name="color.public"
                 id="color.public"
+                checked={pet?.color.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -224,6 +232,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.homeAddress.text}
               type="text"
               name="homeAddress.text"
               id="homeAddress.text"
@@ -244,6 +253,7 @@ const PetForm = ({
                 type="checkbox"
                 name="homeAddress.public"
                 id="homeAddress.public"
+                checked={pet?.homeAddress.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -265,6 +275,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.what3words.w3w}
               pattern="[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+"
               type="text"
               name="what3words.w3w"
@@ -287,6 +298,7 @@ const PetForm = ({
                 type="checkbox"
                 name="what3words.public"
                 id="what3words.public"
+                checked={pet?.what3words.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -318,6 +330,7 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.message.message}
               type="text"
               name="message.message"
               id="message.message"
@@ -338,6 +351,7 @@ const PetForm = ({
                 type="checkbox"
                 name="message.public"
                 id="message.public"
+                checked={pet?.message.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -359,9 +373,10 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.contactNumber.phone}
               type="phone"
-              name="contactNumber.text"
-              id="contactNumber.text"
+              name="contactNumber.phone"
+              id="contactNumber.phone"
               placeholder="Your contact number (Optional)"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
@@ -379,6 +394,7 @@ const PetForm = ({
                 type="checkbox"
                 name="contactNumber.public"
                 id="contactNumber.public"
+                checked={pet?.contactNumber.public}
                 onChange={(e) => {
                   setPet({
                     ...pet,
@@ -400,9 +416,10 @@ const PetForm = ({
         <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
           <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
             <input
+              value={pet?.contactEmail.email}
               type="email"
-              name="contactEmail.text"
-              id="contactEmail.text"
+              name="contactEmail.email"
+              id="contactEmail.email"
               placeholder="Your contact number (Optional)"
               className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
               onChange={(e) =>
@@ -418,6 +435,7 @@ const PetForm = ({
             <div className="flex flex-row justify-start w-full sm:w-fit">
               <input
                 type="checkbox"
+                checked={pet?.contactEmail.public}
                 name="contactEmail.public"
                 id="contactEmail.public"
                 onChange={(e) => {

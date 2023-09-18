@@ -1,5 +1,5 @@
 'use client';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -36,7 +36,7 @@ const Nav = () => {
                 <>
                   <li className="mx-2">
                     <Link
-                      href="my-account"
+                      href="/my-account"
                       className="drop-shadow-xl transition-all ease-in-out duration-300 hover:drop-shadow-2xl hover:text-secondary"
                     >
                       My Account
