@@ -37,6 +37,8 @@ const page = () => {
     // If PetId exists, call fetch pet
     if (petId) {
       fetchPet();
+    } else {
+      router.push('/');
     }
   }, []);
 

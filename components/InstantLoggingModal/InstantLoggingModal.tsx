@@ -4,6 +4,7 @@ const InstantLoggingModal = ({
   scanSubmitted,
 }: any) => {
   const closeModal = () => {
+    console.log('Closing Modal');
     const modal = document.getElementById('modal-container');
     modal?.classList.add('hidden');
   };
@@ -14,10 +15,8 @@ const InstantLoggingModal = ({
       lat: `${position.coords.latitude}`,
       lng: `${position.coords.longitude}`,
     };
-    console.log(coords);
-    if (!scanSubmitted) {
-      submitLogScan(coords);
-    }
+    console.log('Successfully obtained GeoLocation');
+    submitLogScan(coords);
   };
 
   // Geolocation Error function
@@ -37,27 +36,32 @@ const InstantLoggingModal = ({
 
   // submits the scan date available
   const submitLogScan = async (coords?: any) => {
-    let currentDate = new Date();
+    // if the scan has already been submitted, scan does not go through the
+    // if scan false, submits the scan
+    if (!scanSubmitted) {
+      let currentDate = new Date();
 
-    try {
-      const response = await fetch(`/api/petscans/new/${petId}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          petId: petId,
-          dateTime: currentDate.toString(),
-          typeOfScan: 'pet scan',
-          coordinates: coords,
-        }),
-      });
-      setScanSubmitted(true);
-      if (response.ok) {
-        console.log('Scan logged');
+      try {
+        const response = await fetch(`/api/petscans/new/${petId}`, {
+          method: 'POST',
+          body: JSON.stringify({
+            petId: petId,
+            dateTime: currentDate.toString(),
+            typeOfScan: 'pet scan',
+            coordinates: coords,
+          }),
+        });
+        if (response.ok) {
+          setScanSubmitted(true);
+          console.log('Scan submitted');
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        closeModal();
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      closeModal();
     }
+    console.log('Scan already submitted');
   };
 
   return (
