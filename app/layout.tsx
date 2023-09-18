@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import './styles/globals.css';
+import { Nav } from '@/components';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,18 +11,8 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   applicationName: 'Codie | Portfolio',
   referrer: 'origin-when-cross-origin',
-  keywords: [
-    'Next.js',
-    'React',
-    'JavaScript',
-    'Typescript',
-    'html',
-    'CSS',
-    'web developer',
-    'front end',
-  ],
+  keywords: ['pet', 'dog', 'cat', 'tracking', 'tracker', 'safety'],
   authors: [{ name: 'Codie Stephens-Evans', url: 'https://codie.uk' }],
-  colorScheme: 'dark',
   creator: 'Codie Stephens-Evans',
   publisher: 'Codie Stephens-Evans',
   openGraph: {
@@ -44,7 +35,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: any }) => (
   <html lang="en">
     <head>
-      <link
+      {/* <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="/apple-touch-icon.png"
@@ -60,8 +51,8 @@ const RootLayout = ({ children }: { children: any }) => (
         type="image/png"
         sizes="16x16"
         href="/favicon-16x16.png"
-      />
-      <link rel="manifest" href="/site.webmanifest" />
+      /> */}
+      {/* <link rel="manifest" href="/site.webmanifest" /> */}
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff9800" />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
@@ -89,10 +80,7 @@ const RootLayout = ({ children }: { children: any }) => (
       />
     </head>
     <body>
-      <div className="main">
-        <div className="gradient" />
-      </div>
-
+      <Nav />
       <main>{children}</main>
     </body>
   </html>
