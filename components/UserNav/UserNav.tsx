@@ -28,7 +28,7 @@ const UserNav = () => {
         <Link href="/my-account/pets">
           <span
             className={`${
-              currenPage === '/my-account/pets' || '/my-account/pets/add-pet'
+              currenPage === '/my-account/pets'
                 ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400'
                 : ''
             } font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg`}
@@ -37,7 +37,9 @@ const UserNav = () => {
           </span>
         </Link>
       </li>
+
       <li className="mx-2 text-secondary">|</li>
+
       <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
         <Link href="/my-account/info">
           <span
