@@ -21,6 +21,7 @@ const AuthCheck = ({
   children,
 }: AuthCheckProps) => {
   const { status } = useSession();
+
   switch (status) {
     case 'unauthenticated': {
       if (notAuthRedirect) {
