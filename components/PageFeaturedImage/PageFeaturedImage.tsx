@@ -16,7 +16,7 @@ const PageFeaturedImage = ({
 }: FeaturedProps) => {
   return (
     <>
-      <div className="w-full max-h-[400px] h-auto bg-transparent relative">
+      <div className="w-full h-full bg-transparent relative">
         {buttonText && (
           <div className="absolute right-[20px] bottom-[20px] md:right-[40px] md:bottom-[40px]">
             <Link
@@ -28,8 +28,11 @@ const PageFeaturedImage = ({
           </div>
         )}
         {overlayText && (
-          <div className="absolute w-[50%] top-[10px] left-[5px] sm:top-[5em] sm:left-[2em]">
-            <p className="text-[2em] sm:text-[2rem] text-white drop-shadow-xl">
+          <div className="absolute w-auto sm:w-[50%] top-[50%] left-[5px] sm:top-[5em] sm:left-[2em]">
+            <p
+              className="text-md sm:text-[2rem] text-white drop-shadow-xl"
+              style={{ textSizeAdjust: 'auto' }}
+            >
               {overlayText}
             </p>
           </div>
