@@ -65,6 +65,16 @@ export const howItWorks = [
         title: 'battery',
         icon: '/assets/icons/battery.webp'
       },
+      {
+        id: 1,
+        title: 'dog',
+        icon: '/assets/icons/dog2.webp'
+      },
+      {
+        id: 2,
+        title: 'tag',
+        icon: '/assets/icons/tag.webp'
+      },
     ],
     text: [
       { id: 0, line: 'Sign up.' },
@@ -76,16 +86,17 @@ export const howItWorks = [
   {
     id: 1,
     icons: [
+
       {
         id: 0,
-        title: 'dog',
-        icon: '/assets/icons/dog2.webp'
-      },
-      {
-        id: 1,
         title: 'tag',
         icon: '/assets/icons/tag.webp'
       },
+      {
+        id: 1,
+        title: 'dog',
+        icon: '/assets/icons/dog2.webp'
+      }
     ],
     text: [
       { id: 0, line: 'Attach the QR code on a tag to your pet.' },
