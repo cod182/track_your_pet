@@ -2,10 +2,11 @@ import React from 'react';
 
 declare interface TitleCompProps {
   title: string;
-  color: string;
+  color?: string;
   size: string;
   position: 'center' | 'start' | 'end';
   textDecoration?: string | 'none';
+  extraTextCss?: string;
 }
 
 const TitleComp = ({
@@ -14,10 +15,12 @@ const TitleComp = ({
   size,
   position,
   textDecoration,
+  extraTextCss,
 }: TitleCompProps) => {
   return (
     <div className="w-full h-fit mx-auto py-2">
       <p
+        className={`${extraTextCss}`}
         style={{
           fontSize: size,
           color: color,
