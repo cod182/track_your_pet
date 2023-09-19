@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 
 import { petProps, petScanHistory } from '@/types';
 
-import { MessagingBox, ScanHistoryItem } from '..';
+import { DeleteButton, MessagingBox, ScanHistoryItem } from '..';
 
 import { QrCode } from '@/components';
 import { useEffect, useState } from 'react';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 declare interface petProfileProps {
   petData: petProps;
@@ -74,52 +75,22 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
   }, []);
 
   // Function to delete pet with confirmation
-  const deleteClick = async (clickType: string) => {
-    // Get the containers and buttons
-    const deleteBtn: any = document.getElementById('delete-button');
-    const deleteBtnText: any = document.getElementById('delete-button-text');
-    const selectionContainer: any = document.getElementById(
-      'selection-container'
-    );
-    const yesBtn: any = document.getElementById('yes-button');
-    const noBtn: any = document.getElementById('no-button');
 
-    //Check type
-    if (clickType === 'cancel') {
-      // reverting back to the standard delete button
-      deleteBtnText.innerText = 'Delete';
-      yesBtn.classList.add('hidden');
-      noBtn.classList.add('hidden');
-      deleteBtn.classList.remove('min-w-[200px]');
-      deleteBtn?.removeAttribute('disabled', false);
-      selectionContainer?.classList.remove('max-h-[100px]');
-      selectionContainer?.classList.add('max-h-[0px]');
-    } else if (clickType === 'deleteCheck') {
-      // add classed to reveal the confirmation buttons and change button text
-      deleteBtnText.innerText = 'Are You Sure?';
-      yesBtn.classList.remove('hidden');
-      noBtn.classList.remove('hidden');
-      deleteBtn.classList.add('min-w-[200px]');
-      deleteBtn?.setAttribute('disabled', true);
-      selectionContainer?.classList.add('max-h-[100px]');
-      selectionContainer?.classList.remove('max-h-[0px]');
-    } else if (clickType === 'deletePet') {
-      // Deleting pet from db
-      try {
-        let deleteRes = await fetch(`/api/pets/pet/${_id}`, {
-          method: 'DELETE',
-        });
-        if (deleteRes.status === 200) {
-          router.push('/my-account/pets');
-        }
-      } catch (error) {
-        console.log(error);
+  const deletePet = async () => {
+    try {
+      let deleteRes = await fetch(`/api/pets/pet/${_id}`, {
+        method: 'DELETE',
+      });
+      if (deleteRes.status === 200) {
+        router.push('/my-account/pets');
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center my-8">
+    <FadeIn delay={100} transitionDuration={600} className="w-full h-full my-8">
       {owner && (
         <section className="w-full h-fit flex flex-col sm:flex-row justify-evenly items-center">
           <a
@@ -128,36 +99,11 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
           >
             Edit
           </a>
-          <div className="my-2 h-fit w-fit flex flex-col justify-center items-center">
-            <button
-              id="delete-button"
-              onClick={() => deleteClick('deleteCheck')}
-              className="w-fit min-w-[100px] h-fit py-2 px-4 bg-gradient-to-tr to-red-200 from-red-400 hover:to-red-600 rounded-lg shadow-xl font-semibold text-white hover:text-black hover:shadow-inner transition-all ease-in duration-300"
-            >
-              <span id="delete-button-text">Delete</span>
-            </button>
-            {/* Selection button container Delete / Cancel */}
-            <div
-              id="selection-container"
-              className="bg-gray-300 w-fit h-fit overflow-hidden flex flex-row justify-between items-center transition-all duration-1000 ease-in rounded-b-md
-          "
-            >
-              <button
-                id="yes-button"
-                className="hidden w-fit h-fit font-semibold text-md text-white hover:text-black p-2 m-2 rounded-md bg-red-600 hover:bg-red-400  hover:border-green-300"
-                onClick={() => deleteClick('deletePet')}
-              >
-                Delete Pet
-              </button>
-              <button
-                id="no-button"
-                className="hidden w-fit h-fit font-semibold text-md text-white hover:text-black p-2 m-2 rounded-md bg-cyan-600 hover:bg-cyan-400 hover:border-green-300"
-                onClick={() => deleteClick('cancel')}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          <DeleteButton
+            buttonText="Delete"
+            deleteFunc={deletePet}
+            confirmButtonText="Delete Pet"
+          />
         </section>
       )}
 
@@ -549,7 +495,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
           </section>
         </>
       )}
-    </div>
+    </FadeIn>
   );
 };
 

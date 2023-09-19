@@ -1,5 +1,3 @@
-import DigitalDateTimeDisplay from './DigitalDateTimeDisplay/DigitalDateTimeDisplay';
-import ScanHistoryItem from './ScanHistoryItem/ScanHistoryItem';
 export { default as PageFeaturedImage } from './PageFeaturedImage/PageFeaturedImage';
 export { default as Nav } from './Nav/Nav';
 export { default as MobileNav } from './MobileNav/MobileNav';
@@ -26,3 +24,6 @@ export { default as LoadingElement } from './LoadingElement/LoadingElement';
 export { default as MessagingBox } from './MessagingBox/MessagingBox';
 export { default as GeoLocationSelector } from './GeoLocationSelector/GeoLocationSelector';
 export { default as InstantLoggingModal } from './InstantLoggingModal/InstantLoggingModal';
+export { default as DeleteButton } from './DeleteButton/DeleteButton';
+export { default as RemoveAccount } from './RemoveAccount/RemoveAccount';
+export { default as PetsView } from './PetsView/PetsView';
