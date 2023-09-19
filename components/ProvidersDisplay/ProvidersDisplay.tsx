@@ -20,10 +20,10 @@ const ProvidersDisplay = () => {
     setUpProviders();
   }, []);
 
-  const { data: session } = useSession();
-  if (!session) {
+  const { status } = useSession();
+  if (status === 'unauthenticated') {
     return (
-      <div>
+      <>
         <TitleComp
           title="Sign In / Register with a provider below"
           size="calc(20px + 2.5vmin)"
@@ -46,9 +46,9 @@ const ProvidersDisplay = () => {
               </button>
             ))}
         </div>
-      </div>
+      </>
     );
-  } else if (session.user) {
+  } else if (status === 'authenticated') {
     redirect('/my-account');
   } else {
     return <LoadingElement />;

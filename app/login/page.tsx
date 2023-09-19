@@ -1,5 +1,4 @@
-import { TitleComp, ProvidersDisplay, AuthCheck } from '@/components';
-import { useSession } from 'next-auth/react';
+import { ProvidersDisplay } from '@/components';
 
 const page = () => {
   return (

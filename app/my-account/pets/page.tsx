@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 
 import FadeIn from 'react-fade-in';
 
-import { AddPetButton, PetSquare } from '@/components';
+import { AddPetButton, PetSquare, TitleComp } from '@/components';
 
 const page = () => {
   const { data: session } = useSession();
@@ -27,6 +27,12 @@ const page = () => {
 
   return (
     <div className="w-full h-full">
+      <TitleComp
+        position="start"
+        size="calc(20px + 2.5vmin)"
+        extraTextCss="text-transparent bg-clip-text bg-gradient-to-br from-primary to-cyan-400 font-semibold"
+        title="Your Pets"
+      />
       {/* PetSquare */}
       <FadeIn
         delay={100}
