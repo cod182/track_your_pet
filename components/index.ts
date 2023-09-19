@@ -27,3 +27,4 @@ export { default as InstantLoggingModal } from './InstantLoggingModal/InstantLog
 export { default as DeleteButton } from './DeleteButton/DeleteButton';
 export { default as RemoveAccount } from './RemoveAccount/RemoveAccount';
 export { default as PetsView } from './PetsView/PetsView';
+export { default as WeatherBar } from './WeatherBar/WeatherBar';
