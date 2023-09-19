@@ -26,3 +26,4 @@ export { default as GeoLocationSelector } from './GeoLocationSelector/GeoLocatio
 export { default as InstantLoggingModal } from './InstantLoggingModal/InstantLoggingModal';
 export { default as DeleteButton } from './DeleteButton/DeleteButton';
 export { default as RemoveAccount } from './RemoveAccount/RemoveAccount';
+export { default as PetsView } from './PetsView/PetsView';
