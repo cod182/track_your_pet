@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import clearSky from '/public/assets/images/clear.png';
-import cloudySky from '/public/assets/images/cloudy.png';
-import windAni from '/public/assets/images/wind-turbine.gif';
+import clearSky from '@public/assets/images/clear.png';
+import cloudySky from '@public/assets/images/cloudy.png';
+import windAni from '@public/assets/images/wind-turbine.gif';
 import { BsFillSunriseFill, BsFillSunsetFill } from 'react-icons/bs';
 import { AiFillWarning } from 'react-icons/ai';
 
@@ -14,6 +14,7 @@ import {
 
 import { AiOutlineArrowUp } from 'react-icons/ai';
 import { LoadingElement } from '..';
+import Image from 'next/image';
 
 const WeatherBar = () => {
   const [error, setError] = useState(false);
@@ -31,7 +32,6 @@ const WeatherBar = () => {
 
       if (response.status === 200) {
         setWeatherData(weatherRes);
-        console.log(weatherRes);
       }
     };
     const geoError = () => {
@@ -70,14 +70,14 @@ const WeatherBar = () => {
 
                   <div className="w-full h-fit flex flex-row items-center justify-between">
                     <p className="mx-2">
-                      Starts:{' '}
+                      Starts:&nbsp;
                       <span>
                         {convertUnixTimeToDay(start)}&nbsp;
                         {ConvertUnixTimeToHour(start)}
                       </span>
                     </p>
                     <p className="mx-2">
-                      Ends:{' '}
+                      Ends:&nbsp;
                       <span>
                         {convertUnixTimeToDay(end)}&nbsp;
                         {ConvertUnixTimeToHour(end)}
@@ -86,8 +86,8 @@ const WeatherBar = () => {
                   </div>
                   <p className="font-normal">
                     Weather warning for:&nbsp;
-                    {tags.map((v: String) => (
-                      <span>Rain&nbsp;</span>
+                    {tags.map((key: any, v: String) => (
+                      <span key={key}>Rain&nbsp;</span>
                     ))}
                   </p>
                 </div>
@@ -183,12 +183,12 @@ const WeatherBar = () => {
               <div
                 className={`relative overflow-hidden w-[90px] h-full flex flex-col justify-center items-center rounded-xl px-2 mx-2 bg-cover`}
               >
-                <img
+                <Image
                   src={clearSky}
                   alt="clear"
                   className="absolute w-full h-full top-0 right z-[0]"
                 />
-                <img
+                <Image
                   src={cloudySky}
                   alt="cloudy"
                   className={`absolute w-full h-full top-[0] z-[1]`}
