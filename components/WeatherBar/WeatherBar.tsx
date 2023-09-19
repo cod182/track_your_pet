@@ -19,7 +19,7 @@ import Image from 'next/image';
 const WeatherBar = () => {
   const [error, setError] = useState(false);
   const [weatherData, setWeatherData] = useState<any>();
-  const [weatherOpen, setWeatherOpen] = useState(true);
+  const [weatherOpen, setWeatherOpen] = useState(false);
 
   useEffect(() => {
     const openApiKey = process.env.NEXT_PUBLIC_OPEN_WEATHER_API;
@@ -49,9 +49,6 @@ const WeatherBar = () => {
   let hourlyWeatherLimited = weatherData?.hourly?.slice(0, 6);
   let dailyWeatherLimited = weatherData?.daily?.slice(0, 6);
 
-  if (error) {
-    return null;
-  }
   if (weatherData) {
     return (
       <>
@@ -347,8 +344,14 @@ const WeatherBar = () => {
         </div>
       </>
     );
+  } else if (error) {
+    return (
+      <p className="w-full text-center text-sm text-gray-400">
+        Sorry, failed to fetch the weather
+      </p>
+    );
   } else {
-    <LoadingElement />;
+    return <LoadingElement />;
   }
 };
 
