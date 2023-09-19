@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import clearSky from '@public/assets/images/clear.png';
-import cloudySky from '@public/assets/images/cloudy.png';
+import clearSky from '@public/assets/images/clear.webp';
+import cloudySky from '@public/assets/images/cloudy.webp';
 import windAni from '@public/assets/images/wind-turbine.gif';
 import { BsFillSunriseFill, BsFillSunsetFill } from 'react-icons/bs';
 import { AiFillWarning } from 'react-icons/ai';
