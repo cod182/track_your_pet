@@ -9,6 +9,7 @@ const page = () => {
         extraTextCss="text-transparent bg-clip-text bg-gradient-to-br from-primary to-cyan-400 font-semibold"
         title="Your Pets"
       />
+      {/* Pets view component to see all user pets */}
       <PetsView />
     </div>
   );

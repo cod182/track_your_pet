@@ -9,11 +9,15 @@ import { AddPetButton, LoadingElement, PetSquare } from '@/components';
 import { petProps } from '@/types';
 
 const PetsView = () => {
+  // Gets the user from the session
   const { data: session } = useSession();
+  // Extracts the userId form teh sessions
   const userId = (session?.user as { id: string })?.id;
 
+  // State ready for the users pets. TS pet props
   const [userPets, setUserPets] = useState<petProps[]>();
 
+  // Func to get all pets with the owner id === to userId
   const fetchUsersPets = async () => {
     const response = await fetch(`/api/pets/${userId}`);
 
@@ -22,10 +26,12 @@ const PetsView = () => {
     setUserPets(data);
   };
 
+  // Fetch all user pets on first load
   useEffect(() => {
     fetchUsersPets();
   }, []);
-  console.log(userPets);
+
+  // When user pets returned, even if empty, Fade in all pets* and the add pet button. Otherwise show loading element
   if (userPets) {
     return (
       <FadeIn
