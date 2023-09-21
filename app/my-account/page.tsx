@@ -1,5 +1,4 @@
 import { TitleComp, WeatherBar } from '@/components';
-import FadeIn from 'react-fade-in';
 
 const page = () => {
   return (

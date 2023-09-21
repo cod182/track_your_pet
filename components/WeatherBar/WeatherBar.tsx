@@ -53,7 +53,7 @@ const WeatherBar = () => {
     return (
       <>
         <div className="w-full h-auto flex flex-col justify-center items-center mt-4 sm:mt-1 max-w-5xl mx-auto relative">
-          {weatherData.alerts.map(({ event, start, end, tags }: any) => {
+          {weatherData?.alerts?.map(({ event, start, end, tags }: any) => {
             return (
               <div
                 key={start + end}
