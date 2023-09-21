@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   publisher: 'Codie Stephens-Evans',
   openGraph: {
     title: 'TrackYourPet',
-    description: 'Community driven pet tracking',
+    description: 'A subscription free way to keep track of you pet.',
     url: 'https://track-your-pet.vercel.app/',
     siteName: 'TrackYourPet',
     images: [
       {
-        url: 'https://track-your-pet.vercel.app//assets/images/social-card.png',
+        url: 'https://track-your-pet.vercel.app/assets/images/social-card.png',
         width: 600,
         height: 800,
       },
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: any }) => (
   <html lang="en">
     <head>
-      {/* <link
+      <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="/apple-touch-icon.png"
@@ -53,18 +53,22 @@ const RootLayout = ({ children }: { children: any }) => (
         type="image/png"
         sizes="16x16"
         href="/favicon-16x16.png"
-      /> */}
-      {/* <link rel="manifest" href="/site.webmanifest" /> */}
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff9800" />
-      <meta name="msapplication-TileColor" content="#da532c" />
-      <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-      <meta name="theme-color" content="#000000" />
+      />
+      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+      <meta name="apple-mobile-web-app-title" content="TrackYourPet" />
+      <meta name="application-name" content="TrackYourPet" />
+      <meta name="msapplication-TileColor" content="#00aba9" />
+      <meta name="theme-color" content="#ffffff" />
 
       {/* Facebook Meta Tags */}
       <meta property="og:url" content="https://track-your-pet.vercel.app" />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="Codie | Web Developer" />
-      <meta property="og:description" content="React | Next | JS | TS" />
+      <meta property="og:title" content="TrackYourPet" />
+      <meta
+        property="og:description"
+        content="A subscription free way to keep track of you pet."
+      />
       <meta
         property="og:image"
         content="https://track-your-pet.vercel.app/assets/images/social-card.png"
@@ -77,8 +81,11 @@ const RootLayout = ({ children }: { children: any }) => (
         property="twitter:url"
         content="https://track-your-pet.vercel.app"
       />
-      <meta name="twitter:title" content="Codie | Web Developer" />
-      <meta name="twitter:description" content="React | Next | JS | TS" />
+      <meta name="twitter:title" content="TrackYourPet" />
+      <meta
+        name="twitter:description"
+        content="A subscription free way to keep track of you pet."
+      />
       <meta
         name="twitter:image"
         content="https://track-your-pet.vercel.app/assets/images/social-card.png"
