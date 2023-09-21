@@ -4,7 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logo from '@public/assets/logo.png';
+import logo from '@public/assets/logo.webp';
 import MobileNav from '../MobileNav/MobileNav';
 
 const Nav = () => {
