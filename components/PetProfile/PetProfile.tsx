@@ -189,15 +189,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             {dob!.public || owner ? (
               //Date of Birth
               <tr className="border-[1px] border-gray-400">
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   Date of Birth
                 </td>
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   {dob?.birthday ? dob?.birthday : 'N/A'}
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
                       dob?.public ? 'text-green-500' : 'text-red-500'
                     }`}
                   >
@@ -208,15 +208,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             ) : null}
             {/* Pet Type */}
             <tr className="border-[1px] border-gray-400">
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                 Type of pet
               </td>
-              <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 capitalize">
+              <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2 capitalize">
                 {petType ? petType : 'N/A'}
               </td>
               {owner && (
                 <td
-                  className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 text-green-500`}
+                  className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 text-green-500`}
                 >
                   Visible
                 </td>
@@ -225,15 +225,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             {breed.public || owner ? (
               //Breed
               <tr className="border-[1px] border-gray-400">
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   Breed
                 </td>
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   {breed?.text ? breed?.text : 'N/A'}
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
                       breed?.public ? 'text-green-500' : 'text-red-500'
                     }`}
                   >
@@ -245,15 +245,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             {color.public || owner ? (
               // Color
               <tr className="border-[1px] border-gray-400">
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   Colour
                 </td>
-                <td className="border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2">
+                <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
                   {color?.text ? color?.text : 'N/A'}
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center px-4 py-2 ${
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
                       color?.public ? 'text-green-500' : 'text-red-500'
                     }`}
                   >
@@ -461,15 +461,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
               </span>
             </p>
             <p className="w-full h-fit font-normal text-md">
-              This QR Code will lead to:&nbsp;
+              This QR Code will lead to&nbsp;
               <a
                 href={`${websiteUrl}/pet-found?id=${_id}`}
                 aria-label="personal pet qr code link"
                 target="_blank"
                 rel="noopener"
-                className="hover:text-primary underline text-sm"
+                className="hover:text-primary underline"
               >
-                {websiteUrl}/pet-found?id={_id}
+                your pets public page.
               </a>
             </p>
             <p className="w-full h-fit text-sm text-gray-400 mb-2">

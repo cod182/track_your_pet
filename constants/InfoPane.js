@@ -62,8 +62,8 @@ export const howItWorks = [
     icons: [
       {
         id: 0,
-        title: 'battery',
-        icon: '/assets/icons/battery.webp'
+        title: 'add',
+        icon: '/assets/icons/addre.webp'
       },
       {
         id: 1,

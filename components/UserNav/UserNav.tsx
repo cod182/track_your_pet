@@ -7,9 +7,9 @@ const UserNav = () => {
 
   return (
     <ul className="flex flex-row flex-wrap justify-center items-center h-fit">
-      <li className="mx-2 text-secondary">|</li>
+      <li className="mx-2 text-secondary hidden xxs:inline">|</li>
 
-      <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+      <li className="transition-all ease-in duration-300 py-1 px-4 rounded w-full xxs:w-fit text-center">
         <Link href="/my-account">
           <span
             className={`${
@@ -22,9 +22,9 @@ const UserNav = () => {
           </span>
         </Link>
       </li>
-      <li className="mx-2 text-secondary">|</li>
+      <li className="mx-2 text-secondary hidden xxs:inline">|</li>
 
-      <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+      <li className="transition-all ease-in duration-300 py-1 px-4 rounded w-full xxs:w-fit text-center">
         <Link href="/my-account/pets">
           <span
             className={`${
@@ -38,24 +38,8 @@ const UserNav = () => {
         </Link>
       </li>
 
-      <li className="mx-2 text-secondary">|</li>
-
-      <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
-        <Link href="/my-account/info">
-          <span
-            className={`${
-              currenPage === '/my-account/info'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400'
-                : ''
-            } font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg`}
-          >
-            {' '}
-            Info
-          </span>
-        </Link>
-      </li>
-      <li className="mx-2 text-secondary">|</li>
-      <li className="transition-all ease-in duration-300 py-1 px-4 rounded">
+      <li className="mx-2 text-secondary hidden xxs:inline">|</li>
+      <li className="transition-all ease-in duration-300 py-1 px-4 rounded w-full xxs:w-fit text-center">
         <Link href="/my-account/settings">
           <span
             className={`${
@@ -64,12 +48,11 @@ const UserNav = () => {
                 : ''
             } font-normal text-lg hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r from-primary to-cyan-400 hover:drop-shadow-lg`}
           >
-            {' '}
             Settings
           </span>
         </Link>
       </li>
-      <li className="mx-2 text-secondary">|</li>
+      <li className="mx-2 text-secondary hidden xxs:inline">|</li>
     </ul>
   );
 };
