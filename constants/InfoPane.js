@@ -63,7 +63,7 @@ export const howItWorks = [
       {
         id: 0,
         title: 'add',
-        icon: '/assets/icons/addre.webp'
+        icon: '/assets/icons/add.webp'
       },
       {
         id: 1,
