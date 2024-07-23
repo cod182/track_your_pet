@@ -67,9 +67,8 @@ const InstantLoggingModal = ({
   return (
     <div
       id="modal-container"
-      className={`z-[1099] fixed top-0 left-0 w-full h-full bg-gray-300/50 flex flex-col justify-center items-center ${
-        scanSubmitted && 'hidden'
-      }`}
+      className={`z-[1099] fixed top-0 left-0 w-full h-full bg-gray-300/50 flex flex-col justify-center items-center ${scanSubmitted && 'hidden'
+        }`}
       aria-modal
       onLoad={void getLocation()}
     >

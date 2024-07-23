@@ -63,6 +63,7 @@ export interface petScanHistory {
   message?: string;
   scannerName?: string;
   typeOfScan: string;
+  read: boolean;
 }
 
 export interface petProps {

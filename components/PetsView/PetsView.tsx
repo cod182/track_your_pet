@@ -1,16 +1,22 @@
 'use client';
 
+import { AddPetButton, LoadingElement, PetSquare } from '@/components';
 import { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
 
 import FadeIn from 'react-fade-in';
-
-import { AddPetButton, LoadingElement, PetSquare } from '@/components';
+import { fetchNotifications } from '@/utils/functions';
 import { petProps } from '@/types';
+import { useNotification } from '@/context/notificationContext'; // Adjust the path as needed
+import { useSession } from 'next-auth/react';
 
 const PetsView = () => {
   // Gets the user from the session
   const { data: session } = useSession();
+
+  // Notifications count
+  const { notifications, addNotification, removeNotification, getUnreadCountForPet, setNotifications } = useNotification();
+
+
   // Extracts the userId form teh sessions
   const userId = (session?.user as { id: string })?.id;
 
@@ -26,9 +32,22 @@ const PetsView = () => {
     setUserPets(data);
   };
 
+  const fetchAllNotifications = async () => {
+    try {
+      const response = await fetchNotifications();
+
+      setNotifications(response)
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
   // Fetch all user pets on first load
   useEffect(() => {
     fetchUsersPets();
+    fetchAllNotifications()
   }, []);
 
   // When user pets returned, even if empty, Fade in all pets* and the add pet button. Otherwise show loading element
@@ -47,12 +66,14 @@ const PetsView = () => {
                 petName={petName.text}
                 petImage={petImage.image}
                 petId={_id}
+                notificationNumber={getUnreadCountForPet(_id)}
               />
             </div>
           );
-        })}
+        })
+        }
         <AddPetButton />
-      </FadeIn>
+      </FadeIn >
     );
   } else {
     return <LoadingElement />;

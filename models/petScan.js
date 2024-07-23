@@ -23,8 +23,11 @@ const PetScansSchema = new Schema({
   },
   scannerName: {
     type: String,
+  },
+  read: {
+    type: Boolean,
+    required: [true, 'Is the message read?'],
   }
-
 });
 
 const PetScan = models.PetScan || model("PetScan", PetScansSchema);

@@ -6,7 +6,7 @@ export const POST = async (request) => {
 
   try {
     await connectToDb();
-    const newScan = new PetScan({ petId: petId, scannerName: scannerName, message: message, coordinates: coordinates, dateTime: dateTime, typeOfScan: typeOfScan });
+    const newScan = new PetScan({ petId: petId, scannerName: scannerName, message: message, coordinates: coordinates, dateTime: dateTime, typeOfScan: typeOfScan, read: false });
 
     await newScan.save();
     return new Response(JSON.stringify(newScan), { status: 201 })

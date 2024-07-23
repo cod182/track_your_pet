@@ -1,11 +1,12 @@
 'use client';
-import { petScanHistory } from '@/types';
-import Link from 'next/link';
+
 import React, { useState } from 'react';
 
-import { FaLocationArrow } from 'react-icons/fa';
-import { BsQrCode } from 'react-icons/bs';
 import { AiTwotoneMessage } from 'react-icons/ai';
+import { BsQrCode } from 'react-icons/bs';
+import { FaLocationArrow } from 'react-icons/fa';
+import Link from 'next/link';
+import { petScanHistory } from '@/types';
 
 const ScanHistoryItem = ({
   _id,
@@ -14,6 +15,7 @@ const ScanHistoryItem = ({
   message,
   scannerName,
   typeOfScan,
+  read
 }: petScanHistory) => {
   const [open, setOpen] = useState(false);
 
@@ -36,19 +38,16 @@ const ScanHistoryItem = ({
   return (
     <>
       <div
-        className={`w-full min-h-[50px] overflow-hidden ${
-          deleted && 'hidden'
-        } ${
-          typeOfScan === 'pet scan'
+        className={`w-full min-h-[50px] overflow-hidden ${deleted && 'hidden'
+          } ${typeOfScan === 'pet scan'
             ? 'bg-primary hover:bg-primaryLight'
             : 'bg-secondary hover:bg-green-500'
-        }  ${
-          typeOfScan === 'pet scan'
+          }  ${typeOfScan === 'pet scan'
             ? coordinates
               ? 'cursor-pointer'
               : 'cursor-default'
             : 'cursor-pointer'
-        } rounded-md flex flex-col xxs:flex-row justify-between items-center px-2 mt-2 shadow-xl `}
+          } rounded-md flex flex-col xxs:flex-row justify-between items-center px-2 mt-2 shadow-xl `}
       >
         <div
           onClick={() => {
@@ -56,10 +55,10 @@ const ScanHistoryItem = ({
               open
                 ? false
                 : typeOfScan === 'pet scan'
-                ? coordinates
-                  ? true
-                  : false
-                : true
+                  ? coordinates
+                    ? true
+                    : false
+                  : true
             );
           }}
           className="flex flex-row flex-wrap justify-start items-center w-full h-full px-2 py-2"
@@ -85,11 +84,10 @@ const ScanHistoryItem = ({
         </button>
       </div>
       <div
-        className={`${
-          open
+        className={`${open
             ? 'min-h-[100px] max-h-[800px] h-fit py-4 border-b-2'
             : 'h-[0px] min-h-[0px] max-h-[0px] '
-        }  bg-gray-200 border-black  border-l-2 border-r-2 overflow-hidden rounded-b-md w-[90%] transition-all duration-400 ease-in shadow-inner px-4`}
+          }  bg-gray-200 border-black  border-l-2 border-r-2 overflow-hidden rounded-b-md w-[90%] transition-all duration-400 ease-in shadow-inner px-4`}
       >
         {scannerName && (
           <>
