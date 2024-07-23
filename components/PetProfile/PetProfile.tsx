@@ -4,6 +4,7 @@ import { DeleteButton, MessagingBox, ScanHistoryItem } from '..';
 import { petProps, petScanHistory } from '@/types';
 import { useEffect, useState } from 'react';
 
+import { FaBell } from 'react-icons/fa';
 import FadeIn from 'react-fade-in/lib/FadeIn';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -39,6 +40,8 @@ const toBase64 = (str: string) => typeof window === 'undefined' ? Buffer.from(st
 const PetProfile = ({ petData, owner }: petProfileProps) => {
 
   // DECLARATIONS
+  const { notifications, addNotification, removeNotification, getUnreadCountForPet, getNotifications } = useNotification();
+
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const router = useRouter();
 
@@ -67,16 +70,20 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     fetchPetScans(_id);
   }, []);
 
+  useEffect(() => {
+    if (notifications.length === 0) getNotifications();
+
+    if (_id) {
+      console.log('getting notifications');
+      setTotalNotifications(getUnreadCountForPet(_id))
+    }
+  }, [removeNotification]);
 
   // STATES
 
   // History filled by the fetchScan History func.
   const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
-
-  const { setCount, count } = useNotification();
-
-
-
+  const [totalNotification, setTotalNotifications] = useState(0);
 
   // FUNCTIONS
 
@@ -426,9 +433,19 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
           <hr className="w-full h-[2px] my-4" />
           {/* Scan History */}
           <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-            <h2 className="w-full h-fit py-2 font-semibold text-2xl">
-              Scan History <span className='bg-red-400 rounded-full px-4 py-2 select-non cursor-default'>{count}</span>
-            </h2>
+
+            <div className='w-full flex flex-row justify-start items-center'>
+              <h2 className="w-fit h-fit py-2 font-semibold text-2xl">
+                Scan History
+              </h2>
+              <div className="relative  w-[30px] aspect-square flex flex-col justify-center items-center">
+                <FaBell className="text-red-500 text-4xl" />
+                <span className="text-white absolute text-xs">
+                  {totalNotification}
+                </span>
+              </div>
+            </div>
+
             {scanHistory!.map(
               ({
                 petId,
@@ -450,9 +467,11 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   typeOfScan={typeOfScan}
                   _id={_id}
                   read={read}
+                  customOnClickAction={removeNotification}
                 />
               )
             )}
+
           </section>
           <hr className="w-full h-[2px] my-4" />
           {/* QR Code */}

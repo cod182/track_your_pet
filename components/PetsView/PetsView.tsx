@@ -14,7 +14,7 @@ const PetsView = () => {
   const { data: session } = useSession();
 
   // Notifications count
-  const { notifications, addNotification, removeNotification, getUnreadCountForPet, setNotifications } = useNotification();
+  const { notifications, addNotification, removeNotification, getUnreadCountForPet, getNotifications } = useNotification();
 
 
   // Extracts the userId form teh sessions
@@ -32,22 +32,10 @@ const PetsView = () => {
     setUserPets(data);
   };
 
-  const fetchAllNotifications = async () => {
-    try {
-      const response = await fetchNotifications();
-
-      setNotifications(response)
-
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
-
   // Fetch all user pets on first load
   useEffect(() => {
     fetchUsersPets();
-    fetchAllNotifications()
+    getNotifications()
   }, []);
 
   // When user pets returned, even if empty, Fade in all pets* and the add pet button. Otherwise show loading element

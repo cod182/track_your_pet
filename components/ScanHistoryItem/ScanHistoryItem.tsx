@@ -1,12 +1,25 @@
 'use client';
 
 import React, { useState } from 'react';
+import { coordsProps, petScanHistory } from '@/types';
 
 import { AiTwotoneMessage } from 'react-icons/ai';
 import { BsQrCode } from 'react-icons/bs';
 import { FaLocationArrow } from 'react-icons/fa';
 import Link from 'next/link';
-import { petScanHistory } from '@/types';
+
+type Props = {
+  customOnClickAction?: (itemId: string) => void;
+  _id: string;
+  petId: string;
+  dateTime: string;
+  coordinates?: coordsProps;
+  message?: string;
+  scannerName?: string;
+  typeOfScan: string;
+  read: boolean;
+};
+
 
 const ScanHistoryItem = ({
   _id,
@@ -15,8 +28,9 @@ const ScanHistoryItem = ({
   message,
   scannerName,
   typeOfScan,
-  read
-}: petScanHistory) => {
+  read,
+  customOnClickAction
+}: Props) => {
   const [open, setOpen] = useState(false);
 
   const [deleteClicked, setDeleteClicked] = useState(false);
@@ -60,6 +74,11 @@ const ScanHistoryItem = ({
                     : false
                   : true
             );
+            if (customOnClickAction) {
+              if (!read) {
+                customOnClickAction(_id);
+              }
+            }
           }}
           className="flex flex-row flex-wrap justify-start items-center w-full h-full px-2 py-2"
         >
@@ -85,8 +104,8 @@ const ScanHistoryItem = ({
       </div>
       <div
         className={`${open
-            ? 'min-h-[100px] max-h-[800px] h-fit py-4 border-b-2'
-            : 'h-[0px] min-h-[0px] max-h-[0px] '
+          ? 'min-h-[100px] max-h-[800px] h-fit py-4 border-b-2'
+          : 'h-[0px] min-h-[0px] max-h-[0px] '
           }  bg-gray-200 border-black  border-l-2 border-r-2 overflow-hidden rounded-b-md w-[90%] transition-all duration-400 ease-in shadow-inner px-4`}
       >
         {scannerName && (

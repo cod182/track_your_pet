@@ -2,6 +2,7 @@
 
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
+import { fetchNotifications } from '@/utils/functions';
 import { petScanHistory } from '@/types'; // Adjust the import path as needed
 
 // Define the shape of the context value
@@ -10,7 +11,7 @@ interface NotificationContextType {
   addNotification: (notification: petScanHistory) => void;
   removeNotification: (id: string) => void;
   getUnreadCountForPet: (petId: string) => number;
-  setNotifications: (notifications: petScanHistory[]) => void;
+  getNotifications: () => void
 }
 
 // Create the context with a default value
@@ -19,6 +20,16 @@ const NotificationContext = createContext<NotificationContextType | undefined>(u
 // Create a provider component
 export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [notifications, setNotifications] = useState<petScanHistory[]>([]);
+
+  const getNotifications = async () => {
+    try {
+      const response = await fetchNotifications();
+      setNotifications(response)
+    } catch (error) {
+      setNotifications([])
+      console.log('Could not get notifications')
+    }
+  };
 
   const addNotification = (notification: petScanHistory) => {
     setNotifications((prevNotifications) => [...prevNotifications, notification]);
@@ -34,8 +45,9 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
     return notifications.filter(notification => notification.petId === petId && !notification.read).length;
   };
 
+
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification, getUnreadCountForPet, setNotifications }}>
+    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification, getUnreadCountForPet, getNotifications }}>
       {children}
     </NotificationContext.Provider>
   );
