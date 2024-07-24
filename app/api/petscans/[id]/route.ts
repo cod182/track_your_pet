@@ -38,28 +38,59 @@ export const DELETE = async (request: NextRequest, { params }: any) => {
 }
 
 
-export const PATCH = async (req: NextRequest, res: NextResponse, { params }: any) => {
+// export const PATCH = async (req: NextRequest, res: NextResponse, { params }: any) => {
+//   // API Protection
+//   const session = await getServerSession();
+//   if (!session) {
+//     // Not Signed in
+//     return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+//   }
+
+//   try {
+//     await connectToDb()
+
+//     const scanToUpdate = await PetScan.findById(params.id);
+//     if (!scanToUpdate) {
+//       return new Response('Scan not found', { status: 404 })
+//     }
+
+//     scanToUpdate.read = true;
+//     await scanToUpdate.save()
+
+
+//     return new Response(JSON.stringify(scanToUpdate), { status: 200 })
+//   } catch (error) {
+//     return new Response("Failed to update scan", { status: 500 })
+//   }
+// }
+
+export const PATCH = async (req: NextRequest, { params }: { params: { id: string } }) => {
   // API Protection
   const session = await getServerSession();
   if (!session) {
     // Not Signed in
-    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+    return NextResponse.json({ error: "You must be logged in" }, { status: 401 });
   }
 
   try {
-    await connectToDb()
+    // Connect to the database
+    await connectToDb();
 
+    // Find the scan by ID
     const scanToUpdate = await PetScan.findById(params.id);
     if (!scanToUpdate) {
-      return new Response('Scan not found', { status: 404 })
+      return NextResponse.json({ error: 'Scan not found' }, { status: 404 });
     }
 
+    // Update the scan
     scanToUpdate.read = true;
-    await scanToUpdate.save()
+    await scanToUpdate.save();
 
-
-    return new Response(JSON.stringify(scanToUpdate), { status: 200 })
+    // Return the updated scan
+    return NextResponse.json(scanToUpdate, { status: 200 });
   } catch (error) {
-    return new Response("Failed to update scan", { status: 500 })
+    // Handle errors
+    console.error('Failed to update scan:', error);
+    return NextResponse.json({ error: 'Failed to update scan' }, { status: 500 });
   }
 }
