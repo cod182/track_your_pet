@@ -1,4 +1,5 @@
 'use client';
+
 import { GeoLocationSelector } from '@/components';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -87,8 +88,8 @@ const MessagingBox = ({ petId }: any) => {
         {sentMessage
           ? 'Sent!'
           : sendingMessage
-          ? 'Sending Message'
-          : 'Send Message'}
+            ? 'Sending Message'
+            : 'Send Message'}
       </button>
       {errorMessage && (
         <p className="text-red-400 text-sm">Error Sending Message!</p>

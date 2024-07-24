@@ -1,13 +1,17 @@
 'use client';
+
 import { InstantLoggingModal, LoadingElement, PetProfile } from '@/components';
-import { petProps } from '@/types';
-import { useSession } from 'next-auth/react';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import { petProps } from '@/types';
+import { useSession } from 'next-auth/react';
 
 const page = () => {
   // Get current session
   const { data } = useSession();
+
+
   // navigation router
   const router = useRouter();
   // get params
@@ -24,19 +28,20 @@ const page = () => {
   }
 
   useEffect(() => {
-    const fetchPet = async () => {
-      const res = await fetch(`/api/pets/pet/${petId}`);
+    const fetchPet = async (id: string) => {
+      const res = await fetch(`/api/publicPet/${id}`);
 
       if (res.status === 200) {
-        const data = await res.json();
-        setPetData(data);
+        const foundPet = await res.json();
+        setPetData(foundPet);
       } else {
         router.push('/');
       }
     };
+
     // If PetId exists, call fetch pet
     if (petId) {
-      fetchPet();
+      fetchPet(petId);
     } else {
       router.push('/');
     }
@@ -55,7 +60,7 @@ const page = () => {
           />
           <PetProfile petData={petData} owner={false} />;
         </>
-      );
+      )
     }
   } else {
     return <LoadingElement />;

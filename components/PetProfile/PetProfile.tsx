@@ -1,22 +1,23 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
-import { petProps, petScanHistory } from '@/types';
 
 import { DeleteButton, MessagingBox, ScanHistoryItem } from '..';
-
-import { QrCode } from '@/components';
+import { petProps, petScanHistory } from '@/types';
 import { useEffect, useState } from 'react';
+
+import { FaBell } from 'react-icons/fa';
 import FadeIn from 'react-fade-in/lib/FadeIn';
+import Image from 'next/image';
+import Link from 'next/link';
+import { QrCode } from '@/components';
+import { useNotification } from '@/context/notificationContext'; // Adjust the path as needed
+import { useRouter } from 'next/navigation';
 
 declare interface petProfileProps {
   petData: petProps;
   owner: Boolean;
 }
 
-// Shiimer effect for image loading
+// Shimmer effect for image loading
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -31,16 +32,18 @@ const shimmer = (w: number, h: number) => `
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
 </svg>`;
 
-const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window.btoa(str);
+const toBase64 = (str: string) => typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str);
+
+
+
 
 const PetProfile = ({ petData, owner }: petProfileProps) => {
+
+  // DECLARATIONS
+  const { notifications, addNotification, removeNotification, getUnreadCountForPet, getNotifications } = useNotification();
+
   const websiteUrl = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const router = useRouter();
-  // History filled by the fetchScan History func.
-  const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
 
   // assign the pet Data to pet
   const pet = petData;
@@ -58,7 +61,34 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     petType,
     contactEmail,
     contactNumber,
+    ownerName
   }: petProps = pet;
+
+  // USE EFFECTS
+
+  // Calling the function on load only
+  useEffect(() => {
+    if (owner) fetchPetScans(_id);
+  }, []);
+
+  useEffect(() => {
+    if (owner) {
+
+      if (notifications.length === 0) getNotifications();
+
+      if (_id) {
+        setTotalNotifications(getUnreadCountForPet(_id))
+      }
+    }
+  }, [removeNotification]);
+
+  // STATES
+
+  // History filled by the fetchScan History func.
+  const [scanHistory, setScanHistory] = useState<petScanHistory[]>([]);
+  const [totalNotification, setTotalNotifications] = useState(0);
+
+  // FUNCTIONS
 
   // fetches the current pet's historic tag scans
   const fetchPetScans = async (_id: any) => {
@@ -69,13 +99,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     setScanHistory(scanData.reverse());
   };
 
-  // Calling the function on load only
-  useEffect(() => {
-    fetchPetScans(_id);
-  }, []);
-
   // Function to delete pet with confirmation
-
   const deletePet = async () => {
     try {
       let deleteRes = await fetch(`/api/pets/pet/${_id}`, {
@@ -136,9 +160,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
           {owner && (
             // Pet Name Public?
             <p
-              className={`text-xs w-fit text-end ${
-                petName!.public ? 'text-green-500' : 'text-red-500'
-              }`}
+              className={`text-xs w-fit text-end ${petName!.public ? 'text-green-500' : 'text-red-500'
+                }`}
             >
               {petName.public
                 ? 'Visible when scanned'
@@ -164,9 +187,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
               {owner && (
                 <div className="">
                   <p
-                    className={`text-xs w-fit text-start ${
-                      message!.public ? 'text-green-500' : 'text-red-500'
-                    }`}
+                    className={`text-xs w-fit text-start ${message!.public ? 'text-green-500' : 'text-red-500'
+                      }`}
                   >
                     {message!.public
                       ? 'Visible when scanned'
@@ -197,15 +219,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
-                      dob?.public ? 'text-green-500' : 'text-red-500'
-                    }`}
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${dob?.public ? 'text-green-500' : 'text-red-500'
+                      }`}
                   >
                     {dob?.public ? 'Visible' : 'Not Visible'}
                   </td>
                 )}
               </tr>
             ) : null}
+
             {/* Pet Type */}
             <tr className="border-[1px] border-gray-400">
               <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
@@ -222,6 +244,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
               )}
             </tr>
+
             {breed.public || owner ? (
               //Breed
               <tr className="border-[1px] border-gray-400">
@@ -233,15 +256,15 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
-                      breed?.public ? 'text-green-500' : 'text-red-500'
-                    }`}
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${breed.public ? 'text-green-500' : 'text-red-500'
+                      }`}
                   >
                     {breed?.public ? 'Visible' : 'Not Visible'}
                   </td>
                 )}
               </tr>
             ) : null}
+
             {color.public || owner ? (
               // Color
               <tr className="border-[1px] border-gray-400">
@@ -253,9 +276,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${
-                      color?.public ? 'text-green-500' : 'text-red-500'
-                    }`}
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${color?.public ? 'text-green-500' : 'text-red-500'
+                      }`}
                   >
                     {color?.public ? 'Visible' : 'Not Visible'}
                   </td>
@@ -282,9 +304,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   {homeAddress!.text ? (
                     <Link
                       className="hover:underline hover:text-primary"
-                      href={`https://www.google.com/maps/place/${
-                        homeAddress!.text
-                      }`}
+                      href={`https://www.google.com/maps/place/${homeAddress!.text
+                        }`}
                       target="_blank"
                     >
                       {homeAddress!.text}
@@ -296,9 +317,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 {owner && (
                   <div className="">
                     <p
-                      className={`text-xs w-fit text-start ${
-                        homeAddress!.public ? 'text-green-500' : 'text-red-500'
-                      }`}
+                      className={`text-xs w-fit text-start ${homeAddress!.public ? 'text-green-500' : 'text-red-500'
+                        }`}
                     >
                       {homeAddress!.public
                         ? 'Visible when scanned'
@@ -331,9 +351,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   {owner && (
                     <div className="">
                       <p
-                        className={`text-xs w-fit text-start ${
-                          what3words!.public ? 'text-green-500' : 'text-red-500'
-                        }`}
+                        className={`text-xs w-fit text-start ${what3words!.public ? 'text-green-500' : 'text-red-500'
+                          }`}
                       >
                         {what3words!.public
                           ? 'Visible when scanned'
@@ -348,7 +367,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
         </>
       ) : null}
 
-      {contactNumber!.public || contactEmail!.public || owner ? (
+      {contactNumber!.public || contactEmail!.public || ownerName!.public || owner ? (
         <>
           <hr className="w-full h-[2px] my-4" />
 
@@ -357,9 +376,39 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
               Contact Info
             </h2>
+            {/* NAME */}
+            {ownerName!.public || owner ? (
+              <div className="w-full relative mb-2">
+                <p className="w-full">
+                  <span>Owner's Name:&nbsp;</span>
+                  <span className="">
+                    {ownerName!.text
+                      ? ownerName!.text
+                      : 'Not Provided'}
+                  </span>
+                </p>
+                {owner && (
+                  <div className="">
+                    <p
+                      className={`text-xs w-fit text-start ${ownerName!.public
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                        }`}
+                    >
+                      {ownerName!.public
+                        ? 'Visible when scanned'
+                        : 'Not visible when scanned'}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+
             {/* Phone */}
             {contactNumber!.public || owner ? (
               <div className="w-full relative mb-2">
+                <hr className="w-full h-[2px] my-4" />
                 <a href={`tel:+${contactNumber}`} className="w-full">
                   <span>Contact Number:&nbsp;</span>
                   <span className="">
@@ -371,11 +420,10 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 {owner && (
                   <div className="">
                     <p
-                      className={`text-xs w-fit text-start ${
-                        contactNumber!.public
-                          ? 'text-green-500'
-                          : 'text-red-500'
-                      }`}
+                      className={`text-xs w-fit text-start ${contactNumber!.public
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                        }`}
                     >
                       {contactNumber!.public
                         ? 'Visible when scanned'
@@ -398,11 +446,10 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   {owner && (
                     <div className="">
                       <p
-                        className={`text-xs w-fit text-start ${
-                          contactEmail!.public
-                            ? 'text-green-500'
-                            : 'text-red-500'
-                        }`}
+                        className={`text-xs w-fit text-start ${contactEmail!.public
+                          ? 'text-green-500'
+                          : 'text-red-500'
+                          }`}
                       >
                         {contactEmail!.public
                           ? 'Visible when scanned'
@@ -422,9 +469,21 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
           <hr className="w-full h-[2px] my-4" />
           {/* Scan History */}
           <section className="w-full h-fit flex flex-col justify-between items-center py-6 px-0 xxs:px-1 xs:px-2 sm:px-5 relative">
-            <h2 className="w-full h-fit py-2 font-semibold text-2xl">
-              Scan History
-            </h2>
+
+            <div className='w-full flex flex-row justify-start items-center'>
+              <h2 className="w-fit h-fit py-2 font-semibold text-2xl">
+                Scan History
+              </h2>
+
+
+              <div className="relative  w-[30px] aspect-square flex flex-col justify-center items-center">
+                <FaBell className="text-red-500 text-4xl" />
+                <span className="text-white absolute text-xs">
+                  {totalNotification}
+                </span>
+              </div>
+            </div>
+
             {scanHistory!.map(
               ({
                 petId,
@@ -434,6 +493,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 scannerName,
                 typeOfScan,
                 _id,
+                read,
               }: petScanHistory) => (
                 <ScanHistoryItem
                   key={dateTime.replace(' ', '') + _id}
@@ -444,9 +504,12 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                   scannerName={scannerName}
                   typeOfScan={typeOfScan}
                   _id={_id}
+                  read={read}
+                  customOnClickAction={removeNotification}
                 />
               )
             )}
+
           </section>
           <hr className="w-full h-[2px] my-4" />
           {/* QR Code */}

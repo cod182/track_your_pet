@@ -63,12 +63,13 @@ export interface petScanHistory {
   message?: string;
   scannerName?: string;
   typeOfScan: string;
+  read: boolean;
 }
 
 export interface petProps {
   _id?: string;
   ownerId: string;
-  ownerName: string;
+  ownerName: petOption;
   petImage: petImage;
   petName: petOption;
   dob?: petBirthday;

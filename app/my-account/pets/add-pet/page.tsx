@@ -1,9 +1,11 @@
 'use client';
+
+import React, { useState } from 'react';
+
 import { PetForm } from '@/components';
 import { petProps } from '@/types';
-import { useSession } from 'next-auth/react';
-import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const page = () => {
   const { data: session } = useSession();
@@ -13,7 +15,7 @@ const page = () => {
   const userName = (session?.user as { name: string })?.name;
   const [pet, setPet] = useState<petProps>({
     ownerId: userId,
-    ownerName: userName,
+    ownerName: { text: userName, public: false },
     petImage: { image: '', public: true },
     petName: { text: '', public: false },
     dob: { birthday: '', public: false },

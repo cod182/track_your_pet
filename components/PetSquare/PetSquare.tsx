@@ -1,3 +1,4 @@
+import { FaBell } from "react-icons/fa";
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,6 +7,7 @@ declare interface PetSquareProps {
   petName: string;
   petImage: string;
   petId: string;
+  notificationNumber?: number;
 }
 
 const shimmer = (w: number, h: number) => `
@@ -27,15 +29,28 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str);
 
-const PetSquare = ({ petName, petImage, petId }: PetSquareProps) => {
+
+
+const PetSquare = ({ petName, petImage, petId, notificationNumber }: PetSquareProps) => {
   return (
     <Link
       href={`/my-account/pets/pet?id=${petId}`}
       className="group aspect-square rounded-lg border-2 border-gray-200 shadow-md mx-auto max-w-[200px] w-full relative flex flex-col justify-center items-center p-2 bg-gradient-to-tl from-primary to-cyan-400 transition-all ease-in-out duration-400  hover:scale-110	 hover:z-[99] hover:border-2 hover:border-white"
     >
-      {/* Top Area */}
+      <div className={`overflow-hidden absolute top-[10px] right-[10px] ${notificationNumber && notificationNumber > 0 ? '' : 'hidden'}`}>
+        <div className="relative aspect-square flex flex-col justify-center items-center">
+          <FaBell className="text-red-500 text-4xl" />
+          <span className="text-white absolute top-[10px] text-xs">
+            {notificationNumber && notificationNumber > 10 ? '10+' : notificationNumber}
+          </span>
+        </div>
 
-      <div className=" p-2 overflow-hidden group-hover:shadow-green-400  border-black border-2 rounded-full shadow-lg max-w-[100px] max-h-[100px] min-h-[80px] min-w-[80px]  relative">
+      </div>
+
+      {/* Top Area */}
+      <div className=" p-2 overflow-hidden group-hover:shadow-green-400  border-black border-2 rounded-full shadow-lg max-w-[100px] max-h-[100px] min-h-[80px] min-w-[80px] relative">
+
+
         <Image
           src={petImage}
           alt={petName}

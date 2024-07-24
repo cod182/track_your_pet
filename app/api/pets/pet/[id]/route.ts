@@ -1,9 +1,20 @@
+import { NextRequest, NextResponse } from 'next/server';
+
 import Pet from '../../../../../models/pet'
 import { connectToDb } from "../../../../../utils/database";
+import { getServerSession } from 'next-auth';
 
 // GET for reading 1 pet by it's ID
 
-export const GET = async (request, { params }) => {
+export const GET = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
+
+
   try {
     await connectToDb();
     const pet = await Pet.findById(params.id);
@@ -19,8 +30,17 @@ export const GET = async (request, { params }) => {
 }
 
 // DELETE a pet
-export const DELETE = async (request, { params }) => {
-  console.log('deleting')
+export const DELETE = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
+
+  //  NEED TO CHECK PET OWNER IS THE SAME AS THE LOGGED IN USER 
+
+
   try {
     await connectToDb();
     await Pet.findByIdAndRemove(params.id);
@@ -33,8 +53,15 @@ export const DELETE = async (request, { params }) => {
 
 // PATCH (Updating a pet)
 
-export const PATCH = async (request, { params }) => {
-  const { petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail } = await request.json();
+export const PATCH = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
+
+  const { petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail, ownerName } = await request.json();
   try {
     await connectToDb();
     const petToUpdate = await Pet.findById(params.id);
@@ -53,6 +80,7 @@ export const PATCH = async (request, { params }) => {
     petToUpdate.petType = petType;
     petToUpdate.contactNumber = contactNumber;
     petToUpdate.contactEmail = contactEmail;
+    petToUpdate.ownerName = ownerName;
 
     await petToUpdate.save()
     return new Response(JSON.stringify(petToUpdate), { status: 200 });
@@ -61,6 +89,3 @@ export const PATCH = async (request, { params }) => {
     return new Response("Failed to update pet", { status: 500 });
   }
 }
-
-
-
