@@ -6,15 +6,22 @@ const PetSchema = new Schema({
     required: [true, 'OwnerID is required!'],
   },
   ownerName: {
-    type: String,
-    required: [true, "owner's name is required!"],
+    text: {
+      type: String,
+      required: [true, 'owner name is required!'],
+    },
+    public: {
+      type: Boolean,
+      required: [true, 'Is the image public?'],
+    }
   },
   petImage: {
     image: {
       type: String,
       required: [true, 'Pet image is required!'],
 
-    }, public: {
+    },
+    public: {
       type: Boolean,
       required: [true, 'Is the image public?'],
     }

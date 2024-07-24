@@ -67,14 +67,17 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
 
   // Calling the function on load only
   useEffect(() => {
-    fetchPetScans(_id);
+    if (owner) fetchPetScans(_id);
   }, []);
 
   useEffect(() => {
-    if (notifications.length === 0) getNotifications();
+    if (owner) {
 
-    if (_id) {
-      setTotalNotifications(getUnreadCountForPet(_id))
+      if (notifications.length === 0) getNotifications();
+
+      if (_id) {
+        setTotalNotifications(getUnreadCountForPet(_id))
+      }
     }
   }, [removeNotification]);
 

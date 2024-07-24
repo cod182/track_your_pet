@@ -32,7 +32,6 @@ const toBase64 = (str: string) =>
 
 
 const PetSquare = ({ petName, petImage, petId, notificationNumber }: PetSquareProps) => {
-  console.log('notifications:', notificationNumber);
   return (
     <Link
       href={`/my-account/pets/pet?id=${petId}`}

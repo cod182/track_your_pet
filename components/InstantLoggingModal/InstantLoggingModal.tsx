@@ -4,7 +4,6 @@ const InstantLoggingModal = ({
   scanSubmitted,
 }: any) => {
   const closeModal = () => {
-    console.log('Closing Modal');
     const modal = document.getElementById('modal-container');
     modal?.classList.add('hidden');
   };

@@ -2,16 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import PetScan from '../../../../../models/petScan'
 import { connectToDb } from "../../../../../utils/database";
+import { getPetOwnerId } from '@/utils/functions';
 import { getServerSession } from 'next-auth';
 
 export const POST = async (request: NextRequest) => {
-  // API Protection
-  const session = await getServerSession();
-  if (!session) {
-    // Not Signed in
-    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
-  }
+
   const { petId: petId, scannerName, message, coordinates, dateTime, typeOfScan } = await request.json();
+
+  // const ownerId = getPetOwnerId(petId)
 
   try {
     await connectToDb();

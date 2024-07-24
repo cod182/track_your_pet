@@ -9,11 +9,12 @@ import { getServerSession } from 'next-auth';
 export const GET = async (request: NextRequest, { params }: any) => {
   // API Protection
   const session = await getServerSession();
-  console.log(session)
   if (!session) {
     // Not Signed in
     return NextResponse.json({ error: "You must be logged in': ", status: 401 })
   }
+
+
   try {
     await connectToDb();
     const pet = await Pet.findById(params.id);
@@ -36,6 +37,10 @@ export const DELETE = async (request: NextRequest, { params }: any) => {
     // Not Signed in
     return NextResponse.json({ error: "You must be logged in': ", status: 401 })
   }
+
+  //  NEED TO CHECK PET OWNER IS THE SAME AS THE LOGGED IN USER 
+
+
   try {
     await connectToDb();
     await Pet.findByIdAndRemove(params.id);

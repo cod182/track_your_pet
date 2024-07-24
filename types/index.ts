@@ -69,7 +69,7 @@ export interface petScanHistory {
 export interface petProps {
   _id?: string;
   ownerId: string;
-  ownerName: string;
+  ownerName: petOption;
   petImage: petImage;
   petName: petOption;
   dob?: petBirthday;
