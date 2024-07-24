@@ -60,7 +60,7 @@ const page = () => {
           />
           <PetProfile petData={petData} owner={false} />;
         </>
-      );
+      )
     }
   } else {
     return <LoadingElement />;

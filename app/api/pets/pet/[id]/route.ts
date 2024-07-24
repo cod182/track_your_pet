@@ -61,7 +61,7 @@ export const PATCH = async (request: NextRequest, { params }: any) => {
     return NextResponse.json({ error: "You must be logged in': ", status: 401 })
   }
 
-  const { petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail } = await request.json();
+  const { petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail, ownerName } = await request.json();
   try {
     await connectToDb();
     const petToUpdate = await Pet.findById(params.id);
@@ -80,6 +80,7 @@ export const PATCH = async (request: NextRequest, { params }: any) => {
     petToUpdate.petType = petType;
     petToUpdate.contactNumber = contactNumber;
     petToUpdate.contactEmail = contactEmail;
+    petToUpdate.ownerName = ownerName;
 
     await petToUpdate.save()
     return new Response(JSON.stringify(petToUpdate), { status: 200 });

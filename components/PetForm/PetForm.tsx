@@ -1,10 +1,8 @@
+import FadeIn from 'react-fade-in';
 import Link from 'next/link';
+import PetFormImageSelect from '../PetFormImageSelect/PetFormImageSelect';
 import React from 'react';
 import { TitleComp } from '@/components';
-
-import FadeIn from 'react-fade-in';
-import PetFormImageSelect from '../PetFormImageSelect/PetFormImageSelect';
-
 import { petImageOptions } from '../../constants/petImageOptions';
 
 declare interface PetFormProps {
@@ -363,6 +361,37 @@ const PetForm = ({
                 }}
               />
               <label htmlFor="message.public" className="ml-2">
+                Public?
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Name */}
+        <div className="flex flex-col justify-evenly w-full h-fit bg-gray-100 sm:bg-white rounded sm:rounded-none p-2 sm:p-0 my-2">
+          <div className="flex flex-col sm:flex-row justify-evenly items-center w-full h-fit">
+            <p
+              className="w-full h-[40px] px-4 py-2 bg-gray-200 border-primary border-2 rounded mr-2 "
+            >
+              {pet?.ownerName.text}
+            </p>
+            <div className="flex flex-row justify-start w-full sm:w-fit">
+              <input
+                type="checkbox"
+                name="contactNumber.public"
+                id="contactNumber.public"
+                checked={pet?.ownerName.public}
+                onChange={(e) => {
+                  setPet({
+                    ...pet,
+                    ownerName: {
+                      text: pet?.ownerName?.text,
+                      public: e.target.checked,
+                    },
+                  });
+                }}
+              />
+              <label htmlFor="contactNumber.public" className="ml-2">
                 Public?
               </label>
             </div>

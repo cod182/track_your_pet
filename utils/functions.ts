@@ -80,7 +80,7 @@ export const getPublicPetData = (petData: petProps): petProps => {
 
   if (petData.dob) { newPetData.dob = { public: petData.dob.public, birthday: checkPublic(petData.dob.public, petData.dob.birthday) } }
 
-  newPetData.breed = { public: petData.breed.public, text: checkPublic(petData.breed.public, petData.color.text) }
+  newPetData.breed = { public: petData.breed.public, text: checkPublic(petData.breed.public, petData.breed.text) }
 
   newPetData.color = { public: petData.color.public, text: checkPublic(petData.color.public, petData.color.text) }
 

@@ -61,6 +61,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     petType,
     contactEmail,
     contactNumber,
+    ownerName
   }: petProps = pet;
 
   // USE EFFECTS
@@ -226,6 +227,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 )}
               </tr>
             ) : null}
+
             {/* Pet Type */}
             <tr className="border-[1px] border-gray-400">
               <td className="border-[1px] border-gray-400 w-fit h-fit text-center  py-2">
@@ -242,6 +244,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
               )}
             </tr>
+
             {breed.public || owner ? (
               //Breed
               <tr className="border-[1px] border-gray-400">
@@ -253,7 +256,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 </td>
                 {owner && (
                   <td
-                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${breed?.public ? 'text-green-500' : 'text-red-500'
+                    className={`border-[1px] border-gray-400 w-fit h-fit text-center  py-2 ${breed.public ? 'text-green-500' : 'text-red-500'
                       }`}
                   >
                     {breed?.public ? 'Visible' : 'Not Visible'}
@@ -261,6 +264,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
                 )}
               </tr>
             ) : null}
+
             {color.public || owner ? (
               // Color
               <tr className="border-[1px] border-gray-400">
@@ -363,7 +367,7 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
         </>
       ) : null}
 
-      {contactNumber!.public || contactEmail!.public || owner ? (
+      {contactNumber!.public || contactEmail!.public || ownerName!.public || owner ? (
         <>
           <hr className="w-full h-[2px] my-4" />
 
@@ -372,9 +376,39 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
             <h2 className="w-full h-fit py-2 font-semibold text-2xl">
               Contact Info
             </h2>
+            {/* NAME */}
+            {ownerName!.public || owner ? (
+              <div className="w-full relative mb-2">
+                <p className="w-full">
+                  <span>Owner's Name:&nbsp;</span>
+                  <span className="">
+                    {ownerName!.text
+                      ? ownerName!.text
+                      : 'Not Provided'}
+                  </span>
+                </p>
+                {owner && (
+                  <div className="">
+                    <p
+                      className={`text-xs w-fit text-start ${ownerName!.public
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                        }`}
+                    >
+                      {ownerName!.public
+                        ? 'Visible when scanned'
+                        : 'Not visible when scanned'}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+
             {/* Phone */}
             {contactNumber!.public || owner ? (
               <div className="w-full relative mb-2">
+                <hr className="w-full h-[2px] my-4" />
                 <a href={`tel:+${contactNumber}`} className="w-full">
                   <span>Contact Number:&nbsp;</span>
                   <span className="">
