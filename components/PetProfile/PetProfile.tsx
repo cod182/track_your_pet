@@ -74,7 +74,6 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
     if (notifications.length === 0) getNotifications();
 
     if (_id) {
-      console.log('getting notifications');
       setTotalNotifications(getUnreadCountForPet(_id))
     }
   }, [removeNotification]);
@@ -438,6 +437,8 @@ const PetProfile = ({ petData, owner }: petProfileProps) => {
               <h2 className="w-fit h-fit py-2 font-semibold text-2xl">
                 Scan History
               </h2>
+
+
               <div className="relative  w-[30px] aspect-square flex flex-col justify-center items-center">
                 <FaBell className="text-red-500 text-4xl" />
                 <span className="text-white absolute text-xs">

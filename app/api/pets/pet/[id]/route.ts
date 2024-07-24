@@ -1,9 +1,19 @@
+import { NextRequest, NextResponse } from 'next/server';
+
 import Pet from '../../../../../models/pet'
 import { connectToDb } from "../../../../../utils/database";
+import { getServerSession } from 'next-auth';
 
 // GET for reading 1 pet by it's ID
 
-export const GET = async (request, { params }) => {
+export const GET = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  console.log(session)
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
   try {
     await connectToDb();
     const pet = await Pet.findById(params.id);
@@ -19,8 +29,13 @@ export const GET = async (request, { params }) => {
 }
 
 // DELETE a pet
-export const DELETE = async (request, { params }) => {
-  console.log('deleting')
+export const DELETE = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
   try {
     await connectToDb();
     await Pet.findByIdAndRemove(params.id);
@@ -33,7 +48,14 @@ export const DELETE = async (request, { params }) => {
 
 // PATCH (Updating a pet)
 
-export const PATCH = async (request, { params }) => {
+export const PATCH = async (request: NextRequest, { params }: any) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
+
   const { petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail } = await request.json();
   try {
     await connectToDb();
@@ -61,6 +83,3 @@ export const PATCH = async (request, { params }) => {
     return new Response("Failed to update pet", { status: 500 });
   }
 }
-
-
-

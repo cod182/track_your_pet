@@ -31,7 +31,10 @@ const ScanHistoryItem = ({
   read,
   customOnClickAction
 }: Props) => {
+
+  // Use States
   const [open, setOpen] = useState(false);
+  const [notificationRead, setNotificationRead] = useState(read);
 
   const [deleteClicked, setDeleteClicked] = useState(false);
   const [deleted, setDeleted] = useState(false);
@@ -75,13 +78,16 @@ const ScanHistoryItem = ({
                   : true
             );
             if (customOnClickAction) {
-              if (!read) {
+              if (!notificationRead) {
+                setNotificationRead(true)
                 customOnClickAction(_id);
               }
             }
           }}
           className="flex flex-row flex-wrap justify-start items-center w-full h-full px-2 py-2"
         >
+          <span className={` mr-2 rounded-full bg-red-500 transition-all ease duration-200 ${notificationRead ? 'h-0 w-0' : 'h-[15px] w-[15px]'}`} />
+
           <span className="mr-2">{coordinates && <FaLocationArrow />}</span>
 
           <p className="font-semibold">Scanned:&nbsp;</p>

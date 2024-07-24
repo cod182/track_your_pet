@@ -1,7 +1,6 @@
 import { Schema, model, models } from 'mongoose';
 
 const PetScansSchema = new Schema({
-
   petId: {
     type: String,
     required: [true, 'Pet ID Needed'],

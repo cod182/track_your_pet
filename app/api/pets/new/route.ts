@@ -1,7 +1,18 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
+
 import Pet from '../../../../models/pet'
 import { connectToDb } from "../../../../utils/database";
+import { getServerSession } from 'next-auth';
 
-export const POST = async (request) => {
+export const POST = async (request: NextRequest, response: NextApiResponse) => {
+  // API Protection
+  const session = await getServerSession();
+  if (!session) {
+    // Not Signed in
+    return NextResponse.json({ error: "You must be logged in': ", status: 401 })
+  }
+
   const { ownerId, ownerName, petImage, petName, dob, breed, color, homeAddress, what3words, message, petType, contactNumber, contactEmail } = await request.json();
 
   try {

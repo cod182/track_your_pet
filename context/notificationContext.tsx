@@ -1,8 +1,8 @@
 'use client'; // This directive ensures the file is treated as a client component
 
 import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { fetchNotifications, updateNotifications } from '@/utils/functions';
 
-import { fetchNotifications } from '@/utils/functions';
 import { petScanHistory } from '@/types'; // Adjust the import path as needed
 
 // Define the shape of the context value
@@ -39,6 +39,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const removeNotification = (id: string) => {
     setNotifications((prevNotifications) => prevNotifications.filter(notification => notification._id !== id));
     // Function to remove a notification from the database can be added here
+    updateNotifications(id);
   };
 
   const getUnreadCountForPet = (petId: string) => {
